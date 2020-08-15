@@ -1,0 +1,371 @@
+.pos-detail-form1-search-wrapper{
+    border-bottom: 2px solid #888;
+}
+
+.pos-detail-form1-search-wrapper-input{
+    border: 2px solid #ccc;
+    padding: 5px;
+    border-radius: 20px;
+    display: inline-block;
+    width: calc(50vw - 25px);
+    margin-left: 10px;
+}
+
+.pos-detail-form1-search-wrapper-input input {
+    width: calc(100% - 30px);
+    height: 20px;
+}
+
+.pos-detail-form1-information-wrapper{
+    border-bottom: 2px solid #888;
+    margin-bottom: 20px;
+}
+
+.pos-detail-form1-information{
+    margin-left: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.pos-detail-form1-information table{
+    padding: 10px;
+}
+
+.pos-detail-form1-information td{
+    padding: 5px;
+    vertical-align: top;
+}
+
+.pos-detail-page-nav-bar-bottom-wrapper {
+    height: 54px;
+    max-height: 54px;
+    width: 100vw;
+    font-size: 0;
+    border-top: 2px solid #888;
+}
+.pos-detail-page-nav-bar-bottom-left,
+.pos-detail-page-nav-bar-bottom-right {
+    display: inline-block;
+    height: 54px;
+    max-height: 54px;
+    line-height: 54px;
+    width: 50vw;
+    max-width: 50vw;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 15px;
+    background: #fff;
+    color: #000;
+}
+
+.pos-detail-page-nav-bar-bottom-left {
+    text-align: left;
+}
+.pos-detail-page-nav-bar-bottom-right {
+    text-align: right;
+}
+.pos-detail-page-nav-bar-bottom-left label,
+.pos-detail-page-nav-bar-bottom-right label {
+    cursor: pointer;
+}
+.pos-detail-page-content-wrapper {
+    position: relative;
+    height: calc(100vh - 76px - 56px);
+    overflow-x: hidden;
+}
+.pos-detail-page-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100vh - 76px - 56px);
+    width: calc(100vw - 20px);
+    background: #fff;
+    padding: 10px;
+    display: none;
+    -webkit-transition: all 0.13s ease-in;
+            transition: all 0.13s ease-in;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+    will-change: transform;
+}
+.pos-detail-page-content.active {
+    display: block;
+    -webkit-transform: none;
+            transform: none;
+    -webkit-animation: display-none-transition 0.33s both;
+            animation: display-none-transition 0.33s both;
+}
+
+.pos-detail-page-product,
+.pos-detail-page-title {
+    text-align: center;
+}
+.pos-detail-page-product {
+    margin-bottom: 5px;
+}
+.pos-detail-page-title {
+    margin-bottom: 15px;
+}
+
+.pos-detail-page-title.document {
+    font-weight: 600;
+}
+
+@-webkit-keyframes display-none-transition {
+    0% {
+        -webkit-transform: translateX(100%);
+                transform: translateX(100%);
+    }
+}
+@keyframes display-none-transition {
+    0% {
+        -webkit-transform: translateX(100%);
+                transform: translateX(100%);
+    }
+}
+
+.pos-detail-page-picture {
+    display: block;
+    max-width: 90vw;
+    max-height: 70vh;
+    margin: 10px 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pos-detail-page-countdown {
+    padding-left: 10px;
+    font-size: 25px;
+    color: #888;
+}
+
+.pos-detail-page-message {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.pos-detail-page-message,
+.pos-detail-page-content li,
+.pos-detail-page-content .input-handling-directive-label {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.pos-detail-page-picture-icon {
+    width: calc(100vw - 20px);
+    font-size: 250px;
+    text-align: center;
+}
+
+.pos-detail-page-content-wrapper .floating-button-directive-button {
+    bottom: 80px
+}
+
+.pos-detail-page-gender label {
+    display: initial !important;
+}
+
+.pos-detail-page-disabled {
+	color: #888;
+	-webkit-text-fill-color: #888;
+}
+
+.pos-detail-page-term {
+    padding-left: 35px;
+    padding-right: 15px;
+}
+
+.pos-detail-page-form-2 .input-handling-directive-label {
+    color: #000;
+}
+.pos-detail-page-token-counter {
+    color: #f00;
+}
+
+.pos-detail-page-bank-warning,
+.pos-detail-page-usefund-warning,
+.pos-detail-page-disclaimer {
+    color: #f00;
+    font-size: 12px;
+    padding: 0px 0px 20px 20px;
+}
+
+.pos-detail-page-disclaimer {
+    text-align: center;
+}
+
+.pos-detail-form-preview-line-separator {
+    border-top: 2px solid #888;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.pos-detail-page-usefund-wrapper {
+    border: 2px solid #888;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.pos-detail-page-usefund-header-wrapper {
+    position: relative;
+}
+
+.pos-detail-page-usefund-header-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.pos-detail-page-usefund-header-icon i {
+    padding-right: 3px;
+}
+
+.pos-detail-page-usefund-header-label,
+.pos-detail-page-usefund-header-label {
+    margin: 10px;
+}
+
+.pos-detail-page-usefund-message {
+    margin-left: 15px;
+}
+
+.pos-detail-page-usefund-button-plus {
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+.pos-detail-page-form1-subtitle {
+    margin-bottom: 15px;
+    padding-left: 15px;
+    font-weight: 600;
+}
+
+.pos-detail-form-usefund-inputhandling-wrapper label {
+    display: block;
+    padding: 0;
+    position: relative;
+}
+
+.pos-detail-form-usefund-inputhandling-wrapper .input-handling-directive-label {
+    color: #000;
+    font-weight: 600;
+}
+
+.pos-detail-form-usefund-inputhandling-wrapper .input-handling-directive-control-checkbox {
+    width: 100%;
+}
+
+.pos-detail-page-title.preview {
+    font-weight: 600;
+}
+
+.pos-detail-page-form1-changetype-wrapper table {
+    width: 100%;
+}
+
+.pos-detail-page-form1-changetype-wrapper table td {
+    padding-bottom: 10px;
+    padding-left: 15px;
+    vertical-align: top;
+}
+
+.pos-detail-page-form1-changetype-wrapper table td:nth-child(2) {
+    width: 100%;
+    padding-left: 10px;
+}
+
+/* The container */
+.pos-detail-page-form1-container-checkbox {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.pos-detail-page-form1-container-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.pos-detail-page-form1-container-checkmark {
+    position: absolute;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+/* .pos-detail-page-form1-container-checkbox:hover input ~ .pos-detail-page-form1-container-checkmark {
+    background-color: #ccc;
+} */
+
+/* When the checkbox is checked, add a blue background */
+.pos-detail-page-form1-container-checkbox input:checked ~ .pos-detail-page-form1-container-checkmark {
+    background-color: #2196F3;
+}
+
+.pos-detail-page-form1-container-checkbox input:disabled ~ .pos-detail-page-form1-container-checkmark {
+    background-color: #ccc;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.pos-detail-page-form1-container-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.pos-detail-page-form1-container-checkbox input:checked ~ .pos-detail-page-form1-container-checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.pos-detail-page-form1-container-checkbox .pos-detail-page-form1-container-checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.pos-detail-page-form1-label-checkbox {
+    vertical-align: -webkit-baseline-middle;
+}
+
+.pos-detail-form-usefund-inputhandling-title {
+    margin-left: 15px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.pos-detail-form-usefund-table table{
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+.pos-detail-form-usefund-table td {
+    vertical-align: top;
+}
+
+.pos-detail-form-usefund-table tr{
+    height: 30px;
+}

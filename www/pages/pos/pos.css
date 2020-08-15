@@ -1,0 +1,125 @@
+.pos-search-wrapper {
+    font-size: 0;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #888;
+}
+
+.pos-search-wrapper select {
+	border: 2px solid #ccc;
+    width: calc(50vw - 20px);
+    height: 34px;
+    margin-right: 5px;
+}
+
+.pos-search-wrapper-input {
+    border: 2px solid #ccc;
+    padding: 5px;
+    border-radius: 20px;
+    display: inline-block;
+    width: calc(100vw - 50px);
+    margin-top: 10px;
+}
+
+.pos-search-wrapper-input input {
+    width: calc(100% - 30px);
+    height: 20px;
+}
+
+.pos-page-content{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    padding-bottom: 100px;
+    height: calc(100vh - 76px - 55px - 100px);
+    width: calc(100vw - 20px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: none;
+    -webkit-transition: all 0.13s ease-in;
+            transition: all 0.13s ease-in;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+    will-change: transform;
+    background: #fff;
+}
+
+.pos-page-content.active {
+    display: block;
+    -webkit-transform: none;
+            transform: none;
+    -webkit-animation: display-none-transition 0.33s both;
+    animation: display-none-transition 0.33s both;
+}
+
+@-webkit-keyframes display-none-transition {
+    0% {
+        -webkit-transform: translateX(100%);
+                transform: translateX(100%);
+    }
+}
+@keyframes display-none-transition {
+    0% {
+        -webkit-transform: translateX(100%);
+                transform: translateX(100%);
+    }
+}
+
+.pos-page-tab-wrapper {
+    z-index: 1;
+    margin-top: 56px;
+    width: 100%;
+    display: inline-block;
+    background-color: white;
+    position: relative;
+    font-size: 0;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.pos-page-tab {
+    height: 60px;
+    float: left;
+    text-align: center;
+    color: #888;
+    border-bottom: 5px solid #fff;
+}
+
+.pos-page-tab.active {
+    color: #00693c;
+    border-bottom: 5px solid #00693c;
+}
+
+.pos-page-tab label {
+    padding: 7px 0 0;
+}
+
+.pos-tab-2 {
+    width: calc(100% / 2);
+}
+
+.pos-tab-icon {
+    font-size: 20px;
+}
+
+.pos-page-title-other-certificate {
+    text-align: center;
+    font-weight: bold;
+}
+
+.pos-page-other-certificate-search {
+    border-bottom: 2px solid #888
+}
+
+.pos-page-content td {
+    vertical-align: top;
+    font-size: 13px;
+}
+
+.pos-page-content td:nth-child(1) {
+    white-space: nowrap;
+}
+
+.pos-page-content td:nth-child(2) {
+    padding-left: 10px;
+    padding-right: 10px;
+}

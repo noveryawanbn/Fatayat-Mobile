@@ -1,0 +1,19 @@
+<div ng-controller="libraryDetailPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/libraryDetail/libraryDetail.css" />
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            on-left-click="navBarTop.onLeftClick()">
+        </nav-bar-top-directive>
+        <div class="page-content">
+            <div ng-if="isText">
+                <div class="notification-detail-title" ng-bind="form.title"></div>
+                <div class="notification-detail-date" ng-bind="form.date"></div>
+                <div class="notification-detail-message" ng-bind="form.message"></div>
+            </div>
+            <pdf-viewer-directive ng-if="isPDF" url="form.url" bearer="globalData.Token"></pdf-viewer-directive>
+        </div>
+    </div>
+</div>

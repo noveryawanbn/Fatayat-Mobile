@@ -1,0 +1,98 @@
+.nav-bar-top-directive-wrapper {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 0;
+    height: 56px;
+    max-height: 56px;
+    line-height: 56px;
+    width: 100vw;
+    max-width: 100vw;
+    background: #00693c;
+    color: #fff;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.nav-bar-top-directive-title-1,
+.nav-bar-top-directive-title-2,
+.nav-bar-top-directive-title-3,
+.nav-bar-top-directive-title-4,
+.nav-bar-top-directive-title-5,
+.nav-bar-top-directive-title-6,
+.nav-bar-top-directive-title-7,
+.nav-bar-top-directive-title-8 {
+    cursor: pointer;
+    height: 53px;
+    max-height: 53px;
+    padding-top: 3px;
+    display: inline-block;
+    text-align: left;
+    font-size: 18px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.nav-bar-top-directive-action {
+    cursor: pointer;
+    height: 54px;
+    max-height: 54px;
+    display: inline-block;
+    text-align: left;
+    font-size: 26px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.nav-bar-top-directive-title-1,
+.nav-bar-top-directive-title-2,
+.nav-bar-top-directive-title-3,
+.nav-bar-top-directive-title-4,
+.nav-bar-top-directive-title-5,
+.nav-bar-top-directive-title-6,
+.nav-bar-top-directive-title-7,
+.nav-bar-top-directive-title-8 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.nav-bar-top-directive-title-1 {
+    width: calc(100% - 20px);
+    max-width: calc(100% - 20px);
+}
+.nav-bar-top-directive-title-2 {
+    width: calc(100% - 56px - 20px);
+    max-width: calc(100% - 56px - 20px);
+}
+.nav-bar-top-directive-title-3 {
+    width: calc(100% - 112px - 20px);
+    max-width: calc(100% - 112px - 20px);
+}
+.nav-bar-top-directive-title-4 {
+    width: calc(100% - 168px - 20px);
+    max-width: calc(100% - 168px - 20px);
+}
+.nav-bar-top-directive-title-5 {
+    width: calc(100% - 56px - 20px);
+    max-width: calc(100% - 56px - 20px);
+}
+.nav-bar-top-directive-title-6 {
+    width: calc(100% - 112px - 20px);
+    max-width: calc(100% - 112px - 20px);
+}
+.nav-bar-top-directive-title-7 {
+    width: calc(100% - 168px - 20px);
+    max-width: calc(100% - 168px - 20px);
+}
+.nav-bar-top-directive-title-8 {
+    width: calc(100% - 224px - 20px);
+    max-width: calc(100% - 224px - 20px);
+}
+.nav-bar-top-directive-action {
+    width: 56px;
+    max-width: 56px;
+    text-align: center;
+}
+.nav-bar-top-directive-logo {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 33px;
+}

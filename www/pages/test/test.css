@@ -1,0 +1,69 @@
+.test-nav-bar-down-wrapper {
+    height: 56px;
+    max-height: 56px;
+    width: 100%;
+    font-size: 0;
+}
+.test-nav-bar-down-left,
+.test-nav-bar-down-right {
+    display: inline-block;
+    height: 56px;
+    max-height: 56px;
+    line-height: 56px;
+    width: 50%;
+    max-width: 50%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 15px;
+    background: #fff;
+    color: #000;
+    text-align: center;
+    cursor: pointer;
+}
+.test-nav-bar-down-left label,
+.test-nav-bar-down-right label {
+    cursor: pointer;
+}
+.test-content-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+.test-content-1,
+.test-content-2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: calc(100vh - 76px);
+    width: calc(100vw - 20px);
+    background: #fff;
+    padding: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.test-content-2 {
+    display: none;
+    -webkit-transition: all 0.13s ease-in;
+            transition: all 0.13s ease-in;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+    will-change: transform;
+}
+.test-content-2.active {
+    display: block;
+    -webkit-transform: none;
+            transform: none;
+    -webkit-animation: display-none-transition 0.33s both;
+    animation: display-none-transition 0.33s both;
+}
+@-webkit-keyframes display-none-transition {
+    0% {
+        -webkit-transform: translateX(100%);
+                transform: translateX(100%);
+    }
+}
+@keyframes display-none-transition {
+    0% {
+        -webkit-transform: translateX(100%);
+                transform: translateX(100%);
+    }
+}

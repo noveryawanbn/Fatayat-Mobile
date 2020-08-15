@@ -1,0 +1,87 @@
+<div ng-controller="claimDetailPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/claimDetail/claimDetail.css" />
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            on-left-click="navBarTop.onLeftClick()">
+        </nav-bar-top-directive>
+        <div class="page-content claim-detail-page-content-wrapper">
+            <div class="claim-detail-page-content active">
+                {{model.claimType}}
+                <input type="radio" ng-model="model.claimType" ng-click="claimTypeClick()" value="{{claimType.death}}" />
+                <input type="radio" ng-model="model.claimType" ng-click="claimTypeClick()" value="{{claimType.tpd}}" />
+            </div>
+
+            <!-- Death -->
+            
+            <div class="claim-detail-page-content" ng-if="model.claimType == claimType.death" ng-class="contentIndex >= 1 ? 'active' : ''">
+                Data yang mengajukan claim
+            </div>
+            <div class="claim-detail-page-content" ng-if="model.claimType == claimType.death" ng-class="contentIndex >= 2 ? 'active' : ''">
+                Data tertanggung
+            </div>
+
+            <!-- Death -->
+            <!-- TPD -->
+
+            <div class="claim-detail-page-content" ng-if="model.claimType == claimType.tpd" ng-class="contentIndex >= 1 ? 'active' : ''">
+                Keterangan pemegang sertifikat
+            </div>
+            <div class="claim-detail-page-content" ng-if="model.claimType == claimType.tpd" ng-class="contentIndex >= 2 ? 'active' : ''">
+                Data tertanggung
+            </div>
+            <div class="claim-detail-page-content" ng-if="model.claimType == claimType.tpd" ng-class="contentIndex >= 3 ? 'active' : ''">
+                Data pekerjaan
+            </div>
+            <div class="claim-detail-page-content" ng-if="model.claimType == claimType.tpd" ng-class="contentIndex >= 4 ? 'active' : ''">
+                Keterangan aktivitas
+            </div>
+
+            <!-- TPD -->
+
+            <div class="claim-detail-page-content" ng-class="isPageShow('Info Rekening', '') ? 'active' : ''">
+                Informasi Rekening
+            </div>
+            <div class="claim-detail-page-content" ng-class="isPageShow('Compliance', '') ? 'active' : ''">
+                Compliance
+            </div>
+            <div class="claim-detail-page-content" ng-class="isPageShow('Supporting Document List', '') ? 'active' : ''">
+                Supporting document list
+            </div>
+
+            <div
+                class="claim-detail-page-content"
+                ng-repeat="supportingDocument in model.supportingDocumentList"
+                ng-class="isPageShow('Supporting Document Area', supportingDocument.code) ? 'active' : ''">
+                {{supportingDocument.text}}
+                <img class="pos-update-page-picture" ng-src="{{supportingDocument.image}}" ng-if="supportingDocument.image != stringEmpty && supportingDocument.image != undefined" />
+            </div>
+
+
+            <div class="claim-detail-page-content" ng-class="isPageShow('Preview', '') ? 'active' : ''">
+                Preview
+            </div>
+            <div class="claim-detail-page-content" ng-class="isPageShow('Submit', '') ? 'active' : ''">
+                Submit
+            </div>
+
+            <floating-button-directive icon="'fa-camera'" on-click="fobClick()" ng-if="isFOBShow()"></floating-button-directive>
+        </div>
+        <div class="claim-detail-page-nav-bar-bottom-wrapper">
+            <div class="claim-detail-page-nav-bar-bottom-left">
+                <label ng-click="prevClick()" ng-if="contentIndex > 0">
+                    <i class="fa fa-fw fa-angle-left fa-lg"></i>
+                    {{globalMessage.PosUpdateButtonPrev}}
+                </label>
+            </div>
+            <div class="claim-detail-page-nav-bar-bottom-right">
+                <label ng-click="nextClick()" ng-if="isNextAvailable()">
+                    {{globalMessage.PosUpdateButtonNext}}
+                    <i class="fa fa-fw fa-angle-right fa-lg"></i>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

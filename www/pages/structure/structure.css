@@ -1,0 +1,36 @@
+.structure-search-wrapper {
+    font-size: 0;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #888;
+}
+
+.structure-search-wrapper-input {
+    border: 2px solid #ccc;
+    padding: 5px;
+    border-radius: 20px;
+    display: inline-block;
+    width: calc(100vw - 50px);
+    margin-left: 5px;
+}
+
+.structure-search-wrapper-input input {
+    width: calc(100% - 35px);
+    height: 20px;
+}
+
+.structure-card-wrapper {
+    height: calc(100vh - 117px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.structure-card-wrapper-full {
+    height: calc(100vh - 77px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.structure-card-wrapper td:nth-child(1),
+.structure-card-wrapper-full td:nth-child(1) {
+    padding-right: 5px;
+}

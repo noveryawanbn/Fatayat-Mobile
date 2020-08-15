@@ -1,0 +1,126 @@
+<div ng-controller="mainMenuPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/mainMenu/mainMenu.css" />
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            right-1="navBarTop.right1"
+            on-right-1-click="navBarTop.onRight1Click()">
+        </nav-bar-top-directive>
+        <div class="page-content main-menu-content-wrapper">
+            <div class="main-menu-content-1 active">
+                <div class="main-menu-grid-wrapper">
+                    <div ng-click="trainingClick()">
+                        <div class="main-menu-grid-icon">
+                            <img src="img/icon-training.svg" />
+                        </div>
+                        <div class="main-menu-grid-label" ng-bind="globalMessage.MainMenuGridTraining"></div>
+                    </div>
+                    <div ng-click="customerClick()">
+                        <div class="main-menu-grid-icon">
+                            <img src="img/icon-customer.svg" />
+                        </div>
+                        <div class="main-menu-grid-label" ng-bind="globalMessage.MainMenuGridCustomer"></div>
+                    </div>
+                    <div ng-click="libraryClick()">
+                        <div class="main-menu-grid-icon">
+                            <img src="img/icon-library.svg" />
+                        </div>
+                        <div class="main-menu-grid-label" ng-bind="globalMessage.MainMenuGridLibrary"></div>
+                    </div>
+                    <div ng-click="changePasswordClick()">
+                        <div class="main-menu-grid-icon">
+                            <img src="img/icon-change-password.svg" />
+                        </div>
+                        <div class="main-menu-grid-label" ng-bind="globalMessage.MainMenuGridChangePassword"></div>
+                    </div>
+                    <div ng-click="eStatementClick()">
+                        <div class="main-menu-grid-icon">
+                            <img src="img/icon-e-statement.svg" />
+                            <div class="main-menu-grid-notification" ng-bind="unreadEStatement" ng-if="unreadEStatement > 0"></div>
+                        </div>
+                        <div class="main-menu-grid-label" ng-bind="globalMessage.MainMenuGridEStatement"></div>
+                    </div>
+                    <div ng-click="posClick()">
+                        <div class="main-menu-grid-icon">
+                            <img src="img/icon_change-form.svg" />
+                        </div>
+                        <div class="main-menu-grid-label" ng-bind="globalMessage.MainMenuGridPOS"></div>
+                    </div>
+                    <div ng-if="globalData.Rank == 'NSH' || globalData.Rank == 'AM'" ng-click="dashboardClick()">
+                        <div class="main-menu-grid-icon">
+                            <img src="img/icon-dashboard.png" />
+                        </div>
+                        <div class="main-menu-grid-label" ng-bind="globalMessage.MainMenuGridDashboard"></div>
+                    </div>
+                    <div ng-if="globalData.Rank == 'NSH' || globalData.Rank == 'AM'" ng-click="reassignClick()">
+                        <div class="main-menu-grid-icon">
+                            <img src="img/icon-reassign.png" />
+                        </div>
+                        <div class="main-menu-grid-label" ng-bind="globalMessage.MainMenuGridReassign"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-menu-content-2" ng-class="menuContent2Class">
+                <card-directive
+                    ng-repeat="n in notificationList | orderBy : sortNotification : true"
+                    card-id="n.id"
+                    top-left="n.topLeft"
+                    top-right="n.topRight"
+                    message="n.message"
+                    is-unread="n.isUnread"
+                    on-click="onNotificationClick(parm)"
+                    show-arrow="false">
+                </card-directive>
+            </div>
+        </div>
+        <div class="main-menu-nav-bar-down-wrapper">
+            <div class="main-menu-nav-bar-down-left" ng-class="barDownLeftClass" ng-click="navBarDownClick(0)">
+                <label class="main-menu-nav-bar-down-left-label" ng-bind="globalMessage.MainMenuNavMainMenu"></label>
+            </div>
+            <div class="main-menu-nav-bar-down-right" ng-class="barDownRightClass" ng-click="navBarDownClick(1)">
+                <label class="main-menu-nav-bar-down-right-label" ng-bind="globalMessage.MainMenuNavNotification"></label>
+                <div class="main-menu-nav-bar-down-right-notification-wrapper" ng-if="unreadNotification > 0">
+                    <div class="main-menu-nav-bar-down-right-notification">
+                        <label ng-bind="unreadNotification"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-menu-menu-wrapper" ng-if="isMenuVisible" ng-click="menuWrapperClick()">
+            <div class="main-menu-menu-panel">
+                <div class="main-menu-menu-menu" ng-click="profileClick()">
+                    <i class="fa fa-fw fa-lg fa-user"></i>
+                    <label ng-bind="globalMessage.MainMenuMenuProfile"></label>
+                </div>
+                <div class="main-menu-menu-menu" ng-click="structureClick()">
+                    <i class="fa fa-fw fa-lg fa-sitemap"></i>
+                    <label ng-bind="globalMessage.MainMenuMenuStructure"></label>
+                </div>
+                <div class="main-menu-menu-menu" ng-click="contactUsClick()">
+                    <i class="fa fa-fw fa-lg fa-phone"></i>
+                    <label ng-bind="globalMessage.MainMenuMenuContactUs"></label>
+                </div>
+                <div class="main-menu-menu-menu" ng-click="signOutClick()">
+                    <i class="fa fa-fw fa-lg fa-power-off"></i>
+                    <label ng-bind="globalMessage.MainMenuMenuSignOut"></label>
+                </div>
+            </div>
+        </div>
+        <claim-page></claim-page>
+        <change-password-page></change-password-page>
+        <customer-page></customer-page>
+        <e-contract-page></e-contract-page>
+        <e-statement-page></e-statement-page>
+        <library-category-page></library-category-page>
+        <notification-detail-page></notification-detail-page>
+        <profile-page></profile-page>
+        <resend-certificate-page></resend-certificate-page>
+        <structure-page></structure-page>
+        <training-page></training-page>
+        <pos-page></pos-page>
+        <dashboard-page></dashboard-page>
+        <contact-us-page></contact-us-page>
+        <reassign-page></reassign-page>
+    </div>
+</div>

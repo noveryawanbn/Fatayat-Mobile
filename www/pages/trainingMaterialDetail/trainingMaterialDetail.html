@@ -1,0 +1,19 @@
+<div ng-controller="trainingMaterialDetailPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/trainingMaterialDetail/trainingMaterialDetail.css" />
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            on-left-click="navBarTop.onLeftClick()">
+        </nav-bar-top-directive>
+        <div class="page-content">
+            <div ng-if="isText">
+                <div class="notification-detail-title">{{form.title}}</div>
+                <div class="notification-detail-date">{{form.date}}</div>
+                <div class="notification-detail-message">{{form.message}}</div>
+            </div>
+            <pdf-viewer-directive ng-if="isPDF" url="form.url" bearer="globalData.Token"></pdf-viewer-directive>
+        </div>
+    </div>
+</div>

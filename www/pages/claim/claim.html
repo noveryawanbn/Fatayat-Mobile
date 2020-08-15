@@ -1,0 +1,44 @@
+<div ng-controller="claimPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/claim/claim.css" />
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            on-left-click="navBarTop.onLeftClick()">
+        </nav-bar-top-directive>
+        <div class="page-content">
+            <div class="claim-search-wrapper">
+                <form ng-submit="getSearch()">
+                    <div>
+                        <div class="claim-search-wrapper-select">
+                            <select
+                                ng-model="formSearch.status"
+                                ng-options="n.value as n.text for n in formSearch.options"
+                                ng-change="getSearch()">
+                            </select>
+                        </div>
+                        <div class="claim-search-wrapper-input">
+                            <i class="fa fa-fw fa-lg fa-search"></i>
+                            <input
+                                ng-model="formSearch.search"
+                                placeholder="{{ formSearch.label }}" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="claim-card-wrapper'">
+                <card-customer-directive
+                    ng-repeat="n in userList"
+                    top-left="n.Rank"
+                    message="n.Message">
+                </card-customer-directive>
+            </div>
+        </div>
+        <floating-button-directive
+            icon="'fa-plus'"
+            on-click="addClaimClick()">
+        </floating-button-directive>
+        <claim-detail-page></claim-detail-page>
+    </div>
+</div>

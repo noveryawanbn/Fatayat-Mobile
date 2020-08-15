@@ -1,0 +1,21 @@
+<div ng-controller="libraryCategoryPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/libraryCategory/libraryCategory.css" />
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            on-left-click="navBarTop.onLeftClick()">
+        </nav-bar-top-directive>
+        <div class="page-content">
+            <card-directive
+                ng-repeat="n in categoryList"
+                card-id="n.id"
+                message="n.message"
+                on-click="onCardClick(parm)"
+                show-arrow="true">
+            </card-directive>
+        </div>
+        <library-page></library-page>
+    </div>
+</div>

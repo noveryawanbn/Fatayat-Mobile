@@ -1,0 +1,23 @@
+.training-status {
+	margin-bottom: 25px;
+}
+.training-module-wrapper {
+    font-size: 0;
+    margin-bottom: 10px;
+}
+.training-module-icon,
+.training-module-label,
+.training-module-button {
+	display: inline-block;
+}
+.training-module-icon {
+    font-size: 35px;
+    width: 55px;
+}
+.training-module-label {
+    width: calc(100% - 140px);
+}
+.training-module-button,
+.training-module-button button {
+    width: 85px
+}

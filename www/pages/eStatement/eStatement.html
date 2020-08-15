@@ -1,0 +1,39 @@
+<div ng-controller="eStatementPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/eStatement/eStatement.css" />
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            on-left-click="navBarTop.onLeftClick()">
+        </nav-bar-top-directive>
+        <div class="page-content">
+            <div class="e-statement-alert">
+                <div class="e-statement-alert-icon">
+                    <i class="fa fa-info-circle fa-2x"></i>
+                </div>
+                <div class="e-statement-alert-message">
+                    <span ng-bind="globalMessage.EStatementPageMessage1"></span>
+                    <br />
+                    <span ng-bind="globalMessage.EStatementPageMessage2"></span>
+                </div>
+            </div>
+            <hr />
+            <card-material-directive
+                ng-repeat="n in $parent.eStatementList | orderBy : sortEstatement : true"
+                card-id="n.id"
+                top-left="n.title"
+                top-right="n.date"
+                message="n.message"
+                url="n.linkUrl"
+                file-name="n.fileName"
+                type="n.fileType"
+                is-unread="n.isUnread"
+                on-click="onCardClick(parm)"
+                additional-action-icon="'fa-trash'"
+                additional-action="onCardDelete(parm)">
+            </card-material-directive>
+        </div>
+        <e-statement-detail-page></e-statement-detail-page>
+    </div>
+</div>

@@ -1,0 +1,2238 @@
+<div ng-controller="posDetailPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/posDetail/posDetail.css">
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            right-1="navBarTop.right1"
+            on-left-click="navBarTop.onLeftClick()"
+            on-right-1-click="navBarTop.onRight1Click()" >
+
+        </nav-bar-top-directive>
+        <div class="page-content pos-detail-page-content-wrapper">
+            <div class="pos-detail-page-content active">
+                <div class="pos-detail-form1-search">
+                    <div class="pos-detail-form1-search-wrapper">
+                        <br>
+                        <input-handling-directive
+                            label="form1NoSertificateSearch.label"
+                            error="form1NoSertificateSearch.error"
+                            model="form1NoSertificateSearch.value"
+                            type="'tel'"
+                            maxlength="30">
+                        </input-handling-directive>
+                        <br>
+                        <input-handling-directive
+                            label="form1DobSearch.label"
+                            error="form1DobSearch.error"
+                            model="form1DobSearch.value"
+                            type="form1DobSearch.type"
+                            options="form1DobSearch.options"
+                            is-disabled="form1DobSearch.isDisabled"
+                            min-year="minYear"
+                            max-year="maxYear"
+                            on-change="">
+                        </input-handling-directive>
+                        <br>
+                        <center>
+                            <button ng-click="getSearchClick()" ng-bind="globalMessage.PosDetailForm1ButtonSearch"></button>
+                        </center>
+                    </div>
+                </div>
+                
+                <div ng-if="form1IsSearch" class="pos-detail-form1-information-wrapper">
+                    
+                    <div class="pos-detail-form1-information">
+                        <table>
+                            <tr>
+                                <td>{{globalMessage.PosDetailLabelName}}</td>
+                                <td>:</td>
+                                <td>{{form1Name}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{globalMessage.PosDetailLabelDob}}</td>
+                                <td>:</td>
+                                <td>{{form1Dob}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{globalMessage.PosDetailLabelAddress}}</td>
+                                <td>:</td>
+                                <td>{{form1Address}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{globalMessage.PosDetailLabelAgentCode}}</td>
+                                <td>:</td>
+                                <td>{{form1AgentCode}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="pos-detail-page-form1-changetype-wrapper" ng-if="form1IsSearch">
+                    <div class="pos-detail-page-form1-subtitle" ng-bind="form1Separator.label"></div>
+                    <table>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input id="posDetailPOSType1" ng-change="typeChangePOS(1)" type="checkbox" ng-model="form1IsAddress.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox" for="posDetailPOSType1">{{globalMessage.PosDetailForm1RadioAddress}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input id="posDetailPOSType2" ng-change="typeChangePOS(2)" type="checkbox" ng-model="form1IsAccountBank.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox" for="posDetailPOSType2">{{globalMessage.PosDetailForm1RadioAccountBankNumber}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input id="posDetailPOSType3" ng-change="typeChangePOS(3)" type="checkbox" ng-model="form1IsName.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox" for="posDetailPOSType3">{{globalMessage.PosDetailForm1RadioName}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input id="posDetailPOSType4" ng-change="typeChangePOS(4)" type="checkbox" ng-model="form1IsBenefit.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox" for="posDetailPOSType4">{{globalMessage.PosDetailForm1RadioBenefitReceive}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input id="posDetailPOSType5" ng-change="typeChangeEndInsurance(5)" type="checkbox" ng-model="form1IsEndInsurance.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox" for="posDetailPOSType5">{{globalMessage.PosDetailForm1RadioEndInsurance}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input id="posDetailPOSType6" ng-change="typeChangeCertificate(6)" type="checkbox" ng-model="form1IsCertificate.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox" for="posDetailPOSType6">{{globalMessage.PosDetailForm1RadioSertificate}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input id="posDetailPOSType7" ng-change="typeChangeMaturity(7)" type="checkbox" ng-model="form1IsMaturity.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox" for="posDetailPOSType7">{{globalMessage.PosDetailForm1RadioMaturity}}</label></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- POS & MATURITY AREA START -->
+
+            <div class="pos-detail-page-content" ng-class="contentUpdateDataClass">
+                <div class="pos-detail-page-product" ng-bind="productName"></div>
+                <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormUpdateDataTitle"></div>
+                <br>
+                <input-handling-directive
+                    label="formUpdateDataSeparator.label"
+                    error="formUpdateDataSeparator.error"
+                    model="formUpdateDataSeparator.value"
+                    type="formUpdateDataSeparator.type"
+                    options="formUpdateDataSeparator.options"
+                    is-disabled="formUpdateDataSeparator.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataAreaCode.label"
+                    error="formUpdateDataAreaCode.error"
+                    model="formUpdateDataAreaCode.value"
+                    type="formUpdateDataAreaCode.type"
+                    options="formUpdateDataAreaCode.options"
+                    is-disabled="formUpdateDataAreaCode.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataHomePhone.label"
+                    error="formUpdateDataHomePhone.error"
+                    model="formUpdateDataHomePhone.value"
+                    type="formUpdateDataHomePhone.type"
+                    options="formUpdateDataHomePhone.options"
+                    is-disabled="formUpdateDataHomePhone.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataSeparator2.label"
+                    error="formUpdateDataSeparator2.error"
+                    model="formUpdateDataSeparator2.value"
+                    type="formUpdateDataSeparator2.type"
+                    options="formUpdateDataSeparator2.options"
+                    is-disabled="formUpdateDataSeparator2.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataMobilePhone.label"
+                    error="formUpdateDataMobilePhone.error"
+                    model="formUpdateDataMobilePhone.value"
+                    type="formUpdateDataMobilePhone.type"
+                    options="formUpdateDataMobilePhone.options"
+                    is-disabled="formUpdateDataMobilePhone.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataSeparator3.label"
+                    error="formUpdateDataSeparator3.error"
+                    model="formUpdateDataSeparator3.value"
+                    type="formUpdateDataSeparator3.type"
+                    options="formUpdateDataSeparator3.options"
+                    is-disabled="formUpdateDataSeparator3.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataEmail.label"
+                    error="formUpdateDataEmail.error"
+                    model="formUpdateDataEmail.value"
+                    type="formUpdateDataEmail.type"
+                    options="formUpdateDataEmail.options"
+                    on-blur="formUpdateDataEmail_OnBlur()"
+                    is-disabled="formUpdateDataEmail.isDisabled"
+                    maxlength="50">
+                </input-handling-directive>
+            </div>
+
+            <!-- POS & MATURITY AREA END -->
+            <!-- POS AREA START -->
+
+            <div class="pos-detail-page-content" ng-class="content2AddressClass">
+                <div class="pos-detail-page-product" ng-bind="productName"></div>
+                <div class="pos-detail-page-title" ng-bind="formAddressTitle"></div>
+                <br>
+                <input-handling-directive
+                    label="formAddress2Address1.label"
+                    error="formAddress2Address1.error"
+                    model="formAddress2Address1.value"
+                    type="formAddress2Address1.type"
+                    options="formAddress2Address1.options"
+                    is-disabled="formAddress2Address1.isDisabled"
+                    maxlength="formAddress2Address1.maxlength">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2Address2.label"
+                    error="formAddress2Address2.error"
+                    model="formAddress2Address2.value"
+                    type="formAddress2Address2.type"
+                    options="formAddress2Address2.options"
+                    is-disabled="formAddress2Address2.isDisabled"
+                    maxlength="formAddress2Address2.maxlength">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2RtRw.label"
+                    error="formAddress2RtRw.error"
+                    model="formAddress2RtRw.value"
+                    type="formAddress2RtRw.type"
+                    options="formAddress2RtRw.options"
+                    is-disabled="formAddress2RtRw.isDisabled"
+                    maxlength="formAddress2RtRw.maxlength">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2Province.label"
+                    error="formAddress2Province.error"
+                    model="formAddress2Province.value"
+                    type="formAddress2Province.type"
+                    options="formAddress2Province.options"
+                    is-disabled="formAddress2Province.isDisabled"
+                    on-change="formAddress2Province_OnChange()">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2City.label"
+                    error="formAddress2City.error"
+                    model="formAddress2City.value"
+                    type="formAddress2City.type"
+                    options="formAddress2City.options"
+                    is-disabled="formAddress2City.isDisabled"
+                    on-change="">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2PostalCode.label"
+                    error="formAddress2PostalCode.error"
+                    model="formAddress2PostalCode.value"
+                    type="formAddress2PostalCode.type"
+                    options="formAddress2PostalCode.options"
+                    is-disabled="formAddress2PostalCode.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2District.label"
+                    error="formAddress2District.error"
+                    model="formAddress2District.value"
+                    type="formAddress2District.type"
+                    options="formAddress2District.options"
+                    is-disabled="formAddress2District.isDisabled"
+                    maxlength="formAddress2District.maxlength">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2SubDistrict.label"
+                    error="formAddress2SubDistrict.error"
+                    model="formAddress2SubDistrict.value"
+                    type="formAddress2SubDistrict.type"
+                    options="formAddress2SubDistrict.options"
+                    is-disabled="formAddress2SubDistrict.isDisabled"
+                    maxlength="formAddress2SubDistrict.maxlength">
+                </input-handling-directive>
+            </div>
+            <div class="pos-detail-page-content" ng-class="content2AccountBankClass">
+                <div class="pos-detail-page-product" ng-bind="productName"></div>
+                <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormAccountBankTitle"></div>
+                <br>
+                <div class="pos-detail-page-disclaimer" ng-bind="globalMessage.PosDetailLabelDisclaimer"></div>
+                <br>
+                <input-handling-directive
+                    label="formAccountBank2Name.label"
+                    error="formAccountBank2Name.error"
+                    model="formAccountBank2Name.value"
+                    type="formAccountBank2Name.type"
+                    options="formAccountBank2Name.options"
+                    is-disabled="formAccountBank2Name.isDisabled"
+                    maxlength="formAccountBank2Name.maxlength">
+                </input-handling-directive>
+                <div class="pos-detail-page-bank-warning" ng-bind="globalMessage.PosDetailFormAccountBankWarningMessage"></div>
+                <input-handling-directive
+                    label="formAccountBank2BankName.label"
+                    error="formAccountBank2BankName.error"
+                    model="formAccountBank2BankName.value"
+                    type="formAccountBank2BankName.type"
+                    options="formAccountBank2BankName.options"
+                    is-disabled="formAccountBank2BankName.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAccountBank2BankBranch.label"
+                    error="formAccountBank2BankBranch.error"
+                    model="formAccountBank2BankBranch.value"
+                    type="formAccountBank2BankBranch.type"
+                    options="formAccountBank2BankBranch.options"
+                    is-disabled="formAccountBank2BankBranch.isDisabled"
+                    maxlength="formAccountBank2BankBranch.maxlength">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAccountBank2AccountBankNumber.label"
+                    error="formAccountBank2AccountBankNumber.error"
+                    model="formAccountBank2AccountBankNumber.value"
+                    type="formAccountBank2AccountBankNumber.type"
+                    options="formAccountBank2AccountBankNumber.options"
+                    is-disabled="formAccountBank2AccountBankNumber.isDisabled"
+                    maxlength="formAccountBank2AccountBankNumber.maxlength">
+                </input-handling-directive>
+            </div>
+            <div class="pos-detail-page-content" ng-class="content2NameClass">
+                <div class="pos-detail-page-product" ng-bind="productName"></div>
+                <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormNameTitle"></div>
+                <br>
+                <div class="pos-detail-page-disclaimer" ng-bind="globalMessage.PosDetailLabelDisclaimer"></div>
+                <br>
+                <input-handling-directive
+                    label="formName2Name.label"
+                    error="formName2Name.error"
+                    model="formName2Name.value"
+                    type="formName2Name.type"
+                    options="formName2Name.options"
+                    is-disabled="formName2Name.isDisabled"
+                    maxlength="formName2Name.maxlength">
+                </input-handling-directive>
+            </div>
+            <div class="pos-detail-page-content" ng-class="content2BenefitClass">
+                <div class="pos-detail-page-product" ng-bind="productName"></div>
+                <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormBenefitTitle"></div>
+                <br>
+                <div class="pos-detail-page-disclaimer" ng-bind="globalMessage.PosDetailLabelDisclaimer"></div>
+                <br>
+                <input-handling-directive
+                    label="formBenefit2Name.label"
+                    error="formBenefit2Name.error"
+                    model="formBenefit2Name.value"
+                    type="formBenefit2Name.type"
+                    options="formBenefit2Name.options"
+                    is-disabled="formBenefit2Name.isDisabled"
+                    maxlength="formBenefit2Name.maxlength">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formBenefit2Relationship.label"
+                    error="formBenefit2Relationship.error"
+                    model="formBenefit2Relationship.value"
+                    type="formBenefit2Relationship.type"
+                    options="formBenefit2Relationship.options"
+                    is-disabled="formBenefit2Relationship.isDisabled">
+                </input-handling-directive>
+            </div>
+
+            <!-- POS AREA END -->
+            <!-- SURRENDER & REINSTATEMENT AREA START -->
+
+            <div class="pos-detail-page-content" ng-class="contentUpdateDataSurrenderReinstatementClass">
+                <div class="pos-detail-page-product" ng-bind="productName"></div>
+                <div class="pos-detail-page-title" ng-bind="formSurrenderReinstatementTitle"></div>
+                <br>
+                <input-handling-directive
+                    label="formSurrenderReinstatementSeparator3.label"
+                    error="formSurrenderReinstatementSeparator3.error"
+                    model="formSurrenderReinstatementSeparator3.value"
+                    type="formSurrenderReinstatementSeparator3.type"
+                    options="formSurrenderReinstatementSeparator3.options"
+                    is-disabled="formSurrenderReinstatementSeparator3.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataAreaCode.label"
+                    error="formUpdateDataAreaCode.error"
+                    model="formUpdateDataAreaCode.value"
+                    type="formUpdateDataAreaCode.type"
+                    options="formUpdateDataAreaCode.options"
+                    is-disabled="formUpdateDataAreaCode.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataHomePhone.label"
+                    error="formUpdateDataHomePhone.error"
+                    model="formUpdateDataHomePhone.value"
+                    type="formUpdateDataHomePhone.type"
+                    options="formUpdateDataHomePhone.options"
+                    is-disabled="formUpdateDataHomePhone.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formSurrenderReinstatementSeparator4.label"
+                    error="formSurrenderReinstatementSeparator4.error"
+                    model="formSurrenderReinstatementSeparator4.value"
+                    type="formSurrenderReinstatementSeparator4.type"
+                    options="formSurrenderReinstatementSeparator4.options"
+                    is-disabled="formSurrenderReinstatementSeparator4.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataMobilePhone.label"
+                    error="formUpdateDataMobilePhone.error"
+                    model="formUpdateDataMobilePhone.value"
+                    type="formUpdateDataMobilePhone.type"
+                    options="formUpdateDataMobilePhone.options"
+                    is-disabled="formUpdateDataMobilePhone.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formSurrenderReinstatementSeparator5.label"
+                    error="formSurrenderReinstatementSeparator5.error"
+                    model="formSurrenderReinstatementSeparator5.value"
+                    type="formSurrenderReinstatementSeparator5.type"
+                    options="formSurrenderReinstatementSeparator5.options"
+                    is-disabled="formSurrenderReinstatementSeparator5.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataEmail.label"
+                    error="formUpdateDataEmail.error"
+                    model="formUpdateDataEmail.value"
+                    type="formUpdateDataEmail.type"
+                    options="formUpdateDataEmail.options"
+                    on-blur="formUpdateDataEmail_OnBlur()"
+                    is-disabled="formUpdateDataEmail.isDisabled"
+                    maxlength="50">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formSurrenderReinstatementSeparator6.label"
+                    error="formSurrenderReinstatementSeparator6.error"
+                    model="formSurrenderReinstatementSeparator6.value"
+                    type="formSurrenderReinstatementSeparator6.type"
+                    options="formSurrenderReinstatementSeparator6.options"
+                    is-disabled="formSurrenderReinstatementSeparator6.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2Address1.label"
+                    error="formAddress2Address1.error"
+                    model="formAddress2Address1.value"
+                    type="formAddress2Address1.type"
+                    options="formAddress2Address1.options"
+                    is-disabled="formAddress2Address1.isDisabled"
+                    maxlength="formAddress2Address1.maxlength">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2Address2.label"
+                    error="formAddress2Address2.error"
+                    model="formAddress2Address2.value"
+                    type="formAddress2Address2.type"
+                    options="formAddress2Address2.options"
+                    is-disabled="formAddress2Address2.isDisabled"
+                    maxlength="formAddress2Address2.maxlength">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2RtRw.label"
+                    error="formAddress2RtRw.error"
+                    model="formAddress2RtRw.value"
+                    type="formAddress2RtRw.type"
+                    options="formAddress2RtRw.options"
+                    is-disabled="formAddress2RtRw.isDisabled"
+                    maxlength="formAddress2RtRw.maxlength">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2Province.label"
+                    error="formAddress2Province.error"
+                    model="formAddress2Province.value"
+                    type="formAddress2Province.type"
+                    options="formAddress2Province.options"
+                    is-disabled="formAddress2Province.isDisabled"
+                    on-change="formAddress2Province_OnChange()">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2City.label"
+                    error="formAddress2City.error"
+                    model="formAddress2City.value"
+                    type="formAddress2City.type"
+                    options="formAddress2City.options"
+                    is-disabled="formAddress2City.isDisabled"
+                    on-change="">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2PostalCode.label"
+                    error="formAddress2PostalCode.error"
+                    model="formAddress2PostalCode.value"
+                    type="formAddress2PostalCode.type"
+                    options="formAddress2PostalCode.options"
+                    is-disabled="formAddress2PostalCode.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2District.label"
+                    error="formAddress2District.error"
+                    model="formAddress2District.value"
+                    type="formAddress2District.type"
+                    options="formAddress2District.options"
+                    is-disabled="formAddress2District.isDisabled"
+                    maxlength="formAddress2District.maxlength">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2SubDistrict.label"
+                    error="formAddress2SubDistrict.error"
+                    model="formAddress2SubDistrict.value"
+                    type="formAddress2SubDistrict.type"
+                    options="formAddress2SubDistrict.options"
+                    is-disabled="formAddress2SubDistrict.isDisabled"
+                    maxlength="formAddress2SubDistrict.maxlength">
+                </input-handling-directive>
+            </div>
+            <div class="pos-detail-page-content" ng-class="contentReasonClass">
+                <div class="pos-detail-page-product" ng-bind="productName"></div>
+                <div class="pos-detail-page-title" ng-bind="formReasonTitle"></div>
+                <br>
+                <div class="pos-detail-page-disclaimer" ng-bind="globalMessage.PosDetailLabelDisclaimer"></div>
+                <br>
+                <input-handling-directive
+                    label="formReason.label"
+                    error="formReason.error"
+                    model="formReason.value"
+                    type="formReason.type"
+                    options="formReason.options"
+                    maxlength="180"
+                    is-disabled="formReason.isDisabled">
+                </input-handling-directive>
+            </div>
+
+            <!-- SURRENDER & REINSTATEMENT AREA END -->
+            <!-- SURRENDER AREA START -->
+
+            <div class="pos-detail-page-content" ng-class="contentUseFundSurrenderReinstatementClass">
+                <div class="pos-detail-page-product" ng-bind="productName"></div>
+                <div class="pos-detail-page-title" ng-bind="formUseFundSurrenderReinstatementTitle"></div>
+                <br>
+                <div class="pos-detail-page-disclaimer" ng-bind="globalMessage.PosDetailLabelDisclaimer"></div>
+                <br>
+                <div class="pos-detail-form-usefund-inputhandling-wrapper">
+                    <div class="pos-detail-form-usefund-inputhandling-title" ng-bind="formUseFundSurrenderUseFundType.label"></div>
+                    <div class="pos-detail-form-usefund-table">
+                        <table>
+                            <tr>
+                                <td><input id="posDetailUseFundType1" type="radio" ng-change="formUseFundSurrenderUseFundType_OnChange()" ng-model="formUseFundSurrenderUseFundType.value" ng-value="{{true}}"></td>
+                                <td><label for="posDetailUseFundType1">A.</label></td>
+                                <td><label for="posDetailUseFundType1">{{globalMessage.PosDetailFormUseFundSurrenderLabelTransfer}}</label></td>
+                            </tr>
+                            <tr>
+                                <td><input id="posDetailUseFundType2" type="radio" ng-change="formUseFundSurrenderUseFundType_OnChange()" ng-model="formUseFundSurrenderUseFundType.value" ng-value="{{false}}"></td>
+                                <td><label for="posDetailUseFundType2">B.</label></td>
+                                <td><label for="posDetailUseFundType2">{{globalMessage.PosDetailFormUseFundSurrenderLabelMove}}</label></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+                <div ng-if="formUseFundSurrenderUseFundType.value">
+                    <input-handling-directive
+                        label="formUseFundSurrenderSeparator.label"
+                        error="formUseFundSurrenderSeparator.error"
+                        model="formUseFundSurrenderSeparator.value"
+                        type="formUseFundSurrenderSeparator.type"
+                        options="formUseFundSurrenderSeparator.options"
+                        is-disabled="formUseFundSurrenderSeparator.isDisabled">
+                    </input-handling-directive>
+                    <br>
+                    <input-handling-directive
+                        label="formUseFundSurrenderName.label"
+                        error="formUseFundSurrenderName.error"
+                        model="formUseFundSurrenderName.value"
+                        type="formUseFundSurrenderName.type"
+                        options="formUseFundSurrenderName.options"
+                        is-disabled="formUseFundSurrenderName.isDisabled"
+                        maxlength="formUseFundSurrenderName.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="formUseFundSurrenderBankName.label"
+                        error="formUseFundSurrenderBankName.error"
+                        model="formUseFundSurrenderBankName.value"
+                        type="formUseFundSurrenderBankName.type"
+                        options="formUseFundSurrenderBankName.options"
+                        is-disabled="formUseFundSurrenderBankName.isDisabled">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="formUseFundSurrenderBankBranch.label"
+                        error="formUseFundSurrenderBankBranch.error"
+                        model="formUseFundSurrenderBankBranch.value"
+                        type="formUseFundSurrenderBankBranch.type"
+                        options="formUseFundSurrenderBankBranch.options"
+                        is-disabled="formUseFundSurrenderBankBranch.isDisabled"
+                        maxlength="formUseFundSurrenderBankBranch.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="formUseFundSurrenderAccountBankNumber.label"
+                        error="formUseFundSurrenderAccountBankNumber.error"
+                        model="formUseFundSurrenderAccountBankNumber.value"
+                        type="formUseFundSurrenderAccountBankNumber.type"
+                        options="formUseFundSurrenderAccountBankNumber.options"
+                        is-disabled="formUseFundSurrenderAccountBankNumber.isDisabled"
+                        maxlength="formUseFundSurrenderAccountBankNumber.maxlength">
+                    </input-handling-directive>
+                    <br>
+                    <div class="pos-detail-page-usefund-warning" ng-bind="globalMessage.PosDetailFormUseFundSurrenderLabelWarning"></div>
+                </div>
+                <div ng-if="!formUseFundSurrenderUseFundType.value">
+                    <input-handling-directive
+                        label="formUseFundSurrenderSeparator2.label"
+                        error="formUseFundSurrenderSeparator2.error"
+                        model="formUseFundSurrenderSeparator2.value"
+                        type="formUseFundSurrenderSeparator2.type"
+                        options="formUseFundSurrenderSeparator2.options"
+                        is-disabled="formUseFundSurrenderSeparator2.isDisabled">
+                    </input-handling-directive>
+                    <div class="pos-detail-page-usefund-message" ng-bind="globalMessage.PosDetailFormUseFundSurrenderLabelMessage"></div>
+                    <div class="pos-detail-page-usefund-wrapper" ng-repeat="n in model.useFundPage.move">
+                        <div class="pos-detail-page-usefund-header-wrapper">
+                            <div class="pos-detail-page-usefund-header-label">{{$index + 1}}.</div>
+                            <div class="pos-detail-page-usefund-header-icon" ng-click="removeUseFund($index)"><i class="fa fa-fw fa-lg fa-trash"></i></div>
+                        </div>
+                        <div>
+                            <input-handling-directive
+                                label="n.certificateNumber.label"
+                                error="n.certificateNumber.error"
+                                model="n.certificateNumber.value"
+                                type="'tel'"
+                                maxlength="30">
+                            </input-handling-directive>
+                        </div>
+                        <div>
+                            <input-handling-directive
+                                label="n.fundAmount.label"
+                                error="n.fundAmount.error"
+                                model="n.fundAmount.value"
+                                type="'tel'"
+                                maxlength="30">
+                            </input-handling-directive>
+                        </div>
+                        <div>
+                            <input-handling-directive
+                                label="n.purposeMove.label"
+                                error="n.purposeMove.error"
+                                model="n.purposeMove.value"
+                                type="'checkbox'"
+                                options="n.purposeMove.options"
+                                on-change="purposeMove_OnChange($index)">
+                            </input-handling-directive>
+                        </div>
+                        <div>
+                            <input-handling-directive
+                                label="n.etc.label"
+                                error="n.etc.error"
+                                model="n.etc.value"
+                                type="'text'"
+                                maxlength="30"
+                                is-disabled="!n.purposeMove.options[4].checked">
+                            </input-handling-directive>
+                        </div>
+                    </div>
+                    <div class="pos-detail-page-usefund-button-plus" ng-click="addUseFund()"> <i class="fa fa-fw fa-plus"></i> <label>Tambah Sertifikat</label></div>
+                    <br><br><br>
+                </div>
+                
+            </div>
+
+            <!-- SURRENDER AREA END -->
+            <!-- REINSTATEMENT AREA START -->
+
+            <div class="pos-detail-page-content" ng-class="contentHealthStatementClass">
+                <div class="pos-detail-page-product" ng-bind="productName"></div>
+                <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormHealthStatementTitle"></div>
+                <br>
+                <div class="pos-detail-page-disclaimer" ng-bind="globalMessage.PosDetailLabelDisclaimer"></div>
+                <br>
+                <div class="pos-detail-page-health-statement-message" ng-bind="globalMessage.PosDetailFormHealthStatementMessage"></div>
+                <br><br>
+                <center>
+                    <label>
+                        <input type="checkbox" ng-model="formHealthStatementAgree.options[0].checked" />
+                        {{globalMessage.PosDetailFormPreviewLabelCheckboxAgree}}
+                    </label>
+                </center>
+            </div>
+            <div class="pos-detail-page-content" ng-class="contentParticipantStatementClass">
+                <div class="pos-detail-page-product" ng-bind="productName"></div>
+                <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormParticipantStatementTitle"></div>
+                <br>
+                <div class="pos-detail-page-disclaimer" ng-bind="globalMessage.PosDetailLabelDisclaimer"></div>
+                <br>
+                <div class="pos-detail-page-participant-statement-message" ng-bind="globalMessage.PosDetailFormParticipantStatementMessage"></div>
+                <ol class="pos-detail-page-term" type="1">
+                    <li ng-bind="globalMessage.PosDetailFormParticipantStatementTerm1"></li>
+                    <li ng-bind="globalMessage.PosDetailFormParticipantStatementTerm2"></li>
+                    <li ng-bind="globalMessage.PosDetailFormParticipantStatementTerm3"></li>
+                    <li ng-bind="globalMessage.PosDetailFormParticipantStatementTerm4"></li>
+                    <li ng-bind="globalMessage.PosDetailFormParticipantStatementTerm5"></li>
+                    <li ng-bind="globalMessage.PosDetailFormParticipantStatementTerm6"></li>
+                </ol>
+                <br><br>
+                <center>
+                    <label>
+                        <input type="checkbox" ng-model="formParticipantStatementAgree.options[0].checked" />
+                        {{globalMessage.PosDetailFormPreviewLabelCheckboxAgree}}
+                    </label>
+                </center>
+            </div>
+            <div class="pos-detail-page-content" ng-class="contentReinstatementAccountBankClass">
+                <div class="pos-detail-page-product" ng-bind="productName"></div>
+                <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormReinstatementAccountBankTitle"></div>
+                <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormReinstatementAccountBankTitle2"></div>
+                <br>
+                <div class="pos-detail-page-disclaimer" ng-bind="globalMessage.PosDetailLabelDisclaimer"></div>
+                <br>
+                <input-handling-directive
+                    label="formAccountBank2Name.label"
+                    error="formAccountBank2Name.error"
+                    model="formAccountBank2Name.value"
+                    type="formAccountBank2Name.type"
+                    options="formAccountBank2Name.options"
+                    is-disabled="formAccountBank2Name.isDisabled"
+                    maxlength="formAccountBank2Name.maxlength">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAccountBank2BankName.label"
+                    error="formAccountBank2BankName.error"
+                    model="formAccountBank2BankName.value"
+                    type="formAccountBank2BankName.type"
+                    options="formAccountBank2BankName.options"
+                    is-disabled="formAccountBank2BankName.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAccountBank2BankBranch.label"
+                    error="formAccountBank2BankBranch.error"
+                    model="formAccountBank2BankBranch.value"
+                    type="formAccountBank2BankBranch.type"
+                    options="formAccountBank2BankBranch.options"
+                    is-disabled="formAccountBank2BankBranch.isDisabled"
+                    maxlength="formAccountBank2BankBranch.maxlength">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAccountBank2AccountBankNumber.label"
+                    error="formAccountBank2AccountBankNumber.error"
+                    model="formAccountBank2AccountBankNumber.value"
+                    type="formAccountBank2AccountBankNumber.type"
+                    options="formAccountBank2AccountBankNumber.options"
+                    is-disabled="formAccountBank2AccountBankNumber.isDisabled"
+                    maxlength="formAccountBank2AccountBankNumber.maxlength">
+                </input-handling-directive>
+                <br>
+                <div class="pos-detail-page-usefund-warning" ng-bind="globalMessage.PosDetailFormUseFundSurrenderLabelWarning"></div>
+            </div>
+
+            <!-- REINSTATEMENT AREA END -->
+            <!-- MATURITY AREA START -->
+            
+            <div class="pos-detail-page-content" ng-class="contentAccountBankMaturityClass">
+                <div class="pos-detail-page-product" ng-bind="productName"></div>
+                <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormMaturityAccountBankTitle"></div>
+                <br>
+                <div class="pos-detail-page-disclaimer" ng-bind="globalMessage.PosDetailLabelDisclaimer"></div>
+                <br>
+                <input-handling-directive
+                    label="formAccountBank2Name.label"
+                    error="formAccountBank2Name.error"
+                    model="formAccountBank2Name.value"
+                    type="formAccountBank2Name.type"
+                    options="formAccountBank2Name.options"
+                    is-disabled="disabled"
+                    maxlength="formAccountBank2Name.maxlength">
+                </input-handling-directive>
+                <div class="pos-detail-page-bank-warning" ng-bind="globalMessage.PosDetailFormAccountBankWarningMessage"></div>
+                <input-handling-directive
+                    label="formAccountBank2BankName.label"
+                    error="formAccountBank2BankName.error"
+                    model="formAccountBank2BankName.value"
+                    type="formAccountBank2BankName.type"
+                    options="formAccountBank2BankName.options"
+                    is-disabled="formAccountBank2BankName.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAccountBank2BankBranch.label"
+                    error="formAccountBank2BankBranch.error"
+                    model="formAccountBank2BankBranch.value"
+                    type="formAccountBank2BankBranch.type"
+                    options="formAccountBank2BankBranch.options"
+                    is-disabled="formAccountBank2BankBranch.isDisabled"
+                    maxlength="formAccountBank2BankBranch.maxlength">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAccountBank2AccountBankNumber.label"
+                    error="formAccountBank2AccountBankNumber.error"
+                    model="formAccountBank2AccountBankNumber.value"
+                    type="formAccountBank2AccountBankNumber.type"
+                    options="formAccountBank2AccountBankNumber.options"
+                    is-disabled="formAccountBank2AccountBankNumber.isDisabled"
+                    maxlength="formAccountBank2AccountBankNumber.maxlength">
+                </input-handling-directive>
+            </div>
+
+            <!-- MATURITY AREA END -->
+            <!-- COMPLIANCE AREA START -->
+            
+            <div class="pos-detail-page-content" ng-class="content3Class">
+                <div class="pos-detail-page-product" ng-bind="productName"></div>
+                <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailForm3Title"></div>
+                <br>
+                <input-handling-directive
+                    label="form3IsGovernmentEmployment.label"
+                    error="form3IsGovernmentEmployment.error"
+                    model="form3IsGovernmentEmployment.value"
+                    type="form3IsGovernmentEmployment.type"
+                    options="form3IsGovernmentEmployment.options"
+                    is-disabled="form3IsGovernmentEmployment.isDisabled"
+                    on-change="form3IsGovernmentEmployment_OnChange()">
+                </input-handling-directive>
+                <div ng-if="form3IsGovernmentEmployment.value" class="pos-detail-page-message" ng-bind="globalMessage.PosDetailForm3Message"></div>
+                <br>
+                <div ng-if="form3IsGovernmentEmployment.value">
+                    <input-handling-directive
+                        label="form3OfficerName.label"
+                        error="form3OfficerName.error"
+                        model="form3OfficerName.value"
+                        type="form3OfficerName.type"
+                        options="form3OfficerName.options"
+                        is-disabled="form3OfficerName.isDisabled"
+                        maxlength="form3OfficerName.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="form3InstitutionName.label"
+                        error="form3InstitutionName.error"
+                        model="form3InstitutionName.value"
+                        type="form3InstitutionName.type"
+                        options="form3InstitutionName.options"
+                        is-disabled="form3InstitutionName.isDisabled"
+                        maxlength="form3InstitutionName.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="form3Position.label"
+                        error="form3Position.error"
+                        model="form3Position.value"
+                        type="form3Position.type"
+                        options="form3Position.options"
+                        is-disabled="form3Position.isDisabled"
+                        maxlength="form3Position.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="form3Tenure.label"
+                        error="form3Tenure.error"
+                        model="form3Tenure.value"
+                        type="form3Tenure.type"
+                        options="form3Tenure.options"
+                        is-disabled="form3Tenure.isDisabled"
+                        maxlength="form3Tenure.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="form3Country.label"
+                        error="form3Country.error"
+                        model="form3Country.value"
+                        type="form3Country.type"
+                        options="form3Country.options"
+                        is-disabled="form3Country.isDisabled">
+                    </input-handling-directive>
+                </div>               
+            </div>
+
+            <!-- COMPLIANCE AREA END -->
+            <!-- IMAGE AREA START -->
+
+            <div class="pos-detail-page-content" ng-class="contentIdCardClass">
+                <div class="pos-detail-page-product" ng-bind="productName"></div>
+                <div class="pos-detail-page-title document" ng-bind="globalMessage.PosDetailFormIdCardTitle"></div>
+                <div class="pos-detail-page-picture-wrapper">
+                    <i class="fa fa-id-card pos-detail-page-picture-icon" ng-if="imgIdCard == stringEmpty || imgIdCard == undefined"></i>
+                    <img class="pos-detail-page-picture" ng-src="{{imgIdCard}}" ng-if="imgIdCard != stringEmpty && imgIdCard != undefined" />
+                </div>
+            </div>
+            <div class="pos-detail-page-content" ng-class="contentFamilyCardClass">
+                <div class="pos-detail-page-product" ng-bind="productName"></div>
+                <div class="pos-detail-page-title document" ng-bind="globalMessage.PosDetailFormFamilyCard"></div>
+                <div class="pos-detail-page-picture-wrapper">
+                    <i class="fa fa-id-card pos-detail-page-picture-icon" ng-if="imgFamilyCard == stringEmpty || imgFamilyCard == undefined"></i>
+                    <img class="pos-detail-page-picture" ng-src="{{imgFamilyCard}}" ng-if="imgFamilyCard != stringEmpty && imgFamilyCard != undefined" />
+                </div>
+            </div>
+            <div class="pos-detail-page-content" ng-class="contentBirthCertificateClass">
+                <div class="pos-detail-page-product" ng-bind="productName"></div>
+                <div class="pos-detail-page-title document" ng-bind="globalMessage.PosDetailFormBirthCertificate"></div>
+                <div class="pos-detail-page-picture-wrapper">
+                    <i class="fa fa-id-card pos-detail-page-picture-icon" ng-if="imgBirthCertificate == stringEmpty || imgBirthCertificate == undefined"></i>
+                    <img class="pos-detail-page-picture" ng-src="{{imgBirthCertificate}}" ng-if="imgBirthCertificate != stringEmpty && imgBirthCertificate != undefined" />
+                </div>
+            </div>
+            <div class="pos-detail-page-content" ng-class="contentSavingBookClass">
+                <div class="pos-detail-page-product" ng-bind="productName"></div>
+                <div class="pos-detail-page-title document" ng-bind="globalMessage.PosDetailFormSavingBook"></div>
+                <div class="pos-detail-page-picture-wrapper">
+                    <i class="fa fa-id-card pos-detail-page-picture-icon" ng-if="imgSavingBook == stringEmpty || imgSavingBook == undefined"></i>
+                    <img class="pos-detail-page-picture" ng-src="{{imgSavingBook}}" ng-if="imgSavingBook != stringEmpty && imgSavingBook != undefined" />
+                </div>
+            </div>
+            <div class="pos-detail-page-content" ng-class="contentPaymentReceiptClass">
+                <div class="pos-detail-page-product" ng-bind="productName"></div>
+                <div class="pos-detail-page-title document" ng-bind="globalMessage.PosDetailFormPaymentReceipt"></div>
+                <div class="pos-detail-page-picture-wrapper">
+                    <i class="fa fa-id-card pos-detail-page-picture-icon" ng-if="imgPaymentReceipt == stringEmpty || imgPaymentReceipt == undefined"></i>
+                    <img class="pos-detail-page-picture" ng-src="{{imgPaymentReceipt}}" ng-if="imgPaymentReceipt != stringEmpty && imgPaymentReceipt != undefined" />
+                </div>
+            </div>
+
+            <!-- IMAGE AREA END -->
+            <!-- PREVIEW AREA START -->
+
+            <div class="pos-detail-page-content" ng-class="contentPreviewClass">
+                <div class="pos-detail-page-title preview" ng-bind="globalMessage.PosDetailFormPreviewTitle"></div>
+                <br>
+                <div class="pos-detail-page-form1-changetype-wrapper">
+                    <div class="pos-detail-page-form1-subtitle" ng-bind="form1Separator.label"></div>
+                    <table>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input ng-disabled="true" id="posDetailPOSType1" ng-change="typeChangePOS(1)" type="checkbox" ng-model="form1IsAddress.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox">{{globalMessage.PosDetailForm1RadioAddress}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input ng-disabled="true" id="posDetailPOSType2" ng-change="typeChangePOS(2)" type="checkbox" ng-model="form1IsAccountBank.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox">{{globalMessage.PosDetailForm1RadioAccountBankNumber}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input ng-disabled="true" id="posDetailPOSType3" ng-change="typeChangePOS(3)" type="checkbox" ng-model="form1IsName.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox">{{globalMessage.PosDetailForm1RadioName}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input ng-disabled="true" id="posDetailPOSType4" ng-change="typeChangePOS(4)" type="checkbox" ng-model="form1IsBenefit.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox">{{globalMessage.PosDetailForm1RadioBenefitReceive}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input ng-disabled="true" id="posDetailPOSType5" ng-change="typeChangeEndInsurance(5)" type="checkbox" ng-model="form1IsEndInsurance.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox">{{globalMessage.PosDetailForm1RadioEndInsurance}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input ng-disabled="true" id="posDetailPOSType6" ng-change="typeChangeCertificate(6)" type="checkbox" ng-model="form1IsCertificate.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox">{{globalMessage.PosDetailForm1RadioSertificate}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input ng-disabled="true" id="posDetailPOSType7" ng-change="typeChangeMaturity(7)" type="checkbox" ng-model="form1IsMaturity.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox">{{globalMessage.PosDetailForm1RadioMaturity}}</label></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="pos-detail-form-preview-line-separator"></div>
+                <div class="pos-detail-form1-information">
+                    <table>
+                        <tr>
+                            <td>{{globalMessage.PosDetailFormPreviewLabelCertificateNumber}}</td>
+                            <td>:</td>
+                            <td>{{form1SertificateNumber}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{globalMessage.PosDetailFormPreviewLabelName}}</td>
+                            <td>:</td>
+                            <td>{{form1Name}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="pos-detail-form-preview-line-separator"></div>
+                <br>
+                <div class="pos-detail-page-message" ng-bind="globalMessage.PosDetailMessage"></div>
+                <br>
+                <input-handling-directive
+                    label="formUpdateDataSeparator.label"
+                    error="formUpdateDataSeparator.error"
+                    model="formUpdateDataSeparator.value"
+                    type="formUpdateDataSeparator.type"
+                    options="formUpdateDataSeparator.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataAreaCode.label"
+                    error="formUpdateDataAreaCode.error"
+                    model="formUpdateDataAreaCode.value"
+                    type="formUpdateDataAreaCode.type"
+                    options="formUpdateDataAreaCode.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataHomePhone.label"
+                    error="formUpdateDataHomePhone.error"
+                    model="formUpdateDataHomePhone.value"
+                    type="formUpdateDataHomePhone.type"
+                    options="formUpdateDataHomePhone.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataSeparator2.label"
+                    error="formUpdateDataSeparator2.error"
+                    model="formUpdateDataSeparator2.value"
+                    type="formUpdateDataSeparator2.type"
+                    options="formUpdateDataSeparator2.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataMobilePhone.label"
+                    error="formUpdateDataMobilePhone.error"
+                    model="formUpdateDataMobilePhone.value"
+                    type="formUpdateDataMobilePhone.type"
+                    options="formUpdateDataMobilePhone.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataSeparator3.label"
+                    error="formUpdateDataSeparator3.error"
+                    model="formUpdateDataSeparator3.value"
+                    type="formUpdateDataSeparator3.type"
+                    options="formUpdateDataSeparator3.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataEmail.label"
+                    error="formUpdateDataEmail.error"
+                    model="formUpdateDataEmail.value"
+                    type="formUpdateDataEmail.type"
+                    options="formUpdateDataEmail.options"
+                    on-blur="formUpdateDataEmail_OnBlur()"
+                    is-disabled="disabled"
+                    maxlength="50">
+                </input-handling-directive>
+                <div ng-if="form1IsAddress.options[0].checked">
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-message" ng-bind="globalMessage.PosDetailFormAddressTitle"></div>
+                    <br>
+                    <input-handling-directive
+                        label="formAddress2Address1.label"
+                        error="formAddress2Address1.error"
+                        model="formAddress2Address1.value"
+                        type="formAddress2Address1.type"
+                        options="formAddress2Address1.options"
+                        is-disabled="disabled"
+                        maxlength="formAddress2Address1.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="formAddress2Address2.label"
+                        error="formAddress2Address2.error"
+                        model="formAddress2Address2.value"
+                        type="formAddress2Address2.type"
+                        options="formAddress2Address2.options"
+                        is-disabled="disabled"
+                        maxlength="formAddress2Address2.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="formAddress2RtRw.label"
+                        error="formAddress2RtRw.error"
+                        model="formAddress2RtRw.value"
+                        type="formAddress2RtRw.type"
+                        options="formAddress2RtRw.options"
+                        is-disabled="disabled"
+                        maxlength="formAddress2RtRw.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="formAddress2Province.label"
+                        error="formAddress2Province.error"
+                        model="formAddress2Province.value"
+                        type="formAddress2Province.type"
+                        options="formAddress2Province.options"
+                        is-disabled="disabled"
+                        on-change="formAddress2Province_OnChange()">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="formAddress2City.label"
+                        error="formAddress2City.error"
+                        model="formAddress2City.value"
+                        type="formAddress2City.type"
+                        options="formAddress2City.options"
+                        is-disabled="disabled"
+                        on-change="">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="formAddress2PostalCode.label"
+                        error="formAddress2PostalCode.error"
+                        model="formAddress2PostalCode.value"
+                        type="formAddress2PostalCode.type"
+                        options="formAddress2PostalCode.options"
+                        is-disabled="disabled">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="formAddress2District.label"
+                        error="formAddress2District.error"
+                        model="formAddress2District.value"
+                        type="formAddress2District.type"
+                        options="formAddress2District.options"
+                        is-disabled="disabled"
+                        maxlength="formAddress2District.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="formAddress2SubDistrict.label"
+                        error="formAddress2SubDistrict.error"
+                        model="formAddress2SubDistrict.value"
+                        type="formAddress2SubDistrict.type"
+                        options="formAddress2SubDistrict.options"
+                        is-disabled="disabled"
+                        maxlength="formAddress2SubDistrict.maxlength">
+                    </input-handling-directive>
+                </div>
+                <div ng-if="form1IsName.options[0].checked">
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-message" ng-bind="globalMessage.PosDetailFormNameTitle"></div>
+                    <br>
+                    <input-handling-directive
+                        label="formName2Name.label"
+                        error="formName2Name.error"
+                        model="formName2Name.value"
+                        type="formName2Name.type"
+                        options="formName2Name.options"
+                        is-disabled="disabled"
+                        maxlength="formName2Name.maxlength">
+                    </input-handling-directive>
+                </div>
+                <div ng-if="form1IsAccountBank.options[0].checked">
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-message" ng-bind="globalMessage.PosDetailFormAccountBankTitle"></div>
+                    <br>
+                    <input-handling-directive
+                        label="formAccountBank2Name.label"
+                        error="formAccountBank2Name.error"
+                        model="formAccountBank2Name.value"
+                        type="formAccountBank2Name.type"
+                        options="formAccountBank2Name.options"
+                        is-disabled="disabled"
+                        maxlength="formAccountBank2Name.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="formAccountBank2BankName.label"
+                        error="formAccountBank2BankName.error"
+                        model="formAccountBank2BankName.value"
+                        type="formAccountBank2BankName.type"
+                        options="formAccountBank2BankName.options"
+                        is-disabled="disabled">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="formAccountBank2BankBranch.label"
+                        error="formAccountBank2BankBranch.error"
+                        model="formAccountBank2BankBranch.value"
+                        type="formAccountBank2BankBranch.type"
+                        options="formAccountBank2BankBranch.options"
+                        is-disabled="disabled"
+                        maxlength="formAccountBank2BankBranch.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="formAccountBank2AccountBankNumber.label"
+                        error="formAccountBank2AccountBankNumber.error"
+                        model="formAccountBank2AccountBankNumber.value"
+                        type="formAccountBank2AccountBankNumber.type"
+                        options="formAccountBank2AccountBankNumber.options"
+                        is-disabled="disabled"
+                        maxlength="formAccountBank2AccountBankNumber.maxlength">
+                    </input-handling-directive>
+                </div>
+                <div ng-if="form1IsBenefit.options[0].checked">
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-message" ng-bind="globalMessage.PosDetailFormBenefitTitle"></div>
+                    <br>
+                    <input-handling-directive
+                        label="formBenefit2Name.label"
+                        error="formBenefit2Name.error"
+                        model="formBenefit2Name.value"
+                        type="formBenefit2Name.type"
+                        options="formBenefit2Name.options"
+                        is-disabled="disabled"
+                        maxlength="formBenefit2Name.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="formBenefit2Relationship.label"
+                        error="formBenefit2Relationship.error"
+                        model="formBenefit2Relationship.value"
+                        type="formBenefit2Relationship.type"
+                        options="formBenefit2Relationship.options"
+                        is-disabled="disabled">
+                    </input-handling-directive>
+                </div>
+                <div class="pos-detail-form-preview-line-separator"></div>
+                <br>
+                <div class="pos-detail-page-message" ng-bind="globalMessage.PosDetailFormComplienceTitle"></div>
+                <br>
+                <input-handling-directive
+                    label="form3IsGovernmentEmployment.label"
+                    error="form3IsGovernmentEmployment.error"
+                    model="form3IsGovernmentEmployment.value"
+                    type="form3IsGovernmentEmployment.type"
+                    options="form3IsGovernmentEmployment.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <div ng-if="form3IsGovernmentEmployment.value" class="pos-detail-page-message" ng-bind="globalMessage.PosDetailForm3Message"></div>
+                <br>
+                <div ng-if="form3IsGovernmentEmployment.value">
+                    <input-handling-directive
+                        label="form3OfficerName.label"
+                        error="form3OfficerName.error"
+                        model="form3OfficerName.value"
+                        type="form3OfficerName.type"
+                        options="form3OfficerName.options"
+                        is-disabled="disabled"
+                        maxlength="form3OfficerName.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="form3InstitutionName.label"
+                        error="form3InstitutionName.error"
+                        model="form3InstitutionName.value"
+                        type="form3InstitutionName.type"
+                        options="form3InstitutionName.options"
+                        is-disabled="disabled"
+                        maxlength="form3InstitutionName.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="form3Position.label"
+                        error="form3Position.error"
+                        model="form3Position.value"
+                        type="form3Position.type"
+                        options="form3Position.options"
+                        is-disabled="disabled"
+                        maxlength="form3Position.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="form3Tenure.label"
+                        error="form3Tenure.error"
+                        model="form3Tenure.value"
+                        type="form3Tenure.type"
+                        options="form3Tenure.options"
+                        is-disabled="disabled"
+                        maxlength="form3Tenure.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="form3Country.label"
+                        error="form3Country.error"
+                        model="form3Country.value"
+                        type="form3Country.type"
+                        options="form3Country.options"
+                        is-disabled="disabled">
+                    </input-handling-directive>
+                </div>
+                <div ng-if="pageContent.includes('Ktp')">
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-product" ng-bind="productName"></div>
+                    <div class="pos-detail-page-title document" ng-bind="globalMessage.PosDetailFormIdCardTitle"></div>
+                    <div class="pos-detail-page-picture-wrapper">
+                        <i class="fa fa-id-card pos-detail-page-picture-icon" ng-if="imgIdCard == stringEmpty || imgIdCard == undefined"></i>
+                        <img class="pos-detail-page-picture" ng-src="{{imgIdCard}}" ng-if="imgIdCard != stringEmpty && imgIdCard != undefined" />
+                    </div>
+                </div>
+                <div ng-if="pageContent.includes('Kk')">
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-product" ng-bind="productName"></div>
+                    <div class="pos-detail-page-title document" ng-bind="globalMessage.PosDetailFormFamilyCard"></div>
+                    <div class="pos-detail-page-picture-wrapper">
+                        <i class="fa fa-id-card pos-detail-page-picture-icon" ng-if="imgFamilyCard == stringEmpty || imgFamilyCard == undefined"></i>
+                        <img class="pos-detail-page-picture" ng-src="{{imgFamilyCard}}" ng-if="imgFamilyCard != stringEmpty && imgFamilyCard != undefined" />
+                    </div>
+                </div>
+                <div ng-if="pageContent.includes('Akte')">
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-product" ng-bind="productName"></div>
+                    <div class="pos-detail-page-title document" ng-bind="globalMessage.PosDetailFormBirthCertificate"></div>
+                    <div class="pos-detail-page-picture-wrapper">
+                        <i class="fa fa-id-card pos-detail-page-picture-icon" ng-if="imgBirthCertificate == stringEmpty || imgBirthCertificate == undefined"></i>
+                        <img class="pos-detail-page-picture" ng-src="{{imgBirthCertificate}}" ng-if="imgBirthCertificate != stringEmpty && imgBirthCertificate != undefined" />
+                    </div>
+                </div>
+                <div ng-if="pageContent.includes('Tabungan')">
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-product" ng-bind="productName"></div>
+                    <div class="pos-detail-page-title document" ng-bind="globalMessage.PosDetailFormSavingBook"></div>
+                    <div class="pos-detail-page-picture-wrapper">
+                        <i class="fa fa-id-card pos-detail-page-picture-icon" ng-if="imgSavingBook == stringEmpty || imgSavingBook == undefined"></i>
+                        <img class="pos-detail-page-picture" ng-src="{{imgSavingBook}}" ng-if="imgSavingBook != stringEmpty && imgSavingBook != undefined" />
+                    </div>
+                </div>
+                <div ng-if="pageContent.includes('Pembayaran')">
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-product" ng-bind="productName"></div>
+                    <div class="pos-detail-page-title document" ng-bind="globalMessage.PosDetailFormPaymentReceipt"></div>
+                    <div class="pos-detail-page-picture-wrapper">
+                        <i class="fa fa-id-card pos-detail-page-picture-icon" ng-if="imgPaymentReceipt == stringEmpty || imgPaymentReceipt == undefined"></i>
+                        <img class="pos-detail-page-picture" ng-src="{{imgPaymentReceipt}}" ng-if="imgPaymentReceipt != stringEmpty && imgPaymentReceipt != undefined" />
+                    </div>
+                </div>
+                <div class="pos-detail-form-preview-line-separator"></div>
+                <br>
+                <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormPreviewTitle2"></div>
+                <div class="pos-detail-page-preview-message" ng-bind="globalMessage.PosDetailFormPreviewMessage"></div>
+                <br>
+                <div class="pos-detail-page-preview-message" ng-bind="globalMessage.PosDetailFormPreviewMessage2"></div>
+                <ol class="pos-detail-page-term" type="1">
+                    <li ng-bind="globalMessage.PosDetailFormPreviewMessage2Term1"></li>
+                    <li ng-bind="globalMessage.PosDetailFormPreviewMessage2Term2"></li>
+                    <li ng-bind="globalMessage.PosDetailFormPreviewMessage2Term3"></li>
+                    <li ng-bind="globalMessage.PosDetailFormPreviewMessage2Term4"></li>
+                    <li ng-bind="globalMessage.PosDetailFormPreviewMessage2Term5"></li>
+                </ol>
+                <br>
+                <br>
+                <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormPreviewTitle3"></div>
+                <br>
+                <div class="pos-detail-page-preview-message" ng-bind="globalMessage.PosDetailFormPreviewMessage3"></div>
+                <ol class="pos-detail-page-term" type="1">
+                    <li ng-bind="globalMessage.PosDetailFormPreviewMessage3Term1"></li>
+                    <li>
+                        <span ng-bind="globalMessage.PosDetailFormPreviewMessage3Term2"></span>
+                        <ol type="a">
+                            <li ng-bind="globalMessage.PosDetailFormPreviewMessage3Term2Opt1"></li>
+                            <li ng-bind="globalMessage.PosDetailFormPreviewMessage3Term2Opt2"></li>
+                        </ol>
+                    </li>
+                    <li ng-bind="globalMessage.PosDetailFormPreviewMessage3Term3"></li>
+                    <li ng-bind="globalMessage.PosDetailFormPreviewMessage3Term4"></li>
+                    <li ng-bind="globalMessage.PosDetailFormPreviewMessage3Term5"></li>
+                    <li ng-bind="globalMessage.PosDetailFormPreviewMessage3Term6"></li>
+                    <li ng-bind="globalMessage.PosDetailFormPreviewMessage3Term7"></li>
+                    <li ng-bind="globalMessage.PosDetailFormPreviewMessage3Term8"></li>
+                </ol>
+                <br>
+                <br>
+                <center>
+                    <label ng-if="!globalData.isFromStaging">
+                        <input type="checkbox" ng-model="formPreviewAgree.options[0].checked" />
+                        {{globalMessage.PosDetailFormPreviewLabelCheckboxAgree}}
+                    </label>
+                </center>
+            </div>
+            <div class="pos-detail-page-content" ng-class="contentSurrenderReinstatementPreviewClass">
+                <div class="pos-detail-page-title preview" ng-bind="globalMessage.PosDetailFormPreviewTitle"></div>
+                <br>
+                <div class="pos-detail-page-form1-changetype-wrapper">
+                    <div class="pos-detail-page-form1-subtitle" ng-bind="form1Separator.label"></div>
+                    <table>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input ng-disabled="true" id="posDetailPOSType1" ng-change="typeChangePOS(1)" type="checkbox" ng-model="form1IsAddress.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox">{{globalMessage.PosDetailForm1RadioAddress}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input ng-disabled="true" id="posDetailPOSType2" ng-change="typeChangePOS(2)" type="checkbox" ng-model="form1IsAccountBank.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox">{{globalMessage.PosDetailForm1RadioAccountBankNumber}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input ng-disabled="true" id="posDetailPOSType3" ng-change="typeChangePOS(3)" type="checkbox" ng-model="form1IsName.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox">{{globalMessage.PosDetailForm1RadioName}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input ng-disabled="true" id="posDetailPOSType4" ng-change="typeChangePOS(4)" type="checkbox" ng-model="form1IsBenefit.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox">{{globalMessage.PosDetailForm1RadioBenefitReceive}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input ng-disabled="true" id="posDetailPOSType5" ng-change="typeChangeEndInsurance(5)" type="checkbox" ng-model="form1IsEndInsurance.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox">{{globalMessage.PosDetailForm1RadioEndInsurance}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input ng-disabled="true" id="posDetailPOSType6" ng-change="typeChangeCertificate(6)" type="checkbox" ng-model="form1IsCertificate.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox">{{globalMessage.PosDetailForm1RadioSertificate}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input ng-disabled="true" id="posDetailPOSType7" ng-change="typeChangeMaturity(7)" type="checkbox" ng-model="form1IsMaturity.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox">{{globalMessage.PosDetailForm1RadioMaturity}}</label></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="pos-detail-form-preview-line-separator"></div>
+                <div class="pos-detail-form1-information">
+                    <table>
+                        <tr>
+                            <td>{{globalMessage.PosDetailFormPreviewLabelCertificateNumber}}</td>
+                            <td>:</td>
+                            <td>{{form1SertificateNumber}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{globalMessage.PosDetailFormPreviewLabelName}}</td>
+                            <td>:</td>
+                            <td>{{form1Name}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="pos-detail-form-preview-line-separator"></div>
+                <br>
+                <div class="pos-detail-page-title" ng-bind="formSurrenderReinstatementTitle"></div>
+                <br>
+                <input-handling-directive
+                    label="formSurrenderReinstatementSeparator3.label"
+                    error="formSurrenderReinstatementSeparator3.error"
+                    model="formSurrenderReinstatementSeparator3.value"
+                    type="formSurrenderReinstatementSeparator3.type"
+                    options="formSurrenderReinstatementSeparator3.options"
+                    is-disabled="formSurrenderReinstatementSeparator3.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataAreaCode.label"
+                    error="formUpdateDataAreaCode.error"
+                    model="formUpdateDataAreaCode.value"
+                    type="formUpdateDataAreaCode.type"
+                    options="formUpdateDataAreaCode.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataHomePhone.label"
+                    error="formUpdateDataHomePhone.error"
+                    model="formUpdateDataHomePhone.value"
+                    type="formUpdateDataHomePhone.type"
+                    options="formUpdateDataHomePhone.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formSurrenderReinstatementSeparator4.label"
+                    error="formSurrenderReinstatementSeparator4.error"
+                    model="formSurrenderReinstatementSeparator4.value"
+                    type="formSurrenderReinstatementSeparator4.type"
+                    options="formSurrenderReinstatementSeparator4.options"
+                    is-disabled="formSurrenderReinstatementSeparator4.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataMobilePhone.label"
+                    error="formUpdateDataMobilePhone.error"
+                    model="formUpdateDataMobilePhone.value"
+                    type="formUpdateDataMobilePhone.type"
+                    options="formUpdateDataMobilePhone.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formSurrenderReinstatementSeparator5.label"
+                    error="formSurrenderReinstatementSeparator5.error"
+                    model="formSurrenderReinstatementSeparator5.value"
+                    type="formSurrenderReinstatementSeparator5.type"
+                    options="formSurrenderReinstatementSeparator5.options"
+                    is-disabled="formSurrenderReinstatementSeparator5.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataEmail.label"
+                    error="formUpdateDataEmail.error"
+                    model="formUpdateDataEmail.value"
+                    type="formUpdateDataEmail.type"
+                    options="formUpdateDataEmail.options"
+                    on-blur="formUpdateDataEmail_OnBlur()"
+                    is-disabled="disabled"
+                    maxlength="50">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formSurrenderReinstatementSeparator6.label"
+                    error="formSurrenderReinstatementSeparator6.error"
+                    model="formSurrenderReinstatementSeparator6.value"
+                    type="formSurrenderReinstatementSeparator6.type"
+                    options="formSurrenderReinstatementSeparator6.options"
+                    is-disabled="formSurrenderReinstatementSeparator6.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2Address1.label"
+                    error="formAddress2Address1.error"
+                    model="formAddress2Address1.value"
+                    type="formAddress2Address1.type"
+                    options="formAddress2Address1.options"
+                    is-disabled="disabled"
+                    maxlength="formAddress2Address1.maxlength">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2Address2.label"
+                    error="formAddress2Address2.error"
+                    model="formAddress2Address2.value"
+                    type="formAddress2Address2.type"
+                    options="formAddress2Address2.options"
+                    is-disabled="disabled"
+                    maxlength="formAddress2Address2.maxlength">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2RtRw.label"
+                    error="formAddress2RtRw.error"
+                    model="formAddress2RtRw.value"
+                    type="formAddress2RtRw.type"
+                    options="formAddress2RtRw.options"
+                    is-disabled="disabled"
+                    maxlength="formAddress2RtRw.maxlength">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2Province.label"
+                    error="formAddress2Province.error"
+                    model="formAddress2Province.value"
+                    type="formAddress2Province.type"
+                    options="formAddress2Province.options"
+                    is-disabled="disabled"
+                    on-change="formAddress2Province_OnChange()">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2City.label"
+                    error="formAddress2City.error"
+                    model="formAddress2City.value"
+                    type="formAddress2City.type"
+                    options="formAddress2City.options"
+                    is-disabled="disabled"
+                    on-change="">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2PostalCode.label"
+                    error="formAddress2PostalCode.error"
+                    model="formAddress2PostalCode.value"
+                    type="formAddress2PostalCode.type"
+                    options="formAddress2PostalCode.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2District.label"
+                    error="formAddress2District.error"
+                    model="formAddress2District.value"
+                    type="formAddress2District.type"
+                    options="formAddress2District.options"
+                    is-disabled="disabled"
+                    maxlength="formAddress2District.maxlength">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAddress2SubDistrict.label"
+                    error="formAddress2SubDistrict.error"
+                    model="formAddress2SubDistrict.value"
+                    type="formAddress2SubDistrict.type"
+                    options="formAddress2SubDistrict.options"
+                    is-disabled="disabled"
+                    maxlength="formAddress2SubDistrict.maxlength">
+                </input-handling-directive>
+                <div class="pos-detail-form-preview-line-separator"></div>
+                <br>
+                <div class="pos-detail-page-title" ng-bind="formReasonTitle"></div>
+                <br>
+                <input-handling-directive
+                    label="formReason.label"
+                    error="formReason.error"
+                    model="formReason.value"
+                    type="formReason.type"
+                    options="formReason.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <div ng-if="form1IsEndInsurance.options[0].checked">
+                    <br>
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-title" ng-bind="formUseFundSurrenderReinstatementTitle"></div>
+                    <br>
+                    <div class="pos-detail-form-usefund-inputhandling-wrapper">
+                        <div class="pos-detail-form-usefund-inputhandling-title" ng-bind="formUseFundSurrenderUseFundType.label"></div>
+                        <div class="pos-detail-form-usefund-table">
+                            <table>
+                                <tr>
+                                    <td><input ng-disabled="true" id="posDetailUseFundType1" type="radio" ng-change="formUseFundSurrenderUseFundType_OnChange()" ng-model="formUseFundSurrenderUseFundType.value" ng-value="{{true}}"></td>
+                                    <td><label class="pos-detail-page-disabled">A.</label></td>
+                                    <td><label class="pos-detail-page-disabled">{{globalMessage.PosDetailFormUseFundSurrenderLabelTransfer}}</label></td>
+                                </tr>
+                                <tr>
+                                    <td><input ng-disabled="true" id="posDetailUseFundType2" type="radio" ng-change="formUseFundSurrenderUseFundType_OnChange()" ng-model="formUseFundSurrenderUseFundType.value" ng-value="{{false}}"></td>
+                                    <td><label class="pos-detail-page-disabled">B.</label></td>
+                                    <td><label class="pos-detail-page-disabled">{{globalMessage.PosDetailFormUseFundSurrenderLabelMove}}</label></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                    <div ng-if="formUseFundSurrenderUseFundType.value">
+                        <input-handling-directive
+                            label="formUseFundSurrenderSeparator.label"
+                            error="formUseFundSurrenderSeparator.error"
+                            model="formUseFundSurrenderSeparator.value"
+                            type="formUseFundSurrenderSeparator.type"
+                            options="formUseFundSurrenderSeparator.options"
+                            is-disabled="disabled">
+                        </input-handling-directive>
+                        <br>
+                        <input-handling-directive
+                            label="formUseFundSurrenderName.label"
+                            error="formUseFundSurrenderName.error"
+                            model="formUseFundSurrenderName.value"
+                            type="formUseFundSurrenderName.type"
+                            options="formUseFundSurrenderName.options"
+                            is-disabled="disabled"
+                            maxlength="formUseFundSurrenderName.maxlength">
+                        </input-handling-directive>
+                        <input-handling-directive
+                            label="formUseFundSurrenderBankName.label"
+                            error="formUseFundSurrenderBankName.error"
+                            model="formUseFundSurrenderBankName.value"
+                            type="formUseFundSurrenderBankName.type"
+                            options="formUseFundSurrenderBankName.options"
+                            is-disabled="disabled">
+                        </input-handling-directive>
+                        <input-handling-directive
+                            label="formUseFundSurrenderBankBranch.label"
+                            error="formUseFundSurrenderBankBranch.error"
+                            model="formUseFundSurrenderBankBranch.value"
+                            type="formUseFundSurrenderBankBranch.type"
+                            options="formUseFundSurrenderBankBranch.options"
+                            is-disabled="disabled"
+                            maxlength="formUseFundSurrenderBankBranch.maxlength">
+                        </input-handling-directive>
+                        <input-handling-directive
+                            label="formUseFundSurrenderAccountBankNumber.label"
+                            error="formUseFundSurrenderAccountBankNumber.error"
+                            model="formUseFundSurrenderAccountBankNumber.value"
+                            type="formUseFundSurrenderAccountBankNumber.type"
+                            options="formUseFundSurrenderAccountBankNumber.options"
+                            is-disabled="disabled"
+                            maxlength="formUseFundSurrenderAccountBankNumber.maxlength">
+                        </input-handling-directive>
+                        <br>
+                        <div class="pos-detail-page-usefund-warning" ng-bind="globalMessage.PosDetailFormUseFundSurrenderLabelWarning"></div>
+                    </div>
+                    <div ng-if="!formUseFundSurrenderUseFundType.value">
+                        <input-handling-directive
+                            label="formUseFundSurrenderSeparator2.label"
+                            error="formUseFundSurrenderSeparator2.error"
+                            model="formUseFundSurrenderSeparator2.value"
+                            type="formUseFundSurrenderSeparator2.type"
+                            options="formUseFundSurrenderSeparator2.options"
+                            is-disabled="disabled">
+                        </input-handling-directive>
+                        <div class="pos-detail-page-usefund-message" ng-bind="globalMessage.PosDetailFormUseFundSurrenderLabelMessage"></div>
+                        <div class="pos-detail-page-usefund-wrapper" ng-repeat="n in model.useFundPage.move">
+                            <div class="pos-detail-page-usefund-header-wrapper">
+                                <div class="pos-detail-page-usefund-header-label">{{$index + 1}}.</div>
+                            </div>
+                            <div>
+                                <input-handling-directive
+                                    label="n.certificateNumber.label"
+                                    error="n.certificateNumber.error"
+                                    model="n.certificateNumber.value"
+                                    type="'tel'"
+                                    maxlength="30"
+                                    is-disabled="disabled">
+                                </input-handling-directive>
+                            </div>
+                            <div>
+                                <input-handling-directive
+                                    label="n.fundAmount.label"
+                                    error="n.fundAmount.error"
+                                    model="n.fundAmount.value"
+                                    type="'tel'"
+                                    maxlength="30"
+                                    is-disabled="disabled">
+                                </input-handling-directive>
+                            </div>
+                            <div>
+                                <input-handling-directive
+                                    label="n.purposeMove.label"
+                                    error="n.purposeMove.error"
+                                    model="n.purposeMove.value"
+                                    type="'checkbox'"
+                                    options="n.purposeMove.options"
+                                    is-disabled="disabled">
+                                </input-handling-directive>
+                            </div>
+                            <div>
+                                <input-handling-directive
+                                    label="n.etc.label"
+                                    error="n.etc.error"
+                                    model="n.etc.value"
+                                    type="'text'"
+                                    maxlength="30"
+                                    is-disabled="disabled">
+                                </input-handling-directive>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div ng-if="form1IsCertificate.options[0].checked">
+                    <br>
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormHealthStatementTitle"></div>
+                    <br>
+                    <div class="pos-detail-page-health-statement-message" ng-bind="globalMessage.PosDetailFormHealthStatementMessage"></div>
+                    <br><br>
+                    <center>
+                        <label>
+                            <input ng-disabled="true" type="checkbox" ng-model="formHealthStatementAgree.options[0].checked" />
+                            {{globalMessage.PosDetailFormPreviewLabelCheckboxAgree}}
+                        </label>
+                    </center>
+                    <br>
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormParticipantStatementTitle"></div>
+                    <br>
+                    <div class="pos-detail-page-participant-statement-message" ng-bind="globalMessage.PosDetailFormParticipantStatementMessage"></div>
+                    <ol class="pos-detail-page-term" type="1">
+                        <li ng-bind="globalMessage.PosDetailFormParticipantStatementTerm1"></li>
+                        <li ng-bind="globalMessage.PosDetailFormParticipantStatementTerm2"></li>
+                        <li ng-bind="globalMessage.PosDetailFormParticipantStatementTerm3"></li>
+                        <li ng-bind="globalMessage.PosDetailFormParticipantStatementTerm4"></li>
+                        <li ng-bind="globalMessage.PosDetailFormParticipantStatementTerm5"></li>
+                        <li ng-bind="globalMessage.PosDetailFormParticipantStatementTerm6"></li>
+                    </ol>
+                    <br><br>
+                    <center>
+                        <label>
+                            <input ng-disabled="true" type="checkbox" ng-model="formParticipantStatementAgree.options[0].checked" />
+                            {{globalMessage.PosDetailFormPreviewLabelCheckboxAgree}}
+                        </label>
+                    </center>
+                    <br>
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormReinstatementAccountBankTitle"></div>
+                    <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormReinstatementAccountBankTitle2"></div>
+                    <br>
+                    <input-handling-directive
+                        label="formAccountBank2Name.label"
+                        error="formAccountBank2Name.error"
+                        model="formAccountBank2Name.value"
+                        type="formAccountBank2Name.type"
+                        options="formAccountBank2Name.options"
+                        is-disabled="disabled"
+                        maxlength="formAccountBank2Name.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="formAccountBank2BankName.label"
+                        error="formAccountBank2BankName.error"
+                        model="formAccountBank2BankName.value"
+                        type="formAccountBank2BankName.type"
+                        options="formAccountBank2BankName.options"
+                        is-disabled="disabled">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="formAccountBank2BankBranch.label"
+                        error="formAccountBank2BankBranch.error"
+                        model="formAccountBank2BankBranch.value"
+                        type="formAccountBank2BankBranch.type"
+                        options="formAccountBank2BankBranch.options"
+                        is-disabled="disabled"
+                        maxlength="formAccountBank2BankBranch.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="formAccountBank2AccountBankNumber.label"
+                        error="formAccountBank2AccountBankNumber.error"
+                        model="formAccountBank2AccountBankNumber.value"
+                        type="formAccountBank2AccountBankNumber.type"
+                        options="formAccountBank2AccountBankNumber.options"
+                        is-disabled="disabled"
+                        maxlength="formAccountBank2AccountBankNumber.maxlength">
+                    </input-handling-directive>
+                </div>
+                <br>
+                <div class="pos-detail-form-preview-line-separator"></div>
+                <br>
+                <div class="pos-detail-page-message" ng-bind="globalMessage.PosDetailFormComplienceTitle"></div>
+                <br>
+                <input-handling-directive
+                    label="form3IsGovernmentEmployment.label"
+                    error="form3IsGovernmentEmployment.error"
+                    model="form3IsGovernmentEmployment.value"
+                    type="form3IsGovernmentEmployment.type"
+                    options="form3IsGovernmentEmployment.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <div ng-if="form3IsGovernmentEmployment.value" class="pos-detail-page-message" ng-bind="globalMessage.PosDetailForm3Message"></div>
+                <br>
+                <div ng-if="form3IsGovernmentEmployment.value">
+                    <input-handling-directive
+                        label="form3OfficerName.label"
+                        error="form3OfficerName.error"
+                        model="form3OfficerName.value"
+                        type="form3OfficerName.type"
+                        options="form3OfficerName.options"
+                        is-disabled="disabled"
+                        maxlength="form3OfficerName.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="form3InstitutionName.label"
+                        error="form3InstitutionName.error"
+                        model="form3InstitutionName.value"
+                        type="form3InstitutionName.type"
+                        options="form3InstitutionName.options"
+                        is-disabled="disabled"
+                        maxlength="form3InstitutionName.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="form3Position.label"
+                        error="form3Position.error"
+                        model="form3Position.value"
+                        type="form3Position.type"
+                        options="form3Position.options"
+                        is-disabled="disabled"
+                        maxlength="form3Position.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="form3Tenure.label"
+                        error="form3Tenure.error"
+                        model="form3Tenure.value"
+                        type="form3Tenure.type"
+                        options="form3Tenure.options"
+                        is-disabled="disabled"
+                        maxlength="form3Tenure.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="form3Country.label"
+                        error="form3Country.error"
+                        model="form3Country.value"
+                        type="form3Country.type"
+                        options="form3Country.options"
+                        is-disabled="disabled">
+                    </input-handling-directive>
+                </div>
+                <div ng-if="pageContent.includes('Ktp')">
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-product" ng-bind="productName"></div>
+                    <div class="pos-detail-page-title document" ng-bind="globalMessage.PosDetailFormIdCardTitle"></div>
+                    <div class="pos-detail-page-picture-wrapper">
+                        <i class="fa fa-id-card pos-detail-page-picture-icon" ng-if="imgIdCard == stringEmpty || imgIdCard == undefined"></i>
+                        <img class="pos-detail-page-picture" ng-src="{{imgIdCard}}" ng-if="imgIdCard != stringEmpty && imgIdCard != undefined" />
+                    </div>
+                </div>
+                <div ng-if="pageContent.includes('Kk')">
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-product" ng-bind="productName"></div>
+                    <div class="pos-detail-page-title document" ng-bind="globalMessage.PosDetailFormFamilyCard"></div>
+                    <div class="pos-detail-page-picture-wrapper">
+                        <i class="fa fa-id-card pos-detail-page-picture-icon" ng-if="imgFamilyCard == stringEmpty || imgFamilyCard == undefined"></i>
+                        <img class="pos-detail-page-picture" ng-src="{{imgFamilyCard}}" ng-if="imgFamilyCard != stringEmpty && imgFamilyCard != undefined" />
+                    </div>
+                </div>
+                <div ng-if="pageContent.includes('Akte')">
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-product" ng-bind="productName"></div>
+                    <div class="pos-detail-page-title document" ng-bind="globalMessage.PosDetailFormBirthCertificate"></div>
+                    <div class="pos-detail-page-picture-wrapper">
+                        <i class="fa fa-id-card pos-detail-page-picture-icon" ng-if="imgBirthCertificate == stringEmpty || imgBirthCertificate == undefined"></i>
+                        <img class="pos-detail-page-picture" ng-src="{{imgBirthCertificate}}" ng-if="imgBirthCertificate != stringEmpty && imgBirthCertificate != undefined" />
+                    </div>
+                </div>
+                <div ng-if="pageContent.includes('Tabungan')">
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-product" ng-bind="productName"></div>
+                    <div class="pos-detail-page-title document" ng-bind="globalMessage.PosDetailFormSavingBook"></div>
+                    <div class="pos-detail-page-picture-wrapper">
+                        <i class="fa fa-id-card pos-detail-page-picture-icon" ng-if="imgSavingBook == stringEmpty || imgSavingBook == undefined"></i>
+                        <img class="pos-detail-page-picture" ng-src="{{imgSavingBook}}" ng-if="imgSavingBook != stringEmpty && imgSavingBook != undefined" />
+                    </div>
+                </div>
+                <div ng-if="pageContent.includes('Pembayaran')">
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-product" ng-bind="productName"></div>
+                    <div class="pos-detail-page-title document" ng-bind="globalMessage.PosDetailFormPaymentReceipt"></div>
+                    <div class="pos-detail-page-picture-wrapper">
+                        <i class="fa fa-id-card pos-detail-page-picture-icon" ng-if="imgPaymentReceipt == stringEmpty || imgPaymentReceipt == undefined"></i>
+                        <img class="pos-detail-page-picture" ng-src="{{imgPaymentReceipt}}" ng-if="imgPaymentReceipt != stringEmpty && imgPaymentReceipt != undefined" />
+                    </div>
+                </div>
+                <div class="pos-detail-form-preview-line-separator"></div>
+                <br>
+                <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewTitle2"></div>
+                <div class="pos-detail-page-preview-message" ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage"></div>
+                <br>
+                <div class="pos-detail-page-preview-message" ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage2"></div>
+                <ol class="pos-detail-page-term" type="1">
+                    <li ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage2Term1"></li>
+                    <li ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage2Term2"></li>
+                    <li ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage2Term3"></li>
+                    <li ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage2Term4"></li>
+                    <li ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage2Term5"></li>
+                </ol>
+                <br>
+                <br>
+                <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewTitle3"></div>
+                <br>
+                <div class="pos-detail-page-preview-message" ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage3"></div>
+                <div ng-if="form1IsEndInsurance.options[0].checked">
+                    <ol class="pos-detail-page-term" type="1">
+                        <li ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage3Term1"></li>
+                        <li>
+                            <span ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage3Term2"></span>
+                            <ol type="a">
+                                <li ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage3Term2Opt1"></li>
+                                <li ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage3Term2Opt2"></li>
+                            </ol>
+                        </li>
+                        <li ng-bind="globalMessage.PosDetailFormSurrenderPreviewMessage3Term3"></li>
+                        <li ng-bind="globalMessage.PosDetailFormSurrenderPreviewMessage3Term4"></li>
+                    </ol>
+                    <br>
+                    <br>
+                    <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormSurrenderPreviewMessageTerm"></div>
+                    <br>
+                    <div class="pos-detail-page-preview-message" ng-bind="globalMessage.PosDetailFormSurrenderPreviewMessageTermTitle"></div>
+                    <ol class="pos-detail-page-term" type="1">
+                        <li ng-bind="globalMessage.PosDetailFormSurrenderPreviewMessageTerm1"></li>
+                        <li>
+                            <span ng-bind="globalMessage.PosDetailFormSurrenderPreviewMessageTerm2"></span>
+                            <ol type="a">
+                                <li ng-bind="globalMessage.PosDetailFormSurrenderPreviewMessageTermA"></li>
+                                <li ng-bind="globalMessage.PosDetailFormSurrenderPreviewMessageTermB"></li>
+                            </ol>
+                        </li>
+                        <li ng-bind="globalMessage.PosDetailFormSurrenderPreviewMessageTerm3"></li>
+                        <li ng-bind="globalMessage.PosDetailFormSurrenderPreviewMessageTerm4"></li>
+                    </ol>
+                    <br>
+                    <div class="pos-detail-page-preview-message" ng-bind="globalMessage.PosDetailFormSurrenderPreviewMessageTermTitle2"></div>
+                    <ol class="pos-detail-page-term" type="1">
+                        <li ng-bind="globalMessage.PosDetailFormSurrenderPreviewMessageTermTrf1"></li>
+                        <li ng-bind="globalMessage.PosDetailFormSurrenderPreviewMessageTermTrf2"></li>
+                        <li ng-bind="globalMessage.PosDetailFormSurrenderPreviewMessageTermTrf3"></li>
+                    </ol>
+                    <br>
+                    <div class="pos-detail-page-preview-message" ng-bind="globalMessage.PosDetailFormSurrenderPreviewMessageTermTitle3"></div>
+                    <ol class="pos-detail-page-term" type="1">
+                        <li ng-bind="globalMessage.PosDetailFormSurrenderPreviewMessageTermMv1"></li>
+                        <li ng-bind="globalMessage.PosDetailFormSurrenderPreviewMessageTermMv2"></li>
+                    </ol>
+                </div>
+                <div ng-if="form1IsCertificate.options[0].checked">
+                    <ol class="pos-detail-page-term" type="1">
+                        <li ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage3Term1"></li>
+                        <li>
+                            <span ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage3Term2"></span>
+                            <ol type="a">
+                                <li ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage3Term2Opt1"></li>
+                                <li ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage3Term2Opt2"></li>
+                            </ol>
+                        </li>
+                        <li ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage3Term3"></li>
+                        <li ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage3Term4"></li>
+                        <li ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage3Term5"></li>
+                        <li ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage3Term6"></li>
+                        <li ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage3Term7"></li>
+                        <li ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage3Term8"></li>
+                        <li ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage3Term9"></li>
+                        <li ng-bind="globalMessage.PosDetailFormSurrenderReinstatementPreviewMessage3Term10"></li>
+                    </ol>
+                </div>
+                
+                
+                <br>
+                <br>
+                <center>
+                    <label ng-if="!globalData.isFromStaging">
+                        <input type="checkbox" ng-model="formSurrenderReinstatementPreviewAgree.options[0].checked" />
+                        {{globalMessage.PosDetailFormPreviewLabelCheckboxAgree}}
+                    </label>
+                </center>
+            </div>
+            <div class="pos-detail-page-content" ng-class="contentMaturityPreviewClass">
+                <div class="pos-detail-page-title preview" ng-bind="globalMessage.PosDetailFormPreviewTitle"></div>
+                <br>
+                <div class="pos-detail-page-form1-changetype-wrapper">
+                    <div class="pos-detail-page-form1-subtitle" ng-bind="form1Separator.label"></div>
+                    <table>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input ng-disabled="true" id="posDetailPOSType1" ng-change="typeChangePOS(1)" type="checkbox" ng-model="form1IsAddress.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox">{{globalMessage.PosDetailForm1RadioAddress}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input ng-disabled="true" id="posDetailPOSType2" ng-change="typeChangePOS(2)" type="checkbox" ng-model="form1IsAccountBank.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox">{{globalMessage.PosDetailForm1RadioAccountBankNumber}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input ng-disabled="true" id="posDetailPOSType3" ng-change="typeChangePOS(3)" type="checkbox" ng-model="form1IsName.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox">{{globalMessage.PosDetailForm1RadioName}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input ng-disabled="true" id="posDetailPOSType4" ng-change="typeChangePOS(4)" type="checkbox" ng-model="form1IsBenefit.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox">{{globalMessage.PosDetailForm1RadioBenefitReceive}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input ng-disabled="true" id="posDetailPOSType5" ng-change="typeChangeEndInsurance(5)" type="checkbox" ng-model="form1IsEndInsurance.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox">{{globalMessage.PosDetailForm1RadioEndInsurance}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input ng-disabled="true" id="posDetailPOSType6" ng-change="typeChangeCertificate(6)" type="checkbox" ng-model="form1IsCertificate.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox">{{globalMessage.PosDetailForm1RadioSertificate}}</label></td>
+                        </tr>
+                        <tr>
+                            <td><label class="pos-detail-page-form1-container-checkbox"><input ng-disabled="true" id="posDetailPOSType7" ng-change="typeChangeMaturity(7)" type="checkbox" ng-model="form1IsMaturity.options[0].checked" /><span class="pos-detail-page-form1-container-checkmark"></span></label></td>
+                            <td><label class="pos-detail-page-form1-label-checkbox">{{globalMessage.PosDetailForm1RadioMaturity}}</label></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="pos-detail-form-preview-line-separator"></div>
+                <div class="pos-detail-form1-information">
+                    <table>
+                        <tr>
+                            <td>{{globalMessage.PosDetailFormPreviewLabelCertificateNumber}}</td>
+                            <td>:</td>
+                            <td>{{form1SertificateNumber}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{globalMessage.PosDetailFormPreviewLabelName}}</td>
+                            <td>:</td>
+                            <td>{{form1Name}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="pos-detail-form-preview-line-separator"></div>
+                <br>
+                <div class="pos-detail-page-message" ng-bind="globalMessage.PosDetailMessage"></div>
+                <br>
+                <input-handling-directive
+                    label="formUpdateDataSeparator.label"
+                    error="formUpdateDataSeparator.error"
+                    model="formUpdateDataSeparator.value"
+                    type="formUpdateDataSeparator.type"
+                    options="formUpdateDataSeparator.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataAreaCode.label"
+                    error="formUpdateDataAreaCode.error"
+                    model="formUpdateDataAreaCode.value"
+                    type="formUpdateDataAreaCode.type"
+                    options="formUpdateDataAreaCode.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataHomePhone.label"
+                    error="formUpdateDataHomePhone.error"
+                    model="formUpdateDataHomePhone.value"
+                    type="formUpdateDataHomePhone.type"
+                    options="formUpdateDataHomePhone.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataSeparator2.label"
+                    error="formUpdateDataSeparator2.error"
+                    model="formUpdateDataSeparator2.value"
+                    type="formUpdateDataSeparator2.type"
+                    options="formUpdateDataSeparator2.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataMobilePhone.label"
+                    error="formUpdateDataMobilePhone.error"
+                    model="formUpdateDataMobilePhone.value"
+                    type="formUpdateDataMobilePhone.type"
+                    options="formUpdateDataMobilePhone.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataSeparator3.label"
+                    error="formUpdateDataSeparator3.error"
+                    model="formUpdateDataSeparator3.value"
+                    type="formUpdateDataSeparator3.type"
+                    options="formUpdateDataSeparator3.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formUpdateDataEmail.label"
+                    error="formUpdateDataEmail.error"
+                    model="formUpdateDataEmail.value"
+                    type="formUpdateDataEmail.type"
+                    options="formUpdateDataEmail.options"
+                    on-blur="formUpdateDataEmail_OnBlur()"
+                    is-disabled="disabled"
+                    maxlength="50">
+                </input-handling-directive>
+                <div class="pos-detail-form-preview-line-separator"></div>
+                <br>
+                <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormMaturityAccountBankTitle"></div>
+                <br>
+                <input-handling-directive
+                    label="formAccountBank2Name.label"
+                    error="formAccountBank2Name.error"
+                    model="formAccountBank2Name.value"
+                    type="formAccountBank2Name.type"
+                    options="formAccountBank2Name.options"
+                    is-disabled="disabled"
+                    maxlength="formAccountBank2Name.maxlength">
+                </input-handling-directive>
+                <div class="pos-detail-page-bank-warning" ng-bind="globalMessage.PosDetailFormAccountBankWarningMessage"></div>
+                <input-handling-directive
+                    label="formAccountBank2BankName.label"
+                    error="formAccountBank2BankName.error"
+                    model="formAccountBank2BankName.value"
+                    type="formAccountBank2BankName.type"
+                    options="formAccountBank2BankName.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAccountBank2BankBranch.label"
+                    error="formAccountBank2BankBranch.error"
+                    model="formAccountBank2BankBranch.value"
+                    type="formAccountBank2BankBranch.type"
+                    options="formAccountBank2BankBranch.options"
+                    is-disabled="disabled"
+                    maxlength="formAccountBank2BankBranch.maxlength">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="formAccountBank2AccountBankNumber.label"
+                    error="formAccountBank2AccountBankNumber.error"
+                    model="formAccountBank2AccountBankNumber.value"
+                    type="formAccountBank2AccountBankNumber.type"
+                    options="formAccountBank2AccountBankNumber.options"
+                    is-disabled="disabled"
+                    maxlength="formAccountBank2AccountBankNumber.maxlength">
+                </input-handling-directive>
+                <div ng-if="pageContent.includes('Ktp')">
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-product" ng-bind="productName"></div>
+                    <div class="pos-detail-page-title document" ng-bind="globalMessage.PosDetailFormIdCardTitle"></div>
+                    <div class="pos-detail-page-picture-wrapper">
+                        <i class="fa fa-id-card pos-detail-page-picture-icon" ng-if="imgIdCard == stringEmpty || imgIdCard == undefined"></i>
+                        <img class="pos-detail-page-picture" ng-src="{{imgIdCard}}" ng-if="imgIdCard != stringEmpty && imgIdCard != undefined" />
+                    </div>
+                </div>
+                <div ng-if="pageContent.includes('Kk')">
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-product" ng-bind="productName"></div>
+                    <div class="pos-detail-page-title document" ng-bind="globalMessage.PosDetailFormFamilyCard"></div>
+                    <div class="pos-detail-page-picture-wrapper">
+                        <i class="fa fa-id-card pos-detail-page-picture-icon" ng-if="imgFamilyCard == stringEmpty || imgFamilyCard == undefined"></i>
+                        <img class="pos-detail-page-picture" ng-src="{{imgFamilyCard}}" ng-if="imgFamilyCard != stringEmpty && imgFamilyCard != undefined" />
+                    </div>
+                </div>
+                <div ng-if="pageContent.includes('Akte')">
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-product" ng-bind="productName"></div>
+                    <div class="pos-detail-page-title document" ng-bind="globalMessage.PosDetailFormBirthCertificate"></div>
+                    <div class="pos-detail-page-picture-wrapper">
+                        <i class="fa fa-id-card pos-detail-page-picture-icon" ng-if="imgBirthCertificate == stringEmpty || imgBirthCertificate == undefined"></i>
+                        <img class="pos-detail-page-picture" ng-src="{{imgBirthCertificate}}" ng-if="imgBirthCertificate != stringEmpty && imgBirthCertificate != undefined" />
+                    </div>
+                </div>
+                <div ng-if="pageContent.includes('Tabungan')">
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-product" ng-bind="productName"></div>
+                    <div class="pos-detail-page-title document" ng-bind="globalMessage.PosDetailFormSavingBook"></div>
+                    <div class="pos-detail-page-picture-wrapper">
+                        <i class="fa fa-id-card pos-detail-page-picture-icon" ng-if="imgSavingBook == stringEmpty || imgSavingBook == undefined"></i>
+                        <img class="pos-detail-page-picture" ng-src="{{imgSavingBook}}" ng-if="imgSavingBook != stringEmpty && imgSavingBook != undefined" />
+                    </div>
+                </div>
+                <div ng-if="pageContent.includes('Pembayaran')">
+                    <div class="pos-detail-form-preview-line-separator"></div>
+                    <br>
+                    <div class="pos-detail-page-product" ng-bind="productName"></div>
+                    <div class="pos-detail-page-title document" ng-bind="globalMessage.PosDetailFormPaymentReceipt"></div>
+                    <div class="pos-detail-page-picture-wrapper">
+                        <i class="fa fa-id-card pos-detail-page-picture-icon" ng-if="imgPaymentReceipt == stringEmpty || imgPaymentReceipt == undefined"></i>
+                        <img class="pos-detail-page-picture" ng-src="{{imgPaymentReceipt}}" ng-if="imgPaymentReceipt != stringEmpty && imgPaymentReceipt != undefined" />
+                    </div>
+                </div>
+                <div class="pos-detail-form-preview-line-separator"></div>
+                <br>
+                <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormMaturityPreviewTitle1"></div>
+                <div class="pos-detail-page-preview-message" ng-bind="globalMessage.PosDetailFormMaturityPreviewMessage1"></div>
+                <br>
+                <div class="pos-detail-page-preview-message" ng-bind="globalMessage.PosDetailFormMaturityPreviewMessage2"></div>
+                <ol class="pos-detail-page-term" type="1">
+                    <li ng-bind="globalMessage.PosDetailFormMaturityPreviewMessage2Term1"></li>
+                    <li ng-bind="globalMessage.PosDetailFormMaturityPreviewMessage2Term2"></li>
+                    <li ng-bind="globalMessage.PosDetailFormMaturityPreviewMessage2Term3"></li>
+                    <li ng-bind="globalMessage.PosDetailFormMaturityPreviewMessage2Term4"></li>
+                    <li ng-bind="globalMessage.PosDetailFormMaturityPreviewMessage2Term5"></li>
+                </ol>
+                <br>
+                <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormMaturityPreviewTitle2"></div>
+                <ol class="pos-detail-page-term" type="1">
+                    <li ng-bind="globalMessage.PosDetailFormMaturityPreviewMessage3Term1"></li>
+                    <li ng-bind="globalMessage.PosDetailFormMaturityPreviewMessage3Term2"></li>
+                </ol>
+                <br>
+                <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormMaturityPreviewTitle3"></div>
+                <ol class="pos-detail-page-term" type="1">
+                    <li ng-bind="globalMessage.PosDetailFormMaturityPreviewMessage4Term1"></li>
+                    <li ng-bind="globalMessage.PosDetailFormMaturityPreviewMessage4Term2"></li>
+                    <li ng-bind="globalMessage.PosDetailFormMaturityPreviewMessage4Term3"></li>
+                    <li ng-bind="globalMessage.PosDetailFormMaturityPreviewMessage4Term4"></li>
+                    <li ng-bind="globalMessage.PosDetailFormMaturityPreviewMessage4Term5"></li>
+                </ol>
+                <br><br>
+                <center>
+                    <label ng-if="!globalData.isFromStaging && allowSubmit">
+                        <input type="checkbox" ng-model="formMaturityPreviewAgree.options[0].checked" />
+                        {{globalMessage.PosDetailFormPreviewLabelCheckboxAgree}}
+                    </label>
+                </center>
+            </div>
+
+            <!-- PREVIEW AREA END -->
+
+            <div class="pos-detail-page-content" ng-class="contentTokenClass">
+                <div class="pos-detail-page-product" ng-bind="productName"></div>
+                <div class="pos-detail-page-title" ng-bind="globalMessage.PosDetailFormTokenTitle"></div>
+                <span ng-bind="tokenCounterLabel" class="pos-detail-page-token-counter"></span>
+                <br />
+                <span ng-bind="globalMessage.PosDetailFormTokenMessage1"></span>
+                <br />
+                <br />
+                <input-handling-directive
+                    label="formToken.label"
+                    model="formToken.value"
+                    error="formToken.error"
+                    type="formToken.type"
+                    maxlength="formToken.maxlength">
+                </input-handling-directive>
+                <br />
+                <br />
+                <center>
+                    <button ng-click="submit()" ng-bind="globalMessage.PosDetailFormTokenSubmitButton"></button>
+                    <br />
+                    <br />
+                </center>
+                <label ng-bind="globalMessage.PosDetailFormTokenMessage4"></label>
+                <br />
+                <br />
+                <button ng-click="requestClick()" ng-disabled="isRequestAvailable" ng-bind="globalMessage.PosDetailFormTokenResendButton"></button>
+                <label class="pos-detail-page-countdown" ng-bind="timeLeft"></label>
+            </div>
+            <floating-button-directive icon="fobIdCardIcon"
+                                       on-click="photoTake()" 
+                                       ng-if="contentState == 'Ktp' ||
+                                              contentState == 'Kk' ||
+                                              contentState == 'Akte' ||
+                                              contentState == 'Tabungan' ||
+                                              contentState == 'Pembayaran'">
+            </floating-button-directive>
+        </div>
+        <div class="pos-detail-page-nav-bar-bottom-wrapper">
+            <div class="pos-detail-page-nav-bar-bottom-left">
+                <label ng-click="prevClick()" ng-if="pageContentIndex > -1">
+                    <i class="fa fa-fw fa-angle-left fa-lg"></i>
+                    {{globalMessage.PosDetailButtonPrev}}
+                </label>
+            </div>
+            <div class="pos-detail-page-nav-bar-bottom-right">
+                <label ng-click="nextClick()" ng-if="
+                (pageContentIndex == -1 && form1IsChecked)
+                ||(contentState == 'UpdateData')
+                ||(contentState == 'Address')
+                ||(contentState == 'AccountBank')
+                ||(contentState == 'Name')
+                ||(contentState == 'Benefit')
+                ||(contentState == 'Surrender')
+                ||(contentState == 'Reinstatement')
+                ||(contentState == 'ReasonSurrender')
+                ||(contentState == 'ReasonReinstatement')
+                ||(contentState == 'UseFundSurrender' && formUseFundSurrenderUseFundType.value)
+                ||(contentState == 'UseFundSurrender' && !formUseFundSurrenderUseFundType.value && counter > -1)
+                ||(contentState == 'HealthStatement' && formHealthStatementAgree.options[0].checked)
+                ||(contentState == 'ParticipantStatement' && formParticipantStatementAgree.options[0].checked)
+                ||(contentState == 'AccountBankReinstatement')
+                ||(contentState == 'Maturity')
+                ||(contentState == 'AccountBankMaturity')
+                ||(contentState == 'Compliance')
+                ||(contentState == 'Ktp' && imgIdCard != stringEmpty && imgIdCard != undefined)
+                ||(contentState == 'Kk' && imgFamilyCard != stringEmpty && imgFamilyCard != undefined)
+                ||(contentState == 'Akte' && imgBirthCertificate != stringEmpty && imgBirthCertificate != undefined)
+                ||(contentState == 'Tabungan' && imgSavingBook != stringEmpty && imgSavingBook != undefined)
+                ||(contentState == 'Pembayaran' && imgPaymentReceipt != stringEmpty && imgPaymentReceipt != undefined)
+                ||(contentState == 'Preview' && formPreviewAgree.options[0].checked)
+                ||(contentState == 'SurrenderReinstatementPreview' && formSurrenderReinstatementPreviewAgree.options[0].checked)
+                ||(contentState == 'MaturityPreview' && formMaturityPreviewAgree.options[0].checked)">
+                    {{globalMessage.PosDetailButtonNext}}
+                    <i class="fa fa-fw fa-angle-right fa-lg"></i>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

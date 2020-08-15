@@ -1,0 +1,14 @@
+<link rel="stylesheet" type="text/css" href="./directive/cardMaterial/cardMaterial.css" />
+<div class="card-material-directive-wrapper {{isUnread ? 'unread' : ''}}" ng-click="onClick({parm:cardId})">
+    <div class="card-material-directive-top-wrapper">
+        <div class="card-material-directive-top-left">{{topLeft}}</div>
+        <div class="card-material-directive-top-right">{{topRight}}</div>
+    </div>
+    <div class="card-material-directive-message" ng-if="type == ''">{{message}}</div>
+    <div class="card-material-directive-message" ng-if="type != ''">
+        <i class="fa fa-fw fa-file-pdf-o fa-2x" ng-if="type == 'pdf'"></i>
+        <label class="card-material-directive-filename {{additionalActionIcon != '' ? 'additional-exist' : ''}}">{{fileName}}</label>
+        <i ng-if="additionalActionIcon != ''" class="fa fa-fw {{additionalActionIcon}} fa-2x" ng-click="additionalAction({parm:cardId});$event.stopPropagation();"></i>
+        <i class="fa fa-fw fa-download fa-2x" ng-click="downloadClick();$event.stopPropagation();"></i>
+    </div>
+</div>

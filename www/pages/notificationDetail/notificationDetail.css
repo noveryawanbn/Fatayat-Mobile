@@ -1,0 +1,10 @@
+.notification-detail-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.notification-detail-date {
+    margin-bottom: 25px;
+}
+.notification-detail-message {
+    word-wrap: break-word;
+}

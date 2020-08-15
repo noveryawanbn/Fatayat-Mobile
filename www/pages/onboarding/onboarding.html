@@ -1,0 +1,93 @@
+<div ng-controller="onboardingPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/onboarding/onboarding.css" />
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            on-left-click="navBarTop.onLeftClick()">
+        </nav-bar-top-directive>
+        <div class="page-content onboarding-page-content-wrapper">
+            <div class="onboarding-page-content-1 active">
+                <span ng-bind="globalMessage.OnboardingPageMessage1"></span>
+                <span ng-bind="globalMessage.OnboardingPageMessage2"></span>
+                <br />
+                <br />
+                <input-handling-directive
+                    label="globalMessage.OnboardingLabelAgentCode"
+                    is-disabled="true"
+                    model="agentCode">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="globalMessage.OnboardingLabelName"
+                    is-disabled="true"
+                    model="name">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="globalMessage.OnboardingLabelEmail"
+                    is-disabled="true"
+                    model="email">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="globalMessage.OnboardingLabelMobilePhone"
+                    is-disabled="true"
+                    model="mobilePhone">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="globalMessage.OnboardingLabelOTPType"
+                    model="otpType.value"
+                    error="otpType.error"
+                    type="'radio'"
+                    options="otpTypeOptions">
+                </input-handling-directive>
+                <center>
+                    <button ng-click="requestClick()" ng-bind="globalMessage.OnboardingButtonRequestOTP"></button>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <span ng-bind="globalMessage.OnboardingPageMessageBottom"></span>
+                </center>
+            </div>
+            <div class="onboarding-page-content-2" ng-class="onboardingContent2Class">
+                <span ng-bind="globalMessage.OnboardingPage2Counter + ' ' + sendCounter"></span>
+                <br/>
+                <span ng-bind="globalMessage.OnboardingPage2Message"></span>
+                <br />
+                <br />
+                <input-handling-directive
+                    label="globalMessage.OnboardingLabelName"
+                    is-disabled="true"
+                    model="name">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="globalMessage.OnboardingLabelEmail"
+                    is-disabled="true"
+                    model="email">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="globalMessage.OnboardingLabelMobilePhone"
+                    is-disabled="true"
+                    model="mobilePhone">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="globalMessage.OnboardingLabelVerifyToken"
+                    model="verifyToken.value"
+                    error="verifyToken.error"
+                    type="'tel'"
+                    maxlength="6">
+                </input-handling-directive>
+                <br />
+                <br />
+                <center>
+                    <button ng-click="confirmClick()" ng-bind="globalMessage.OnboardingButtonVerifyToken"></button>
+                </center>
+                <br />
+                <label ng-bind="globalMessage.OnboardingHelpMessage"></label>
+                <br />
+                <button ng-click="requestClick()" ng-disabled="isRequestAvailable" ng-bind="globalMessage.OnboardingButtonRequestNewToken"></button>
+                <label class="onboarding-page-countdown" ng-bind="timeLeft"></label>
+            </div>
+        </div>
+    </div>
+</div>

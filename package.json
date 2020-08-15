@@ -1,0 +1,65 @@
+{
+  "name": "id.co.manulife.fatayat",
+  "version": "1.0.0",
+  "displayName": "Fatayat",
+  "cordova": {
+    "platforms": [
+      "android",
+      "ios",
+      "browser"
+    ],
+    "plugins": {
+      "cordova-plugin-printer": {},
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-badge": {},
+      "cordova-plugin-dialogs": {},
+      "cordova-plugin-camera": {
+        "CAMERA_USAGE_DESCRIPTION": "Applikasi ini ingin mengakses kamera anda",
+        "PHOTOLIBRARY_USAGE_DESCRIPTION": "Applikasi ini ingin mengakses galeri anda"
+      },
+      "cordova-plugin-file": {},
+      "cordova-plugin-app-event": {},
+      "cordova-plugin-local-notification": {},
+      "phonegap-plugin-mobile-accessibility": {},
+      "cordova-android-support-gradle-release": {
+        "ANDROID_SUPPORT_VERSION": "27.+"
+      },
+      "cordova-plugin-x-toast": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-app-version": {},
+      "cordova-plugin-sslcertificatechecker": {},
+      "cordova-plugin-email": {}
+    }
+  },
+  "dependencies": {
+    "cordova-android": "^7.0.0",
+    "cordova-android-support-gradle-release": "^1.2.0",
+    "cordova-browser": "^5.0.3",
+    "cordova-ios": "^4.4.0",
+    "cordova-plugin-app-event": "^1.2.1",
+    "cordova-plugin-app-version": "^0.1.9",
+    "cordova-plugin-badge": "^0.8.6",
+    "cordova-plugin-camera": "^2.4.1",
+    "cordova-plugin-compat": "^1.2.0",
+    "cordova-plugin-device": "^1.1.6",
+    "cordova-plugin-dialogs": "^2.0.1",
+    "cordova-plugin-email": "^1.2.7",
+    "cordova-plugin-file": "^4.3.3",
+    "cordova-plugin-inappbrowser": "^0.2.5",
+    "cordova-plugin-local-notification": "^0.8.4",
+    "cordova-plugin-network-information": "git+https://github.com/apache/cordova-plugin-network-information.git",
+    "cordova-plugin-printer": "~0.7.3",
+    "cordova-plugin-splashscreen": "^5.0.2",
+    "cordova-plugin-sslcertificatechecker": "^5.1.0",
+    "cordova-plugin-whitelist": "1",
+    "cordova-plugin-x-toast": "^2.6.2",
+    "phonegap-plugin-mobile-accessibility": "^1.0.5"
+  },
+  "devDependencies": {
+    "command-line-args": "^5.0.1",
+    "cordova-config": "^0.7.0",
+    "fs-extra": "^5.0.0",
+    "xml2js": "^0.4.19"
+  }
+}

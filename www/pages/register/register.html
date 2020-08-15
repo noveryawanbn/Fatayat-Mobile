@@ -1,0 +1,408 @@
+<div ng-controller="registerPageController" ng-view ng-cloak>
+        <link rel="stylesheet" type="text/css" href="./pages/register/register.css" />
+        <div ng-if="isShow" class="page" ng-class="pageClass">
+            <nav-bar-top-directive
+                type="navBarTop.type"
+                title="navBarTop.title"
+                left="navBarTop.left"
+                on-left-click="navBarTop.onLeftClick()">
+            </nav-bar-top-directive>
+            <div class="page-content register-page-content-wrapper">
+                <div class="register-page-content active">
+                    <label class="register-message" ng-bind="globalMessage.RegisterLabelMessage"></label>
+                    <form ng-submit="registerClick()">
+                        <input-handling-directive
+                            label="idCard.label"
+                            error="idCard.error"
+                            model="idCard.value"
+                            on-change="onChange()"
+                            maxlength="30"
+                            type="'tel'">
+                        </input-handling-directive>
+                        <input-handling-directive
+                            label="sellerCode.label"
+                            error="sellerCode.error"
+                            model="sellerCode.value"
+                            on-change="onChange()"
+                            on-blur="sellerCode_OnBlur()"
+                            maxlength="6"
+                            type="'tel'">
+                        </input-handling-directive>
+                        <input-handling-directive
+                            label="dateOfBirth.label"
+                            error="dateOfBirth.error"
+                            model="dateOfBirth.value"
+                            type="'date'"
+                            on-change="onChange()"
+                            locale="$parent.globalMomentLocale"
+                            min-year="minYear"
+                            max-year="maxYear">
+                        </input-handling-directive>
+                        <input-handling-directive
+                            label="email.label"
+                            error="email.error"
+                            model="email.value"
+                            on-change="onChange()"
+                            on-blur="email_OnBlur()"
+                            maxlength="50"
+                            type="'email'">
+                        </input-handling-directive>
+                        <input-handling-directive
+                            label="password.label"
+                            error="password.error"
+                            model="password.value"
+                            type="'password'"
+                            on-change="onChange()"
+                            tooltip="password.tooltip"
+                            tooltip-options="password.tooltipOptions"
+                            maxlength="15">
+                        </input-handling-directive>
+                        <input-handling-directive
+                            label="confirmPassword.label"
+                            error="confirmPassword.error"
+                            model="confirmPassword.value"
+                            type="'password'"
+                            on-change="onChange()"
+                            maxlength="15">
+                        </input-handling-directive>
+                        <center>
+                            <span class="register-error-message" ng-bind="errorMessage"></span>
+                        </center>
+                        <center>
+                            <button type="submit" ng-disabled="isRegisterDisabled" ng-bind="globalMessage.RegisterButtonRegister"></button>
+                        </center>
+                    </form>
+                </div>
+                <div class="register-page-content" ng-class="contentNewRegister">
+                    <label class="register-message" ng-bind="globalMessage.RegisterLabelMessage"></label>
+                    <input-handling-directive
+                        label="model.formNewRegisterAgentName.label"
+                        error="model.formNewRegisterAgentName.error"
+                        model="model.formNewRegisterAgentName.value"
+                        type="model.formNewRegisterAgentName.type"
+                        options="model.formNewRegisterAgentName.options"
+                        is-disabled="model.formNewRegisterAgentName.isDisabled">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="model.formNewRegisterAgentPosition.label"
+                        error="model.formNewRegisterAgentPosition.error"
+                        model="model.formNewRegisterAgentPosition.value"
+                        type="model.formNewRegisterAgentPosition.type"
+                        options="model.formNewRegisterAgentPosition.options"
+                        is-disabled="model.formNewRegisterAgentPosition.isDisabled">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="model.formNewRegisterProvince.label"
+                        error="model.formNewRegisterProvince.error"
+                        model="model.formNewRegisterProvince.value"
+                        type="model.formNewRegisterProvince.type"
+                        options="model.formNewRegisterProvince.options"
+                        is-disabled="model.formNewRegisterProvince.isDisabled"
+                        on-change="formNewRegisterProvince_OnChange()">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="model.formNewRegisterCity.label"
+                        error="model.formNewRegisterCity.error"
+                        model="model.formNewRegisterCity.value"
+                        type="model.formNewRegisterCity.type"
+                        options="model.formNewRegisterCity.options"
+                        is-disabled="model.formNewRegisterCity.isDisabled">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="model.formNewRegisterAgenCode.label"
+                        error="model.formNewRegisterAgenCode.error"
+                        model="model.formNewRegisterAgenCode.value"
+                        type="model.formNewRegisterAgenCode.type"
+                        options="model.formNewRegisterAgenCode.options"
+                        is-disabled="model.formNewRegisterAgenCode.isDisabled"
+                        on-change="formNewRegisterAgenCode_OnChange()"
+                        maxlength="6">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="model.formNewRegisterAgenName.label"
+                        error="model.formNewRegisterAgenName.error"
+                        model="model.formNewRegisterAgenName.value"
+                        type="model.formNewRegisterAgenName.type"
+                        options="model.formNewRegisterAgenName.options"
+                        is-disabled="model.formNewRegisterAgenName.isDisabled">
+                    </input-handling-directive>
+                    <br>
+                    <div class="register-page-subtitle" ng-bind="model.formNewRegisterIdCardSeparator.label"></div>
+                    <!-- <input-handling-directive
+                        label="model.formNewRegisterIdCardSeparator.label"
+                        type="model.formNewRegisterIdCardSeparator.type">
+                    </input-handling-directive> -->
+                    <input-handling-directive
+                        label="model.formNewRegisterIdCardNumber.label"
+                        error="model.formNewRegisterIdCardNumber.error"
+                        model="model.formNewRegisterIdCardNumber.value"
+                        type="model.formNewRegisterIdCardNumber.type"
+                        options="model.formNewRegisterIdCardNumber.options"
+                        is-disabled="model.formNewRegisterIdCardNumber.isDisabled">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="model.formNewRegisterBirthPlaceRefToIdCard.label"
+                        error="model.formNewRegisterBirthPlaceRefToIdCard.error"
+                        model="model.formNewRegisterBirthPlaceRefToIdCard.value"
+                        type="model.formNewRegisterBirthPlaceRefToIdCard.type"
+                        options="model.formNewRegisterBirthPlaceRefToIdCard.options"
+                        is-disabled="model.formNewRegisterBirthPlaceRefToIdCard.isDisabled">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="model.formNewRegisterDobRefToIdCard.label"
+                        error="model.formNewRegisterDobRefToIdCard.error"
+                        model="model.formNewRegisterDobRefToIdCard.value"
+                        type="model.formNewRegisterDobRefToIdCard.type"
+                        options="model.formNewRegisterDobRefToIdCard.options"
+                        is-disabled="model.formNewRegisterDobRefToIdCard.isDisabled"
+                        min-year="minYear"
+                        max-year="maxYear">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="model.formNewRegisterAddressRefToIdCard.label"
+                        error="model.formNewRegisterAddressRefToIdCard.error"
+                        model="model.formNewRegisterAddressRefToIdCard.value"
+                        type="model.formNewRegisterAddressRefToIdCard.type"
+                        options="model.formNewRegisterAddressRefToIdCard.options"
+                        is-disabled="model.formNewRegisterAddressRefToIdCard.isDisabled">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="model.formNewRegisterDistrictSubDistrictRefToIdCard.label"
+                        error="model.formNewRegisterDistrictSubDistrictRefToIdCard.error"
+                        model="model.formNewRegisterDistrictSubDistrictRefToIdCard.value"
+                        type="model.formNewRegisterDistrictSubDistrictRefToIdCard.type"
+                        options="model.formNewRegisterDistrictSubDistrictRefToIdCard.options"
+                        is-disabled="model.formNewRegisterDistrictSubDistrictRefToIdCard.isDisabled">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="model.formNewRegisterCityRefToIdCard.label"
+                        error="model.formNewRegisterCityRefToIdCard.error"
+                        model="model.formNewRegisterCityRefToIdCard.value"
+                        type="model.formNewRegisterCityRefToIdCard.type"
+                        options="model.formNewRegisterCityRefToIdCard.options"
+                        is-disabled="model.formNewRegisterCityRefToIdCard.isDisabled">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="model.formNewRegisterPostalCodeRefToIdCard.label"
+                        error="model.formNewRegisterPostalCodeRefToIdCard.error"
+                        model="model.formNewRegisterPostalCodeRefToIdCard.value"
+                        type="model.formNewRegisterPostalCodeRefToIdCard.type"
+                        options="model.formNewRegisterPostalCodeRefToIdCard.options"
+                        is-disabled="model.formNewRegisterPostalCodeRefToIdCard.isDisabled"
+                        maxlength="model.formNewRegisterPostalCodeRefToIdCard.maxlength">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="model.formNewRegisterMaritalStatusRefToIdCard.label"
+                        error="model.formNewRegisterMaritalStatusRefToIdCard.error"
+                        model="model.formNewRegisterMaritalStatusRefToIdCard.value"
+                        type="model.formNewRegisterMaritalStatusRefToIdCard.type"
+                        options="model.formNewRegisterMaritalStatusRefToIdCard.options"
+                        is-disabled="model.formNewRegisterMaritalStatusRefToIdCard.isDisabled">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="model.formNewRegisterOccupation.label"
+                        error="model.formNewRegisterOccupation.error"
+                        model="model.formNewRegisterOccupation.value"
+                        type="model.formNewRegisterOccupation.type"
+                        options="model.formNewRegisterOccupation.options"
+                        is-disabled="model.formNewRegisterOccupation.isDisabled">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="model.formNewRegisterFormalEducation.label"
+                        error="model.formNewRegisterFormalEducation.error"
+                        model="model.formNewRegisterFormalEducation.value"
+                        type="model.formNewRegisterFormalEducation.type"
+                        options="model.formNewRegisterFormalEducation.options"
+                        is-disabled="model.formNewRegisterFormalEducation.isDisabled">
+                    </input-handling-directive>
+                    <br>
+                    <div class="register-page-subtitle" ng-bind="model.formNewRegisterSavingBookSeparator.label"></div>
+                    <!-- <input-handling-directive
+                        label="model.formNewRegisterSavingBookSeparator.label"
+                        type="model.formNewRegisterSavingBookSeparator.type">
+                    </input-handling-directive> -->
+                    <input-handling-directive
+                        label="model.formNewRegisterAccountBankNumberRefToSavingBook.label"
+                        error="model.formNewRegisterAccountBankNumberRefToSavingBook.error"
+                        model="model.formNewRegisterAccountBankNumberRefToSavingBook.value"
+                        type="model.formNewRegisterAccountBankNumberRefToSavingBook.type"
+                        options="model.formNewRegisterAccountBankNumberRefToSavingBook.options"
+                        on-change="formNewRegisterAccountBankNumberRefToSavingBook_OnChange()"
+                        is-disabled="model.formNewRegisterAccountBankNumberRefToSavingBook.isDisabled">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="model.formNewRegisterBankNameRefToSavingBook.label"
+                        error="model.formNewRegisterBankNameRefToSavingBook.error"
+                        model="model.formNewRegisterBankNameRefToSavingBook.value"
+                        type="model.formNewRegisterBankNameRefToSavingBook.type"
+                        options="model.formNewRegisterBankNameRefToSavingBook.options"
+                        is-disabled="model.formNewRegisterBankNameRefToSavingBook.isDisabled">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="model.formNewRegisterAccountBankOwnerNameRefToSavingBook.label"
+                        error="model.formNewRegisterAccountBankOwnerNameRefToSavingBook.error"
+                        model="model.formNewRegisterAccountBankOwnerNameRefToSavingBook.value"
+                        type="model.formNewRegisterAccountBankOwnerNameRefToSavingBook.type"
+                        options="model.formNewRegisterAccountBankOwnerNameRefToSavingBook.options"
+                        is-disabled="model.formNewRegisterAccountBankOwnerNameRefToSavingBook.isDisabled">
+                    </input-handling-directive>
+                    <br>
+                    <div class="register-page-subtitle" ng-bind="model.formNewRegisterTaxIdNumberSeparator.label"></div>
+                    <!-- <input-handling-directive
+                        label="model.formNewRegisterTaxIdNumberSeparator.label"
+                        type="model.formNewRegisterTaxIdNumberSeparator.type">
+                    </input-handling-directive> -->
+                    <input-handling-directive
+                        label="model.formNewRegisterTaxIdNumberRefToTaxId.label"
+                        error="model.formNewRegisterTaxIdNumberRefToTaxId.error"
+                        model="model.formNewRegisterTaxIdNumberRefToTaxId.value"
+                        type="model.formNewRegisterTaxIdNumberRefToTaxId.type"
+                        options="model.formNewRegisterTaxIdNumberRefToTaxId.options"
+                        is-disabled="model.formNewRegisterTaxIdNumberRefToTaxId.isDisabled"
+                        tooltip="model.formNewRegisterTaxIdNumberRefToTaxId.tooltip"
+                        on-change="formNewRegisterTaxIdNumberRefToTaxId_OnChange()"
+                        tooltiptype="'register'"
+                        on-tooltip-click="toogleTooltip()">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="model.formNewRegisterTaxIdStatusRefToTaxId.label"
+                        error="model.formNewRegisterTaxIdStatusRefToTaxId.error"
+                        model="model.formNewRegisterTaxIdStatusRefToTaxId.value"
+                        type="model.formNewRegisterTaxIdStatusRefToTaxId.type"
+                        options="model.formNewRegisterTaxIdStatusRefToTaxId.options"
+                        is-disabled="model.formNewRegisterTaxIdStatusRefToTaxId.isDisabled">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="model.formNewRegisterTaxPayerStatusRefToTaxId.label"
+                        error="model.formNewRegisterTaxPayerStatusRefToTaxId.error"
+                        model="model.formNewRegisterTaxPayerStatusRefToTaxId.value"
+                        type="model.formNewRegisterTaxPayerStatusRefToTaxId.type"
+                        options="model.formNewRegisterTaxPayerStatusRefToTaxId.options"
+                        is-disabled="model.formNewRegisterTaxPayerStatusRefToTaxId.isDisabled">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="model.formNewRegisterDependentNumberRefToTaxId.label"
+                        error="model.formNewRegisterDependentNumberRefToTaxId.error"
+                        model="model.formNewRegisterDependentNumberRefToTaxId.value"
+                        type="model.formNewRegisterDependentNumberRefToTaxId.type"
+                        options="model.formNewRegisterDependentNumberRefToTaxId.options"
+                        is-disabled="model.formNewRegisterDependentNumberRefToTaxId.isDisabled">
+                    </input-handling-directive>
+                    <br>
+                    <div class="register-page-line-separator"></div>
+                    <br>
+                    <input-handling-directive
+                        label="model.formNewRegisterMobilePhoneNumber.label"
+                        error="model.formNewRegisterMobilePhoneNumber.error"
+                        model="model.formNewRegisterMobilePhoneNumber.value"
+                        type="model.formNewRegisterMobilePhoneNumber.type"
+                        options="model.formNewRegisterMobilePhoneNumber.options"
+                        is-disabled="model.formNewRegisterMobilePhoneNumber.isDisabled"
+                        maxlength="13">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="model.formNewRegisterEmailAddress.label"
+                        error="model.formNewRegisterEmailAddress.error"
+                        model="model.formNewRegisterEmailAddress.value"
+                        type="model.formNewRegisterEmailAddress.type"
+                        options="model.formNewRegisterEmailAddress.options"
+                        is-disabled="model.formNewRegisterEmailAddress.isDisabled">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="model.formNewRegisterPassword.label"
+                        error="model.formNewRegisterPassword.error"
+                        model="model.formNewRegisterPassword.value"
+                        type="model.formNewRegisterPassword.type"
+                        options="model.formNewRegisterPassword.options"
+                        is-disabled="model.formNewRegisterPassword.isDisabled"
+                        on-change="formNewRegisterPassword_OnChange()"
+                        tooltip="password.tooltip"
+                        tooltip-options="password.tooltipOptions"
+                        maxlength="15"
+                        tooltiptype="'register'"
+                        on-tooltip-click="toogleTooltip1()">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="model.formNewRegisterConfirmPassword.label"
+                        error="model.formNewRegisterConfirmPassword.error"
+                        model="model.formNewRegisterConfirmPassword.value"
+                        type="model.formNewRegisterConfirmPassword.type"
+                        options="model.formNewRegisterConfirmPassword.options"
+                        is-disabled="model.formNewRegisterConfirmPassword.isDisabled"
+                        on-change="formNewRegisterPassword_OnChange()"
+                        maxlength="15">
+                    </input-handling-directive>
+                </div>
+                <div class="register-page-content" ng-class="contentIdCardClass">
+                    <div class="register-page-title" ng-bind="imgTitleIdCard"></div>
+                    <div class="register-page-picture-wrapper">
+                        <i class="fa fa-id-card register-page-picture-icon" ng-if="model.idCard.imgFile == stringEmpty || model.idCard.imgFile == undefined"></i>
+                        <img class="register-page-picture" ng-src="{{model.idCard.imgFile}}" ng-if="model.idCard.imgFile != stringEmpty && model.idCard.imgFile != undefined">
+                    </div>
+                </div>
+                <div class="register-page-content" ng-class="contentTaxIdCardClass">
+                    <div class="register-page-title" ng-bind="imgTitleTaxIdCard"></div>
+                    <div class="register-page-picture-wrapper">
+                        <i class="fa fa-id-card register-page-picture-icon" ng-if="model.taxIdCard.imgFile == stringEmpty || model.taxIdCard.imgFile == undefined"></i>
+                        <img class="register-page-picture" ng-src="{{model.taxIdCard.imgFile}}" ng-if="model.taxIdCard.imgFile != stringEmpty && model.taxIdCard.imgFile != undefined">
+                    </div>
+                </div>
+                <div class="register-page-content" ng-class="contentSavingBookClass">
+                    <div class="register-page-title" ng-bind="imgTitleSavingBook"></div>
+                    <div class="register-page-picture-wrapper">
+                        <i class="fa fa-id-card register-page-picture-icon" ng-if="model.savingBook.imgFile == stringEmpty || model.savingBook.imgFile == undefined"></i>
+                        <img class="register-page-picture" ng-src="{{model.savingBook.imgFile}}" ng-if="model.savingBook.imgFile != stringEmpty && model.savingBook.imgFile != undefined">
+                    </div>
+                </div>
+                <div class="register-page-content" ng-class="contentCaptchaClass">
+                    <div class="register-page-title" ng-bind="imgTitleCaptcha"></div>
+                    <div class="register-page-picture-wrapper">
+                        <img class="register-page-picture" ng-src="{{model.captcha}}" ng-if="model.captcha != stringEmpty && model.captcha != undefined">
+                    </div>
+                    <input-handling-directive
+                        label="model.formNewRegisterCaptcha.label"
+                        error="model.formNewRegisterCaptcha.error"
+                        model="model.formNewRegisterCaptcha.value"
+                        type="model.formNewRegisterCaptcha.type"
+                        options="model.formNewRegisterCaptcha.options"
+                        is-disabled="model.formNewRegisterCaptcha.isDisabled"
+                        maxlength="model.formNewRegisterCaptcha.maxlength">
+                    </input-handling-directive>
+                </div>
+                <floating-button-directive
+                    icon="fobIdCardIcon"
+                    on-click="photoTake()"
+                    ng-if=" contentState == 'IdCard' ||
+                            contentState == 'TaxIdCard' ||
+                            contentState == 'SavingBook'">
+                </floating-button-directive>
+                <div ng-if="popupValue" class="register-page-content-tooltip-wrapper" ng-click="toogleTooltip()">
+                    <div class="register-page-content-tooltip-panel">
+                        <label class="register-page-content-tooltip-title" ng-bind="tooltipTitle"></label>
+                        <ul ng-if="tooltipOptions.length > 0">
+                            <li ng-repeat="n in tooltipOptions" ng-bind="n"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="isNewRegister" class="register-page-nav-bar-bottom-wrapper">
+                <div class="register-page-nav-bar-bottom-left">
+                    <label ng-click="prevClick()" ng-if="pageContentIndex > 0 && contentState != NewRegisterPage">
+                        <i class="fa fa-fw fa-angle-left fa-lg"></i>
+                        {{globalMessage.RegisterPrevButtonLabel}}
+                    </label>
+                </div>
+                <div class="register-page-nav-bar-bottom-right">
+                    <label  ng-click="nextClick()"
+                            ng-if=" (contentState == NewRegisterPage)
+                                ||  (contentState == IdCardPage && model.idCard.imgFile != undefined && model.idCard.imgFile != stringEmpty)
+                                ||  (contentState == TaxIdCardPage)
+                                ||  (contentState == SavingBookPage)
+                                ||  (contentState == CaptchaPage)">
+                        {{nextLabel}}
+                        <i class="fa fa-fw fa-angle-right fa-lg"></i>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>

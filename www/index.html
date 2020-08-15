@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>Manulife</title>
+</head>
+<body>
+    <div ng-app="rootApp" ng-controller="rootController" ng-view ng-cloak class="page active">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title">
+        </nav-bar-top-directive>
+        <div class="page-content main-page-content">
+            <div class="main-logo"></div>
+            <form ng-submit="loginClick()">
+                <div class="main-wrapper">
+                    <input-handling-directive
+                        label="email.label"
+                        error="email.error"
+                        model="email.value"
+                        type="'email'"
+                        maxlength="50">
+                    </input-handling-directive>
+                    <input-handling-directive
+                        label="password.label"
+                        error="password.error"
+                        model="password.value"
+                        type="'password'"
+                        maxlength="15">
+                    </input-handling-directive>
+                </div>
+                <center>
+                    <button type="submit" ng-bind="globalMessage.LoginButtonLogin"></button>
+                </center>
+            </form>
+            <div class="main-line-wrapper">
+                <hr />
+                <label ng-bind="globalMessage.LoginLabelOr"></label>
+            </div>
+            <br />
+            <center>
+                <button ng-click="registerClick()" ng-bind="globalMessage.LoginButtonRegister" class="main-button-register"></button>
+            </center>
+            <div class="main-forget-password-wrapper">
+                <label class="main-forget-password" ng-click="forgetPasswordClick()" ng-bind="globalMessage.LoginButtonForgetPassword"></label>
+            </div>
+            <div class="main-version">
+                <label ng-bind="appVersion"></label>
+            </div>
+        </div>
+        <forget-password-page></forget-password-page>
+        <main-menu-page></main-menu-page>
+        <onboarding-page></onboarding-page>
+        <pdf-viewer-page></pdf-viewer-page>
+        <register-page></register-page>
+        <change-password-expired-page></change-password-expired-page>
+        <div class="loading-wrapper" ng-if="isLoadingShow">
+            <img src="img/loading.gif" />
+        </div> 
+    </div>
+
+    <script src="cordova.js"></script>
+    <script src="js/fastclick.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/pdf.js"></script>
+    <script src="js/pdf.worker.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/service.js"></script>
+    <script src="js/messageModel.js"></script>
+
+    <script src="pages/claim/claim.js"></script>
+    <script src="pages/claimDetail/claimDetail.js"></script>
+    <script src="pages/changePassword/changePassword.js"></script>
+    <script src="pages/changePasswordExpired/changePasswordExpired.js"></script>
+    <script src="pages/contactUs/contactUs.js"></script>
+    <script src="pages/customer/customer.js"></script>
+    <script src="pages/eContract/eContract.js"></script>
+    <script src="pages/eStatement/eStatement.js"></script>
+    <script src="pages/eStatementDetail/eStatementDetail.js"></script>
+    <script src="pages/forgetPassword/forgetPassword.js"></script>
+    <script src="pages/library/library.js"></script>
+    <script src="pages/libraryCategory/libraryCategory.js"></script>
+    <script src="pages/libraryDetail/libraryDetail.js"></script>
+    <script src="pages/mainMenu/mainMenu.js"></script>
+    <script src="pages/notificationDetail/notificationDetail.js"></script>
+    <script src="pages/onboarding/onboarding.js"></script>
+    <script src="pages/pdfViewer/pdfViewer.js"></script>
+    <script src="pages/profile/profile.js"></script>
+    <script src="pages/register/register.js"></script>
+    <script src="pages/structure/structure.js"></script>
+    <script src="pages/submission/submission.js"></script>
+    <script src="pages/test/test.js"></script>
+    <script src="pages/training/training.js"></script>
+    <script src="pages/trainingMaterial/trainingMaterial.js"></script>
+    <script src="pages/trainingMaterialDetail/trainingMaterialDetail.js"></script>
+    <script src="pages/pos/pos.js"></script>
+    <script src="pages/posDetail/posDetail.js"></script>
+    <script src="pages/posUpdate/posUpdate.js"></script>
+    <script src="pages/reassign/reassign.js"></script>
+    <script src="pages/reassignDetail/reassignDetail.js"></script>
+    <script src="pages/dashboard/dashboard.js"></script>
+    <script src="pages/dashboardDetail/dashboardDetail.js"></script>
+
+    <script src="directive/card/card.js"></script>
+    <script src="directive/cardAction/cardAction.js"></script>
+    <script src="directive/cardCustomer/cardCustomer.js"></script>
+    <script src="directive/cardMaterial/cardMaterial.js"></script>
+    <script src="directive/dialogPassword/dialogPassword.js"></script>
+    <script src="directive/dialogSelect/dialogSelect.js"></script>
+    <script src="directive/floatingButton/floatingButton.js"></script>
+    <script src="directive/gridTile/gridTile.js"></script>
+    <script src="directive/inputHandling/inputHandling.js"></script>
+    <script src="directive/inputQuestionnaire/inputQuestionnaire.js"></script>
+    <script src="directive/navBarTop/navBarTop.js"></script>
+    <script src="directive/pdfViewer/pdfViewer.js"></script>
+</body>
+</html>

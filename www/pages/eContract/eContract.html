@@ -1,0 +1,23 @@
+<div ng-controller="eContractPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/eContract/eContract.css" />
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            on-left-click="navBarTop.onLeftClick()">
+        </nav-bar-top-directive>
+        <div class="page-content">
+            <span ng-bind-html="trustAsHtml(globalMessage.EContractPageMessage)"></span>
+            <center>
+                <br />
+                <br />
+                <label><input type="checkbox" ng-model="$parent.confirmStatus" ng-change="onConfirmClick()"> {{globalMessage.EContractCheckboxAgree}}</label>
+                <br />
+                <br />
+                <br />
+                <button ng-click="confirmClick()" ng-disabled="confirmDisabled" ng-bind="globalMessage.EContractButtonConfirm"></button>
+            </center>
+        </div>
+    </div>
+</div>

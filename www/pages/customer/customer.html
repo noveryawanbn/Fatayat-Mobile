@@ -1,0 +1,111 @@
+<div ng-controller="customerPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/customer/customer.css" />
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            on-left-click="navBarTop.onLeftClick()">
+        </nav-bar-top-directive>
+        <div class="customer-tab-wrapper">
+            <div class="customer-tab customer-tab-3" ng-class="tab[0]" ng-click="changeTab(0)">
+                <div class="customer-tab-icon">
+                    <i class="fa fa-fw fa-save"></i>
+                </div>
+                <label ng-bind="globalMessage.CustomerTabDraft"></label>
+            </div>
+            <div class="customer-tab customer-tab-3" ng-class="tab[1]" ng-click="changeTab(1)">
+                <div class="customer-tab-icon">
+                    <i class="fa fa-fw fa-users"></i>
+                </div>
+                <label ng-bind="globalMessage.CustomerTabSent"></label>
+            </div>
+            <div class="customer-tab customer-tab-3" ng-class="tab[2]" ng-click="changeTab(2)">
+                <div class="customer-tab-icon">
+                    <i class="fa fa-fw fa-sign-out"></i>
+                </div>
+                <label ng-bind="globalMessage.CustomerTabResendCertificate"></label>
+            </div>
+        </div>
+        <div class="customer-page-content" ng-class="tab[0]">
+            <card-action-directive
+                ng-repeat="n in draftList"
+                card-id="n.id"
+                message="n.message"
+                on-click="onCardClick(parm)"
+                action-icon="'fa-trash'"
+                on-action-click="onCardDraftDelete(parm)">
+            </card-action-directive>
+        </div>
+        <div class="customer-page-content" ng-class="tab[1]" on-scroll-to-bottom="getSentNext()">
+            <br />
+            <form ng-submit="getSentSearch()">
+                <div class="customer-search-wrapper">
+                    <select
+                        ng-model="form2Status.value"
+                        ng-options="n.value as n.text for n in form2Status.options"
+                        ng-change="getSentSearch()">
+                    </select>
+                    <div class="customer-search-wrapper-input">
+                        <i class="fa fa-fw fa-lg fa-search"></i>
+                        <input
+                            ng-model="form2Search.value"
+                            placeholder="{{globalMessage.CustomerSearchName}}" />
+                    </div>
+                </div>
+            </form>
+            <card-action-directive
+                ng-repeat="n in sentList"
+                card-id="n.id"
+                message="n.message"
+                action-icon="'fa-sign-out'"
+                on-action-click="onCardSentResend(parm)">
+            </card-action-directive>
+        </div>
+        <div class="customer-page-content customer-resend-certificate-content" ng-class="tab[2]">
+            <br />
+            <center>
+                <div ng-bind="globalMessage.ResendCertificatePageMessage"></div>
+            </center>
+            <input-handling-directive
+                label="formCertificateNo.label"
+                error="formCertificateNo.error"
+                model="formCertificateNo.value"
+                type="'tel'"
+                maxlength="30">
+            </input-handling-directive>
+            <input-handling-directive
+                label="formIdCard.label"
+                error="formIdCard.error"
+                model="formIdCard.value"
+                type="'tel'"
+                maxlength="30">
+            </input-handling-directive>
+            <br />
+            <center>
+                <button ng-click="searchClick()" ng-bind="globalMessage.ResendCertificateButtonSearch"></button>
+            </center>
+            <div ng-if="isCertificateExist">
+                <hr />
+                <div class="customer-resend-certificate-card-wrapper">
+                    <div class="customer-resend-certificate-card-left">
+                        <div>{{globalMessage.ResendCertificateLabelCertificateNo}} : {{formSearch.certificateNumber}}</div>
+                        <div>{{globalMessage.ResendCertificateLabelIdCard}} : {{formSearch.nik}}</div>
+                        <div>{{globalMessage.ResendCertificateLabelName}} : {{formSearch.name}}</div>
+                        <div>{{globalMessage.ResendCertificateLabelIssuedDate}} : {{formSearch.date}}</div>
+                    </div>
+                    <div class="customer-resend-certificate-card-right">
+                        <button ng-click="resendCertificate()" ng-bind="globalMessage.ResendCertificateButtonSend"></button>
+                    </div>
+                </div>
+                <hr />
+            </div>
+        </div>
+        <floating-button-directive
+            ng-if="tab[2] == stringEmpty"
+            icon="'fa-plus'"
+            on-click="addSubmissionClick()">
+        </floating-button-directive>
+        <submission-page></submission-page>
+    </div>
+</div>

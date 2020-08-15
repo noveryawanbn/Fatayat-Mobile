@@ -1,0 +1,53 @@
+<div ng-controller="calendarDirectiveController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./directive/calendar/calendar.css" />
+    <div class="calendar-wrapper">
+        <div class="calendar">
+            <div class="calendar-header">
+                <div class="calendar-prev" ng-click="addMonth(-1)">
+                    <i class="fa fa-fw fa-angle-left fa-2x"></i>
+                </div>
+                <div class="calendar-now"ng-click="calendarModalShow(true)">{{showDate()}}</div>
+                <div class="calendar-next" ng-click="addMonth(1)">
+                    <i class="fa fa-fw fa-angle-right fa-2x"></i>
+                </div>
+            </div>
+            <hr />
+            <div class="calendar-day-wrapper">
+                <div class="calendar-day {{n == 0 ? 'holiday' : ''}}" ng-repeat="n in days">{{showDay(n)}}</div>
+            </div>
+            <hr />
+            <div class="calendar-date-wrapper">
+                <div class="calendar-date" ng-repeat="n in dates" ng-class="getDateClass(n.date, n.month, n.year)" ng-click="dateClick(n.date, n.month, n.year)">
+                    {{n.date}}
+                    <div class="alert"></div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="calendar-activity-title">Event List</div>
+        <div class="calendar-activity">
+            <div class="calendar-activity-header" ng-click="selectedDateClick()">{{showSelectedDate()}}</div>
+            <hr />
+            <div
+                class="calendar-activity-event"
+                ng-repeat="item in calendarEvents | selectedDateFilter:dateSelected"
+                ng-click="onEventClick(item.id)">{{item.title}}</div>
+        </div>
+        <div class="calendar-modal" ng-if="isModalShow" ng-click="calendarModalShow(false)">
+            <div class="calendar-modal-panel" onclick="event.stopPropagation()">
+                <div class="calendar-modal-header">
+                    <button ng-click="todayClick()">Today</button>
+                    <md-select ng-model="$parent.selectedYear">
+                        <md-option ng-repeat="n in years" ng-value="n" ng-selected="n == $parent.selectedYear">
+                            {{n}}
+                        </md-option>
+                    </md-select>
+                </div>
+                <hr />
+                <div class="calendar-modal-month">
+                    <div ng-repeat="n in months" ng-click="selectMonthClick(n)">{{getMonthName(n)}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

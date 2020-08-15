@@ -1,0 +1,31 @@
+<link rel="stylesheet" type="text/css" href="./directive/inputQuestionnaire/inputQuestionnaire.css" />
+<div class="input-questionnaire-directive-wrapper">
+    <div class="input-questionnaire-directive-no">
+        {{no}}
+    </div>
+    <div class="input-questionnaire-directive-question">
+        <div class="input-questionnaire-directive-label">
+            {{label}}
+        </div>
+        <div class="input-questionnaire-directive-control-wrapper">
+            <input class="input-questionnaire-directive-control-textbox" ng-if="type != 'checkbox' && type != 'radio' && type != 'textarea'" ng-model="$parent.model"
+            />
+            <div ng-repeat="n in options" class="input-questionnaire-directive-control-checkbox" ng-if="type == 'checkbox'">
+                <label>
+                    <input type="checkbox" ng-model="n.checked" ng-checked="n.checked" /> {{n.text}}
+                </label>
+            </div>
+            <div ng-repeat="n in options" class="input-questionnaire-directive-control-radio" ng-if="type == 'radio'">
+                <label>
+                    <div class="input-questionnaire-directive-radio">
+                        <input type="radio" ng-model="$parent.$parent.model" ng-value="n.value" /> 
+                    </div>
+                    <div class="input-questionnaire-directive-option">
+                        {{n.text}}
+                    </div>
+                </label>
+            </div>
+            <textarea class="input-questionnaire-directive-control-textarea" ng-if="type == 'textarea'" rows="4" ng-model="$parent.model"></textarea>
+        </div>
+    </div>
+</div>

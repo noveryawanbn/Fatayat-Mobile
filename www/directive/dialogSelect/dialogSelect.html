@@ -1,0 +1,15 @@
+<link rel="stylesheet" type="text/css" href="./directive/dialogSelect/dialogSelect.css" />
+<div class="dialog-select-directive-wrapper" ng-if="isShow" ng-click="onCancel()">
+    <div class="dialog-select-directive-modal" ng-click="$event.stopPropagation()">
+        <div class="dialog-select-directive-title">{{title}}</div>
+        <div class="dialog-select-directive-control">
+            <select ng-model="value" ng-options="n.value as n.text for  n in options"></select>
+            <i class="fa fa-angle-down fa-lg"></i>
+        </div>
+        <div class="dialog-select-directive-button-wrapper">
+            <div class="dialog-select-directive-button-cancel" ng-click="onCancel()">{{cancelText}}</div>
+            <div class="dialog-select-directive-button-center"></div>
+            <div class="dialog-select-directive-button-ok" ng-click="onSelect({parm:value})">{{selectText}}</div>
+        </div>
+    </div>
+</div>

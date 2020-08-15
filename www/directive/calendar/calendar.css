@@ -1,0 +1,131 @@
+.calendar-wrapper {
+    font-size: 0;
+}
+.calendar-prev,
+.calendar-next {
+    width: 51px;
+    cursor: pointer;
+}
+.calendar-now {
+    width: calc(100% - 102px);
+    cursor: pointer;
+}
+.calendar-prev,
+.calendar-next,
+.calendar-now {
+    display: inline-block;
+    text-align: center;
+    font-size: 20px;
+    line-height: 40px;
+    vertical-align: middle;
+}
+.calendar-day {
+    width: calc(100% / 7);
+    display: inline-block;
+    text-align: center;
+    font-size: 10px;
+}
+.calendar-day.holiday {
+    color: #f00;
+}
+.calendar-date {
+    width: calc(100% / 7);
+    display: inline-block;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px 0;
+    cursor: pointer;
+    position: relative;
+}
+.calendar-date.alert .alert {
+    height: 5px;
+    width: 5px;
+    background: #999;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 5px;
+    left: calc(50% - 2.5px);
+}
+.calendar-date.other-month {
+    color: #aaa;
+}
+.calendar-date.holiday {
+    color: #f00;
+}
+.calendar-date.selected {
+    color: #fff;
+    border-radius: 5px;
+    background: #2074a3;
+}
+
+.calendar-activity-title {
+    text-align: center;
+    font-size: 10px;
+}
+.calendar-activity {
+    text-align: center;
+}
+.calendar-activity-header {
+    padding: 5px 0;
+    font-size: 20px;
+    cursor: pointer;
+    display: inline-block;
+}
+.calendar-activity-event {
+    font-size: 15px;
+    padding: 10px;
+    border-bottom: solid 2px #ddd;
+}
+
+.calendar-modal {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+}
+.calendar-modal-panel {
+    width: 75vw;
+    margin-top: 75px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #fff;
+    border-radius: 5px;
+    padding: 10px;
+}
+.calendar-modal-header button {
+    width: 100px;
+    font-size: 15px;
+    padding: 10px;
+    position: initial;
+    margin-left: 0;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    display: inline-block;
+}
+.calendar-modal-header md-select {
+    width: calc(100% - 115px);
+    display: inline-block;
+    margin-left: 15px;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 15px;
+}
+.calendar-modal-header md-select-value {
+    min-width: initial !important;
+}
+.calendar-modal-month div {
+    width: calc((75vw - 32px) / 3);
+    height: calc((75vw - 32px) / 3);
+    line-height: calc((75vw - 32px) / 3);
+    border: 2px solid #ddd;
+    margin : 2px;
+    display: inline-block;
+    text-align: center;
+    font-size: 15px;
+    border-radius: 5px;
+}

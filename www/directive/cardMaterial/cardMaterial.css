@@ -1,0 +1,60 @@
+card-material-directive:nth-child(even) .card-material-directive-wrapper {
+    background: #dee2e6;
+}
+.card-material-directive-wrapper {
+    cursor: pointer;
+    font-size: 0;
+    margin-left: -10px;
+    margin-right: -10px;
+    padding: 10px;
+}
+.card-material-directive-wrapper.unread {
+    font-weight: bold;
+}
+.card-material-directive-top-left,
+.card-material-directive-top-right {
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 20px;
+    line-height: 20px;
+    font-size: 15px;
+}
+.card-material-directive-top-left {
+    text-align: left;
+    width: calc(60% - 10px);
+    max-width: calc(60% - 10px);
+}
+.card-material-directive-top-right {
+    text-align: right;
+    width: calc(40% - 10px);
+    max-width: calc(40% - 10px);
+}
+.card-material-directive-message {
+    position: relative;
+    display: block;
+    display: -webkit-box;
+    width: 100%;
+    max-width: 100%;
+    height: 38px;
+    font-size: 15px;
+    line-height: 20px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 5px 0;
+}
+.card-material-directive-message .fa,
+.card-material-directive-message label {
+    display: inline-block;
+}
+.card-material-directive-filename {
+    width: calc(100% - 100px);
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.card-material-directive-filename.additional-exist {
+    width: calc(100% - 130px);
+}

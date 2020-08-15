@@ -1,0 +1,90 @@
+<div ng-controller="profilePageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/profile/profile.css" />
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            on-left-click="navBarTop.onLeftClick()">
+        </nav-bar-top-directive>
+        <div class="page-content">
+            <div class="profile-information-wrapper">
+                <div>
+                    <i class="fa fa-fw fa-3x fa-user profile-user-icon"></i>
+                </div>
+                <div>
+                    <div>
+                        <label class="profile-information-name" ng-bind="agentName"></label>
+                    </div>
+                    <div>
+                        <label class="profile-information-code" ng-bind="globalMessage.ProfileLabelAgentCode"></label>
+                        <label>:</label>
+                        <label ng-bind="agentCode"></label>
+                    </div>
+                    <div>
+                        <label class="profile-information-status" ng-bind="globalMessage.ProfileLabelAgentStatus"></label>
+                        <label>:</label>
+                        <label ng-bind="agentStatus"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-general-information-wrapper">
+                <div class="profile-general-information-header">
+                    <label ng-bind="globalMessage.ProfileLabelGeneralInformation"></label>
+                </div>
+                <div class="profile-general-information-body">
+                    <div>
+                        <i class="fa fa-2x fa-mobile profile-icon"></i>
+                        <label ng-bind="mobilePhone"></label>
+                    </div>
+                    <div>
+                        <i class="fa fa-lg fa-envelope profile-icon"></i>
+                        <label class="profile-general-information-email" ng-bind="email" ng-click="emailInfoClick()"></label>
+                    </div>
+                    <div>
+                        <i class="fa fa-lg fa-id-card profile-icon"></i>
+                        <label ng-bind="idCard"></label>
+                    </div>
+                    <div>
+                        <i class="fa fa-lg fa-map-marker profile-icon"></i>
+                        <label ng-bind="regionCity"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-agent-information-wrapper">
+                <div class="profile-agent-information-header">
+                    <label ng-bind="globalMessage.ProfileLabelAgentInformation"></label>
+                </div>
+                <div class="profile-agent-information-body">
+                    <table>
+                        <tr>
+                            <td>
+                                <i class="fa fa-lg fa-calendar profile-icon"></i>
+                                <label ng-bind="globalMessage.ProfileLabelPassDateProduct"></label>
+                            </td>
+                            <td>
+                                <label class="profile-date" ng-bind="passDateProduct"></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fa fa-lg fa-calendar profile-icon"></i>
+                                <label ng-bind="globalMessage.ProfileLabelPassDateAml"></label>
+                            </td>
+                            <td>
+                                <label class="profile-date" ng-bind="passDateAml"></label>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="profile-email-information-wrapper" ng-if="isEmailInfoVisible" ng-click="emailInfoWrapperClick()">
+                <div class="profile-email-information-menu">
+                    <div>
+                        <label class="profile-email-information" ng-bind="email"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

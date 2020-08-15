@@ -1,0 +1,8 @@
+<link rel="stylesheet" type="text/css" href="./directive/gridTile/gridTile.css" />
+<div class="grid-tile-directive-wrapper" ng-click="onClick()">
+    <div class="grid-tile-directive-top">
+        <i class="fa fa-fw fa-2x" ng-class="icon"></i>
+        <div class="grid-tile-directive-alert" ng-if="alertCount > 0" ng-bind="alertCount"></div>
+    </div>
+    <div class="grid-tile-directive-bottom" ng-bind="label"></div>
+</div>

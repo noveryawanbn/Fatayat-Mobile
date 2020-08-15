@@ -1,0 +1,76 @@
+<div ng-controller="dashboardDetailPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/dashboardDetail/dashboardDetail.css">
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            on-left-click="navBarTop.onLeftClick()">
+        </nav-bar-top-directive>
+        <div class="page-content">
+            <table class="dashboard-detail-header">
+                <tr>
+                    <td>{{ transactionType }}</td>
+                    <td>{{ period | date : 'dd MMM yyyy' }}</td>
+                </tr>
+            </table>
+            <form>
+                <div class="dashboard-detail-search-wrapper">
+                    <select
+                        ng-model="search.rank"
+                        ng-options="n.value as n.text for n in rankList">
+                    </select>
+                    <div class="dashboard-detail-search-wrapper-input">
+                        <i class="fa fa-fw fa-lg fa-search"></i>
+                        <input
+                            ng-model="search.text"
+                            placeholder="{{ globalMessage.DashboardLabelSearch }}" />
+                    </div>
+                </div>
+            </form>
+            <div class="dashboard-detail-card" ng-repeat="customer in getCustomerList()">
+                <table>
+                    <tr>
+                        <td>{{ globalMessage.DashboardDetailLabelAgentCode }}</td>
+                        <td>:</td>
+                        <td>
+                            {{ customer.agentCode }}
+                            <div class="dashboard-detail-spacer"></div>
+                            {{ getRank(customer.rank) }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{ globalMessage.DashboardDetailLabelAgentName }}</td>
+                        <td>:</td>
+                        <td>{{ customer.agentName }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ globalMessage.DashboardDetailLabelCertificateNo }}</td>
+                        <td>:</td>
+                        <td>{{ customer.policyNo && customer.policyNo != '' ? customer.policyNo : customer.applicationNo }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ globalMessage.DashboardDetailLabelCustomerName }}</td>
+                        <td>:</td>
+                        <td>{{ customer.customerName }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ globalMessage.DashboardDetailLabelSubmitDate }}</td>
+                        <td>:</td>
+                        <td>{{ customer.submitDate | date : 'dd MMM yyyy' }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ globalMessage.DashboardDetailLabelExpiredDate }}</td>
+                        <td>:</td>
+                        <td>{{ customer.expiredDate | date : 'dd MMM yyyy' }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ globalMessage.DashboardDetailLabelPremi }}</td>
+                        <td>:</td>
+                        <td>Rp. {{ customer.premium | number }},- {{ customer.paymentMode == '6' ? globalMessage.DashboardDetailLabelSemester : globalMessage.DashboardDetailLabelYearly }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

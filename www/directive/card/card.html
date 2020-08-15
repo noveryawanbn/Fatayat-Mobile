@@ -1,0 +1,14 @@
+<link rel="stylesheet" type="text/css" href="./directive/card/card.css" />
+<div class="card-directive-wrapper" ng-class="isUnread ? 'bold' : ''" ng-click="onClick({parm:cardId})">
+    <div class="card-directive-top-wrapper">
+        <div class="card-directive-top-left">{{topLeft}}</div>
+        <div class="card-directive-top-right">{{topRight}}</div>
+    </div>
+    <div class="card-directive-message">
+        <span ng-if="!showArrow">{{message}}</span>
+        <div class="card-message-width-not-full" ng-if="showArrow">{{message}}</div>
+    </div>
+    <div class="card-directive-button" ng-if="showArrow">
+        <i class="fa fa-fw fa-angle-right"></i>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+.floating-button-directive-button {
+    position: fixed;
+    height: 60px;
+    width: 60px;
+    border: none;
+    border-radius: 60px;
+    margin-bottom: 0;
+    bottom: 25px;
+    right: 25px;
+    color: #fff;
+}

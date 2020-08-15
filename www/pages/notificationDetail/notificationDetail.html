@@ -1,0 +1,16 @@
+<div ng-controller="notificationDetailPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/notificationDetail/notificationDetail.css" />
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            on-left-click="navBarTop.onLeftClick()">
+        </nav-bar-top-directive>
+        <div class="page-content">
+            <div class="notification-detail-title" ng-bind="title"></div>
+            <div class="notification-detail-date" ng-bind="date"></div>
+            <div class="notification-detail-message" ng-bind-html="trustAsHtml(message)"></div>
+        </div>
+    </div>
+</div>

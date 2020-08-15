@@ -1,0 +1,24 @@
+<div ng-controller="eStatementDetailPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/eStatementDetail/eStatementDetail.css" />
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            right1="navBarTop.right1"
+            on-left-click="navBarTop.onLeftClick()"
+            on-right1-click="navBarTop.onRight1Click()">
+        </nav-bar-top-directive>
+        <div class="page-content">
+            <div class="e-statement-detail-title" ng-bind="form.title"></div>
+            <div class="e-statement-detail-date" ng-bind="form.date"></div>
+            <div class="e-statement-detail-message" ng-bind-html="trustAsHtml(form.message)"></div>
+            <br />
+            <br />
+            <i class="fa fa-file-pdf-o fa-2x" ng-click="showPDFClick()" ng-if="form.fileType == 'pdf'"></i>
+            <br />
+            <label ng-bind="form.fileName"></label>
+        </div>
+        <pdf-viewer-page></pdf-viewer-page>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+.input-questionnaire-directive-wrapper {
+    width: calc(100% - 30px);
+    display: table;
+    margin-bottom: 25px;
+	border-bottom: 2px solid #888;
+    margin-left: auto;
+    margin-right: auto;
+}
+.input-questionnaire-directive-no,
+.input-questionnaire-directive-question,
+.input-questionnaire-directive-radio,
+.input-questionnaire-directive-option {
+    display: table-cell;
+}
+.input-questionnaire-directive-no {
+    width: 25px;
+    vertical-align: top;
+}
+.input-questionnaire-directive-question {
+    width: calc(100% - 25px);
+    text-align: justify;
+}
+.input-questionnaire-directive-radio {
+    width: 20px;
+    vertical-align: top;
+}
+.input-questionnaire-directive-label {
+    font-style: italic;
+    text-align: justify;
+}
+.input-questionnaire-directive-control-textbox,
+.input-questionnaire-directive-control-textarea {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+.input-questionnaire-directive-control-checkbox,
+.input-questionnaire-directive-control-radio {
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+.input-questionnaire-directive-control-textarea {
+    resize: none;
+}

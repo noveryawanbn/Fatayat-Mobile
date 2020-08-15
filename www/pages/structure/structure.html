@@ -1,0 +1,32 @@
+<div ng-controller="structurePageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/structure/structure.css" />
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            on-left-click="navBarTop.onLeftClick()">
+        </nav-bar-top-directive>
+        <div class="page-content">
+            <div class="structure-search-wrapper" ng-if="rank != 'FS'">
+                <form ng-submit="getSearch()">
+                    <div>
+                        <div class="structure-search-wrapper-input">
+                            <i class="fa fa-fw fa-lg fa-search"></i>
+                            <input
+                                ng-model="formSearch.value"
+                                placeholder="{{ formSearch.label }}" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="{{ rank != 'FS' ? 'structure-card-wrapper' : 'structure-card-wrapper-full' }}">
+                <card-customer-directive
+                    ng-repeat="n in userList"
+                    top-left="n.Rank"
+                    message="n.Message">
+                </card-customer-directive>
+            </div>
+        </div>
+    </div>
+</div>

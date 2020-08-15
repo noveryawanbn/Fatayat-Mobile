@@ -1,0 +1,24 @@
+card-action-directive:nth-child(even) .card-action-directive-wrapper {
+    background: #dee2e6;
+}
+.card-action-directive-wrapper {
+    position: relative;
+    cursor: pointer;
+    font-size: 0;
+    margin-left: -10px;
+    margin-right: -10px;
+    padding: 10px;
+}
+.card-action-directive-message {
+    width: 100%;
+    max-width: 100%;
+    font-size: 15px;
+    line-height: 17px;
+    padding: 5px 0;
+}
+.card-action-directive-wrapper .fa {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 30px;
+}

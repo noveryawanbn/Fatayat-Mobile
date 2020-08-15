@@ -1,0 +1,105 @@
+<div ng-controller="posPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/pos/pos.css">
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            on-left-click="navBarTop.onLeftClick()">
+        </nav-bar-top-directive>
+        <div class="pos-page-tab-wrapper">
+            <div class="pos-page-tab pos-tab-2" ng-class="tab[0]" ng-click="changeTab(0)">
+                <div class="pos-tab-icon">
+                    <i class="fa fa-fw fa-list-alt"></i>
+                </div>
+                <label ng-bind="globalMessage.PosTabChangeList"></label>
+            </div>
+            <div class="pos-page-tab pos-tab-2" ng-class="tab[1]" ng-click="changeTab(1)">
+                <div class="pos-tab-icon">
+                    <i class="fa fa-fw fa-search"></i>
+                </div>
+                <label ng-bind="globalMessage.PosTabSearchCertificate"></label>
+            </div>
+        </div>
+        <div class="pos-page-content" ng-class="tab[0]" on-scroll-to-bottom="getPosNext()">
+            <br>
+            <form ng-submit="getPosSearch()">
+                <div class="pos-search-wrapper">
+                    <select
+                        ng-model="formStatus.value"
+                        ng-options="n.value as n.text for n in formStatus.options"
+                        ng-change="getPosSearch()">
+                    </select>
+                    <select
+                        ng-model="formChangeType.value"
+                        ng-options="n.value as n.text for n in formChangeType.options"
+                        ng-change="getPosSearch()">
+                    </select>
+                    <div class="pos-search-wrapper-input">
+                        <i class="fa fa-fw fa-lg fa-search"></i>
+                        <input
+                            ng-model="formSearch.value"
+                            placeholder="{{ formSearch.label }}" />
+                    </div>
+                </div>
+            </form>
+            <div class="pos-page-cardlist">
+                <card-action-directive
+                    ng-repeat="n in posList"
+                    card-id="n.id"
+                    message="n.message"
+                    on-click="posListClick(n)">
+                </card-action-directive>
+            </div>
+        </div>
+        <div class="pos-page-content" ng-class="tab[1]">
+            <br>
+            <div class="pos-page-title-other-certificate" ng-bind="globalMessage.PosTabSearchCertificate"></div>
+            <br>
+            <div class="pos-page-other-certificate-search">
+                <div class="pos-page-other-certificate-search-wrapper">
+                    <br>
+                    <input-handling-directive
+                        label="formOtherCertificateSearch.label"
+                        error="formOtherCertificateSearch.error"
+                        model="formOtherCertificateSearch.value"
+                        type="formOtherCertificateSearch.type"
+                        maxlength="30">
+                    </input-handling-directive>
+                    <br>
+                    <input-handling-directive
+                        label="formOtherCertificateDobSearch.label"
+                        error="formOtherCertificateDobSearch.error"
+                        model="formOtherCertificateDobSearch.value"
+                        type="formOtherCertificateDobSearch.type"
+                        options="formOtherCertificateDobSearch.options"
+                        is-disabled="formOtherCertificateDobSearch.isDisabled"
+                        min-year="minYear"
+                        max-year="maxYear"
+                        on-change="">
+                    </input-handling-directive>
+                    <br>
+                    <center>
+                        <button ng-click="getPosAllCertificateSearch()" ng-bind="globalMessage.PosLabelSearch"></button>
+                    </center>
+                </div>
+            </div>
+            <div class="pos-page-cardlist">
+                <card-action-directive
+                    ng-repeat="n in posAllCertificateList"
+                    card-id="n.id"
+                    message="n.message"
+                    on-click="posListClick(n)">
+                </card-action-directive>
+            </div>
+            
+        </div>
+        <floating-button-directive
+            icon="'fa-plus'"
+            on-click="addPosClick()">
+
+        </floating-button-directive>
+        <pos-detail-page></pos-detail-page>
+        <pos-update-page></pos-update-page>
+    </div>
+</div>

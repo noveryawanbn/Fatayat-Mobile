@@ -1,0 +1,44 @@
+<div ng-controller="reassignDetailPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/reassignDetail/reassignDetail.css">
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            on-left-click="navBarTop.onLeftClick()">
+        </nav-bar-top-directive>
+        <div class="reassign-detail-page-content active">
+            <br>
+            <form ng-submit="getActiveAgentSearch()">
+                <div class="reassign-detail-search-wrapper">
+                    <select
+                        ng-model="formFilterRank.value"
+                        ng-options="n.value as n.text for n in formFilterRank.options"
+                        ng-change="getActiveAgentSearch()">
+                    </select>
+                    <select
+                        ng-model="formFilterCity.value"
+                        ng-options="n.value as n.text for n in formFilterCity.options"
+                        ng-change="getActiveAgentSearch()">
+                    </select>
+                    <div class="reassign-detail-search-wrapper-input">
+                        <i class="fa fa-fw fa-lg fa-search"></i>
+                        <input
+                            ng-model="formSearch.value"
+                            ng-change="getActiveAgentSearch()"
+                            placeholder="{{formSearch.label}}"/>
+                    </div>
+                </div>
+            </form>
+            <div>
+                <div class="reassign-detail-page-cardlist" ng-repeat="agent in currActiveAgentList">
+                    <div ng-click="assignClick(agent)" class="reassign-detail-page-cardlist-wrapper">
+                        <div class="reassign-detail-page-title-rank">{{agent.rank}}</div>
+                        <div class="reassign-detail-page-agentcode-agentname">{{agent.agentCode}} - {{agent.agentName}}</div>
+                        <div class="reassign-detail-page-cityname">{{agent.cityName}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div ng-controller="pdfViewerDirectiveController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./directive/pdfViewer/pdfViewer.css" />
+    <div class="pdf-viewer-wrapper">
+        <div class="pdf-viewer-top-nav-wrapper">
+            <div class="pdf-viewer-top-nav-page">Halaman {{currentPage}}/{{totalPage}}</div>
+            <div class="pdf-viewer-top-nav-button-wrapper">
+                <div class="pdf-viewer-top-nav-button-zoom-out" ng-click="zoomOutClick()">
+                    <i class="fa fa-fw fa-search-minus"></i>
+                </div>
+                <div class="pdf-viewer-top-nav-button-zoom-in" ng-click="zoomInClick()">
+                    <i class="fa fa-fw fa-search-plus"></i>
+                </div>
+                <div class="pdf-viewer-top-nav-button-download" ng-click="downloadClick()">
+                    <i class="fa fa-fw fa-download"></i>
+                </div>
+            </div>
+        </div>
+        <div class="pdf-viewer-content-wrapper">
+            <div class="pdf-viewer-content-loading" ng-class="loadingClass">Sedang memuat data ...</div>
+            <canvas class="pdf-viewer-content" ng-style="canvasStyle"></canvas>
+        </div>
+        <div class="pdf-viewer-bottom-nav-wrapper">
+            <div class="pdf-viewer-bottom-nav-prev">
+                <button ng-click="prevClick()" ng-if="currentPage > 1"><i class="fa fa-fw fa-angle-left"></i> Kembali</button>
+            </div>
+            <div class="pdf-viewer-bottom-nav-next">
+                <button ng-click="nextClick()" ng-if="currentPage < totalPage">Lanjut <i class="fa fa-fw fa-angle-right"></i></button>
+            </div>
+        </div>
+    </div>
+    <dialog-password-directive
+        is-show="dialogPassword.isShow"
+        ok-text="dialogPassword.okText"
+        cancel-text="dialogPassword.cancelText"
+        on-o-k="dialogPassword_OnOK()"
+        on-cancel="dialogPassword_OnCancel()"
+        title="dialogPassword.title"
+        model="dialogPassword.model">
+    </dialog-password-directive>
+</div>

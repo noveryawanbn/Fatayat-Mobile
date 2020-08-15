@@ -1,0 +1,49 @@
+<div ng-controller="reassignPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/reassign/reassign.css">
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            on-left-click="navBarTop.onLeftClick()">
+        </nav-bar-top-directive>
+        <div class="reassign-page-content active">
+            <br>
+            <form ng-submit="getReassignSearch()">
+                <div class="reassign-search-wrapper">
+                    <select
+                        ng-model="formFilterRank.value"
+                        ng-options="n.value as n.text for n in formFilterRank.options"
+                        ng-change="getReassignSearch()">
+                    </select>
+                    <select
+                        ng-model="formFilterCity.value"
+                        ng-options="n.value as n.text for n in formFilterCity.options"
+                        ng-change="getReassignSearch()">
+                    </select>
+                    <div class="reassign-search-wrapper-input">
+                        <i class="fa fa-fw fa-lg fa-search"></i>
+                        <input
+                            ng-model="formSearch.value"
+                            ng-change="getReassignSearch()"
+                            placeholder="{{formSearch.label}}"/>
+                    </div>
+                </div>
+            </form>
+            <div class="reassign-page-cardlist">
+                <div ng-repeat="agent in currReassignList.inActiveAgent">
+                    <div class="reassign-page-cardlist-title-wrapper">
+                        <div class="reassign-page-cardlist-title">{{agent.agentCode}} - {{agent.agentName}} ({{agent.rank}})</div>
+                    </div>
+                    <card-action-directive
+                        ng-repeat="customer in agent.customerList"
+                        card-id="customer.id"
+                        message="customer.message"
+                        on-click="customerClick(customer)">
+                    </card-action-directive>
+                </div>
+            </div>
+        </div>
+        <reassign-detail-page></reassign-detail-page>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+.claim-search-wrapper {
+    font-size: 0;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #888;
+}
+
+.claim-search-wrapper-select {
+    display: inline-block;
+    width: 40vw;
+}
+
+.claim-search-wrapper-select select {
+    width: 100%;
+}
+
+.claim-search-wrapper-input {
+    border: 2px solid #ccc;
+    padding: 5px;
+    border-radius: 20px;
+    display: inline-block;
+    width: calc(60vw - 45px);
+    margin-left: 5px;
+}
+
+.claim-search-wrapper-input input {
+    width: calc(100% - 35px);
+    height: 20px;
+}
+
+.claim-card-wrapper {
+    height: calc(100vh - 117px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}

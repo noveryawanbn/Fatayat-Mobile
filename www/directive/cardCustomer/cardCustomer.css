@@ -1,0 +1,37 @@
+card-customer-directive:nth-child(even) .card-customer-directive-wrapper {
+    background: #dee2e6;
+}
+.card-customer-directive-wrapper {
+    cursor: pointer;
+    font-size: 0;
+    margin-left: -10px;
+    margin-right: -10px;
+    padding: 10px;
+}
+.card-customer-directive-top-left,
+.card-customer-directive-top-right {
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 20px;
+    line-height: 20px;
+    font-size: 15px;
+}
+.card-customer-directive-top-left {
+    text-align: left;
+    width: calc(100% - 150px - 10px);
+    max-width: calc(100% - 150px - 10px);
+    font-weight: bold;
+}
+.card-customer-directive-top-right {
+    text-align: left;
+    width: 150px;
+    max-width: 150px;
+}
+.card-customer-directive-message {
+    width: 100%;
+    max-width: 100%;
+    font-size: 15px;
+    line-height: 17px;
+    padding: 5px 0;
+}

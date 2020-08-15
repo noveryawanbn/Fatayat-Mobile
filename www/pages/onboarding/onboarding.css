@@ -1,0 +1,59 @@
+.onboarding-page-countdown {
+    padding-left: 10px;
+    font-size: 25px;
+    color: #888;
+}
+.onboarding-page-content-wrapper {
+    position: relative;
+    height: calc(100vh - 76px);
+    overflow: hidden;
+}
+.onboarding-page-content-wrapper button {
+    margin-top: 10px;
+}
+.onboarding-page-content-1,
+.onboarding-page-content-2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: calc(100vh - 76px);
+    width: calc(100vw - 20px);
+    background: #fff;
+    padding: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: none;
+    -webkit-transition: all 0.13s ease-in;
+            transition: all 0.13s ease-in;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+    will-change: transform;
+}
+.onboarding-page-content-1.active,
+.onboarding-page-content-2.active {
+    display: block;
+    -webkit-transform: none;
+            transform: none;
+    -webkit-animation: display-none-transition 0.33s both;
+    animation: display-none-transition 0.33s both;
+}
+@-webkit-keyframes display-none-transition {
+    0% {
+        -webkit-transform: translateX(100%);
+                transform: translateX(100%);
+    }
+}
+@keyframes display-none-transition {
+    0% {
+        -webkit-transform: translateX(100%);
+                transform: translateX(100%);
+    }
+}
+.onboarding-page-content-1 span {
+    display: block;
+    text-align: center;
+    padding-bottom: 10px;
+}
+.onboarding-page-content-2 span:nth-child(1) {
+    color: #f00;
+}

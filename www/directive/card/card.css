@@ -1,0 +1,56 @@
+card-directive:nth-child(even) .card-directive-wrapper {
+    background: #dee2e6;
+}
+.card-directive-wrapper {
+    cursor: pointer;
+    font-size: 0;
+    position: relative;
+    padding: 10px;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+.card-directive-wrapper.bold {
+    font-weight: bold;
+}
+.card-directive-top-left,
+.card-directive-top-right {
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 20px;
+    line-height: 20px;
+    font-size: 15px;
+}
+.card-directive-top-left {
+    text-align: left;
+    width: calc(100% - 120px);
+    max-width: calc(100% - 120px);
+}
+.card-directive-top-right {
+    text-align: right;
+    width: 100px;
+    max-width: 100px;
+}
+.card-directive-message {
+    display: block;
+    display: -webkit-box;
+    width: 100%;
+    max-width: 100%;
+    height: 42px;
+    font-size: 15px;
+    line-height: 24px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 5px 0;
+}
+.card-message-width-not-full{
+    margin-right: 50px;
+}
+.card-directive-button {
+    position: absolute;
+    font-size: 28px!important;
+    right: 5px;
+    top: 30px;
+}

@@ -1,0 +1,35 @@
+<div ng-controller="contactUsPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/contactUs/contactUs.css">
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            on-left-click="navBarTop.onLeftClick()">
+        </nav-bar-top-directive>
+        <div class="page-content">
+            <div class="contact-us-menu menu1" ng-click="contactUsPhoneClick()">
+                <div class="line1">
+                    <i class="fa fa-fw fa-2x fa-phone"></i>
+                </div>
+                <div>
+                    <label ng-bind="globalMessage.MainMenuPopUpContactUs"></label>
+                </div>
+                <div>
+                    <label class="detail" ng-bind="contactUs.phoneNumberText"></label>
+                </div>
+            </div>
+            <div class="contact-us-menu" ng-click="contactUsEmailClick()">
+                <div class="line1">
+                    <i class="fa fa-fw fa-2x fa-envelope"></i>
+                </div>
+                <div>
+                    <label ng-bind="globalMessage.MainMenuPopUpContactUs"></label>
+                </div>
+                <div>
+                    <label class="detail" ng-bind="contactUs.emailAddressText"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,132 @@
+<link rel="stylesheet" type="text/css" href="./directive/inputHandling/inputHandling.css" />
+<div class="input-handling-directive-wrapper">
+    <div class="input-handling-directive-label {{isDisabled ? 'disabled' : ''}}" ng-class="labelClass">
+        {{label}}&nbsp;
+    </div>
+    <div class="input-handling-directive-control-wrapper" ng-if="typeValue != 'separator'">
+        <input
+            ng-if="typeValue != 'checkbox' && typeValue != 'date' && typeValue != 'radio' && typeValue != 'select' && typeValue != 'separator' && typeValue != 'textarea'"
+            class="input-handling-directive-control {{$parent.$parent.modelValue == '' || type == 'email' || type == 'password' ? '' : 'uppercase'}}"
+            type="{{$parent.typeValue}}"
+            placeholder="{{label}}"
+            ng-class="$parent.inputClass"
+            ng-model="$parent.$parent.modelValue"
+            ng-focus="inputFocus()"
+            ng-blur="inputBlur()"
+            ng-disabled="isDisabled"
+            ng-change="onChangeValue()"
+            ng-trim="false" />
+        <textarea
+            class="input-handling-directive-control-textarea"
+            ng-if="typeValue == 'textarea'"
+            rows="{{$parent.rowValue}}"
+            cols="{{$parent.colValue}}"
+            type="{{$parent.typeValue}}"
+            placeholder="{{label}}"
+            ng-class="$parent.inputClass"
+            ng-model="$parent.$parent.modelValue"
+            ng-change="onChangeValue()"
+            ng-focus="inputFocus()"
+            ng-blur="inputBlur()"
+            ng-disabled="isDisabled"
+            ng-trim="false">
+        </textarea>
+        <div
+            class="input-handling-directive-control-date"
+            ng-if="typeValue == 'date'">
+            <div class="input-handling-directive-control-date-day">
+                <select
+                    ng-model="$parent.$parent.selectedDay"
+                    ng-options="n.value as n.text for n in days"
+                    ng-disabled="isDisabled"
+                    ng-change="dateChange()">
+                </select>
+                <i class="fa fa-angle-down fa-lg"></i>
+            </div>
+            <div class="input-handling-directive-control-date-month">
+                <select
+                    ng-model="$parent.$parent.selectedMonth"
+                    ng-options="n.value as n.text for n in months"
+                    ng-disabled="isDisabled"
+                    ng-change="dateChange()">
+                </select>
+                <i class="fa fa-angle-down fa-lg"></i>
+            </div>
+            <div class="input-handling-directive-control-date-year">
+                <select
+                    ng-model="$parent.$parent.selectedYear"
+                    ng-options="n.value as n.text for n in years"
+                    ng-disabled="isDisabled"
+                    ng-change="dateChange()">
+                </select>
+                <i class="fa fa-angle-down fa-lg"></i>
+            </div>
+            <div class="input-handling-directive-control-date-calendar">
+                <input
+                    type="date"
+                    ng-model="$parent.$parent.modelValue"
+                    ng-disabled="isDisabled"
+                    ng-change="dateCalendarChange()"
+                    min="{{minYearValue}}-01-01"
+                    max="{{maxYearValue}}-12-31" />
+                <i class="fa fa-fw fa-calendar fa-2x"></i>
+            </div>
+        </div>
+        <div
+            class="input-handling-directive-control-select"
+            ng-if="typeValue == 'select'">
+            <select
+                placeholder="{{label}}"
+                ng-options="n.value as n.text for  n in $parent.options"
+                ng-class="$parent.inputClass"
+                ng-model="$parent.$parent.modelValue"
+                ng-focus="inputFocus()"
+                ng-blur="inputBlur()"
+                ng-disabled="isDisabled"
+                ng-change="onChangeValue()">
+            </select>
+            <i class="fa fa-angle-down fa-lg"></i>
+        </div>
+        <div
+            class="input-handling-directive-control-checkbox {{isDisabled ? 'disabled' : ''}}"
+            ng-if="typeValue == 'checkbox' || typeValue == 'radio'">
+            <label ng-repeat="n in $parent.options">
+                <input
+                    type="{{typeValue}}"
+                    ng-if="typeValue == 'checkbox'"
+                    ng-model="n.checked"
+                    ng-click="onChangeValue()"
+                    ng-disabled="isDisabled" />
+                <input
+                    type="{{typeValue}}"
+                    ng-if="typeValue == 'radio'"
+                    ng-model="$parent.$parent.$parent.$parent.modelValue"
+                    ng-value="n.value"
+                    ng-model="n.checked"
+                    ng-disabled="isDisabled"
+                    ng-click="onChangeValue()" />
+                {{n.text}}
+            </label>
+        </div>
+        <div
+            class="input-handling-directive-control-checkbox-separator"
+            ng-if="typeValue == 'checkbox' || typeValue == 'radio'">
+            &nbsp;
+        </div>
+        <div ng-if="(tooltip != '' && tooltip != undefined) || tooltipOptions.length > 0" class="tooltip-wrapper" ng-click="toogleTooltip()">
+            <i class="fa fa-fw fa-info-circle fa-lg input-handling-directive-tooltip-button"></i>
+        </div>
+        <div>
+
+        </div>
+    </div>
+    <div class="input-handling-directive-error">{{error}}&nbsp;</div>
+    <div class="input-handling-directive-tooltip-wrapper" ng-if="isTooltipShow" ng-click="toogleTooltip()">
+        <div class="input-handling-directive-tooltip-panel">
+            <label class="input-handling-directive-tooltip-title" ng-bind="tooltip"></label>
+            <ul ng-if="tooltipOptions.length > 0">
+                <li ng-repeat="n in tooltipOptions" ng-bind="n"></li>
+            </ul>
+        </div>
+    </div>
+</div>

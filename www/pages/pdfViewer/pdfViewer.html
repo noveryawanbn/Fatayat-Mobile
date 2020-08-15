@@ -1,0 +1,14 @@
+<div ng-controller="pdfViewerPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/pdfViewer/pdfViewer.css" />
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            on-left-click="navBarTop.onLeftClick()">
+        </nav-bar-top-directive>
+        <div class="page-content">
+            <pdf-viewer-directive url="url" file-name="fileName" on-password-cancel="onClose()"></pdf-viewer-directive>
+        </div>
+    </div>
+</div>

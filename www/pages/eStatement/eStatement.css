@@ -1,0 +1,15 @@
+.e-statement-alert {
+    font-size: 0;
+}
+.e-statement-alert-icon,
+.e-statement-alert-message {
+	display: inline-block;
+}
+.e-statement-alert-icon {
+    width: 50px;
+    text-align: center;
+}
+.e-statement-alert-message {
+    width: calc(100% - 50px);
+    color: #f00;
+}

@@ -1,0 +1,8 @@
+<link rel="stylesheet" type="text/css" href="./directive/cardCustomer/cardCustomer.css" />
+<div class="card-customer-directive-wrapper" ng-click="onClick({parm:cardId})">
+    <div class="card-customer-directive-top-wrapper">
+        <div class="card-customer-directive-top-left">{{topLeft}}</div>
+        <div class="card-customer-directive-top-right">{{topRight}}</div>
+    </div>
+    <div class="card-customer-directive-message" ng-bind-html="trustAsHtml(message)"></div>
+</div>

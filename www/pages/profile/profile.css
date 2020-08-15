@@ -1,0 +1,115 @@
+.profile-information-wrapper {
+    width: 275px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+}
+.profile-information-wrapper > div {
+    display: inline-block;
+}
+.profile-information-name {
+    font-weight: bold;
+    font-size: 18px;
+}
+.profile-general-information-wrapper,
+.profile-agent-information-wrapper {
+    border: 2px solid #000;
+    margin-top: 20px;
+    width: 295px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.profile-general-information-header,
+.profile-agent-information-header {
+    background: #00693c;
+    color: #fff;
+    border-bottom: 2px solid #000;
+    padding: 10px;
+}
+.profile-general-information-body > div,
+.profile-agent-information-body td {
+    padding: 10px;
+    vertical-align: top;
+}
+
+.profile-general-information-body > div {
+    padding-bottom: 0;
+}
+
+.profile-general-information-body > div:nth-last-child(1) {
+    padding-bottom: 10px;
+}
+
+.profile-general-information-body i {
+    min-height: 29px;
+    width: 35px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 30px;
+}
+
+.profile-date {
+    white-space: nowrap;
+}
+
+.profile-icon {
+    color: #00693c;
+    width: 35px;
+}
+
+.profile-information-status,
+.profile-information-code {
+    width: 75px;
+    display: inline-block;
+}
+
+.profile-user-icon{
+    text-align: left;
+    width: 1.0em;
+}
+
+.profile-general-information-email{
+    display:inline-block;
+    width:80%;
+    white-space: nowrap;
+    overflow:hidden !important;
+    text-overflow: ellipsis;
+    padding-bottom: 1px;
+}
+
+.profile-email-information-wrapper{
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.profile-email-information-menu{
+    max-width: 95vw;
+    display: inline-block;
+    padding: 7px 10px 10px 10px;
+    background: #00693c;
+    color: #fff;
+    margin-top: 288px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.profile-email-information-menu::after {
+    content: "";
+    position: absolute;
+    top: 264px;
+    margin-left: -50px;
+    border-width: 12px;
+    border-style: solid;
+    border-color: transparent transparent #00693c transparent;
+}
+
+.profile-email-information{
+    word-break: break-word;
+}

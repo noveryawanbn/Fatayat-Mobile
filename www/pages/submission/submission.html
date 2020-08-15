@@ -1,0 +1,940 @@
+<div ng-controller="submissionPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/submission/submission.css" />
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            right-1="navBarTop.right1"
+            on-left-click="navBarTop.onLeftClick()"
+            on-right-1-click="navBarTop.onRight1Click()">
+        </nav-bar-top-directive>
+        <div class="page-content submission-page-content-wrapper">
+            <div class="submission-page-content active">
+                <div class="submission-page-product" ng-bind="productName"></div>
+                <div class="submission-page-title" ng-bind="globalMessage.SubmissionTab1Title"></div>
+                <div class="submission-page-message" ng-bind="globalMessage.SubmissionTab1Message"></div>
+                <br />
+                <br />
+                <center><label><input type="checkbox" ng-model="form1IsAgreeNUTeam.options[0].checked" /> {{globalMessage.SubmissionCheckboxAgree}}</label></center>
+            </div>
+            <div class="submission-page-content" ng-class="content2Class">
+                <div class="submission-page-product" ng-bind="productName"></div>
+                <div class="submission-page-title" ng-bind="globalMessage.SubmissionTab2Title"></div>
+                <input-handling-directive
+                    class="submission-page-form-2"
+                    label="form2IsPremiNoMoreThan10Percent.label"
+                    error="form2IsPremiNoMoreThan10Percent.error"
+                    model="form2IsPremiNoMoreThan10Percent.value"
+                    type="form2IsPremiNoMoreThan10Percent.type"
+                    options="form2IsPremiNoMoreThan10Percent.options"
+                    is-disabled="form2IsPremiNoMoreThan10Percent.idDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    class="submission-page-form-2"
+                    label="form2IsApplicationSuitsYourNeeds.label"
+                    error="form2IsApplicationSuitsYourNeeds.error"
+                    model="form2IsApplicationSuitsYourNeeds.value"
+                    type="form2IsApplicationSuitsYourNeeds.type"
+                    options="form2IsApplicationSuitsYourNeeds.options"
+                    is-disabled="form2IsApplicationSuitsYourNeeds.isDisabled">
+                </input-handling-directive>
+                <div class="submission-page-message" ng-bind="globalMessage.SubmissionTab2Message3"></div>
+                <div class="submission-page-message" ng-bind="globalMessage.SubmissionTab2Message4"></div>
+            </div>
+            <div class="submission-page-content" ng-class="content3Class">
+                <div class="submission-page-product" ng-bind="productName"></div>
+                <div class="submission-page-title" ng-bind="globalMessage.SubmissionTab3Title"></div>
+                <input-handling-directive
+                    label="form3CustomerName.label"
+                    error="form3CustomerName.error"
+                    model="form3CustomerName.value"
+                    type="form3CustomerName.type"
+                    options="form3CustomerName.options"
+                    is-disabled="form3CustomerName.isDisabled"
+                    maxlength="50">
+                </input-handling-directive>
+                <input-handling-directive
+                    class="submission-page-gender"
+                    label="form3CustomerGender.label"
+                    error="form3CustomerGender.error"
+                    model="form3CustomerGender.value"
+                    type="form3CustomerGender.type"
+                    options="form3CustomerGender.options"
+                    is-disabled="form3CustomerGender.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form3CustomerPlaceOfBirth.label"
+                    error="form3CustomerPlaceOfBirth.error"
+                    model="form3CustomerPlaceOfBirth.value"
+                    type="form3CustomerPlaceOfBirth.type"
+                    options="form3CustomerPlaceOfBirth.options"
+                    is-disabled="form3CustomerPlaceOfBirth.isDisabled"
+                    maxlength="25">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form3CustomerDateOfBirth.label"
+                    error="form3CustomerDateOfBirth.error"
+                    model="form3CustomerDateOfBirth.value"
+                    type="form3CustomerDateOfBirth.type"
+                    options="form3CustomerDateOfBirth.options"
+                    is-disabled="form3CustomerDateOfBirth.isDisabled"
+                    min-year="minYear"
+                    max-year="maxYear"
+                    on-change="form3CustomerDateOfBirth_OnChange()">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form3CustomerBenefit.label"
+                    error="form3CustomerBenefit.error"
+                    model="form3CustomerBenefit.value"
+                    type="form3CustomerBenefit.type"
+                    options="form3CustomerBenefit.options"
+                    is-disabled="form3CustomerBenefit.isDisabled"
+                    on-change="form3CustomerBenefit_OnChange()">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form3CustomerPaymentMethod.label"
+                    error="form3CustomerPaymentMethod.error"
+                    model="form3CustomerPaymentMethod.value"
+                    type="form3CustomerPaymentMethod.type"
+                    options="form3CustomerPaymentMethod.options"
+                    is-disabled="form3CustomerPaymentMethod.isDisabled"
+                    on-change="form3CustomerPaymentMethod_OnChange()">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form3CustomerPremi.label"
+                    error="form3CustomerPremi.error"
+                    model="form3CustomerPremi.value"
+                    type="form3CustomerPremi.type"
+                    options="form3CustomerPremi.options"
+                    is-disabled="form3CustomerPremi.isDisabled"
+                    on-change="form3CustomerPremi_OnChange()"
+                    ng-click="form3CustomerPremi_OnClick()">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form3CustomerPeriod.label"
+                    error="form3CustomerPeriod.error"
+                    model="form3CustomerBenefit.value"
+                    type="form3CustomerPeriod.type"
+                    options="form3CustomerPeriod.options"
+                    is-disabled="form3CustomerPeriod.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form3CustomerCompensation.label"
+                    error="form3CustomerCompensation.error"
+                    model="form3CustomerCompensation.value"
+                    type="form3CustomerCompensation.type"
+                    options="form3CustomerCompensation.options"
+                    is-disabled="form3CustomerCompensation.isDisabled">
+                </input-handling-directive>
+            </div>
+            <div class="submission-page-content" ng-class="content4Class">
+                <div class="submission-page-product" ng-bind="productName"></div>
+                <div class="submission-page-title" ng-bind="globalMessage.SubmissionTab4Title"></div>
+                <input-handling-directive
+                    label="form4Separator1.label"
+                    error="form4Separator1.error"
+                    model="form4Separator1.value"
+                    type="form4Separator1.type"
+                    options="form4Separator1.options"
+                    is-disabled="form4Separator1.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4IdCard.label"
+                    error="form4IdCard.error"
+                    model="form4IdCard.value"
+                    type="form4IdCard.type"
+                    options="form4IdCard.options"
+                    is-disabled="form4IdCard.isDisabled"
+                    maxlength="30">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4IdCardAddress1.label"
+                    error="form4IdCardAddress1.error"
+                    model="form4IdCardAddress1.value"
+                    type="form4IdCardAddress1.type"
+                    options="form4IdCardAddress1.options"
+                    is-disabled="form4IdCardAddress1.isDisabled"
+                    maxlength="50">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4IdCardAddress2.label"
+                    error="form4IdCardAddress2.error"
+                    model="form4IdCardAddress2.value"
+                    type="form4IdCardAddress2.type"
+                    options="form4IdCardAddress2.options"
+                    is-disabled="form4IdCardAddress2.isDisabled"
+                    maxlength="50">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4IdCardRTRW.label"
+                    error="form4IdCardRTRW.error"
+                    model="form4IdCardRTRW.value"
+                    type="form4IdCardRTRW.type"
+                    options="form4IdCardRTRW.options"
+                    is-disabled="form4IdCardRTRW.isDisabled"
+                    maxlength="10">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4IdCardProvince.label"
+                    error="form4IdCardProvince.error"
+                    model="form4IdCardProvince.value"
+                    type="form4IdCardProvince.type"
+                    options="form4IdCardProvince.options"
+                    is-disabled="form4IdCardProvince.isDisabled"
+                    on-change="form4IdCardProvince_OnChange()">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4IdCardCity.label"
+                    error="form4IdCardCity.error"
+                    model="form4IdCardCity.value"
+                    type="form4IdCardCity.type"
+                    options="form4IdCardCity.options"
+                    is-disabled="form4IdCardCity.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4IdCardZip.label"
+                    error="form4IdCardZip.error"
+                    model="form4IdCardZip.value"
+                    type="form4IdCardZip.type"
+                    options="form4IdCardZip.options"
+                    is-disabled="form4IdCardZip.isDisabled"
+                    maxlength="5">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4IdCardDistrict.label"
+                    error="form4IdCardDistrict.error"
+                    model="form4IdCardDistrict.value"
+                    type="form4IdCardDistrict.type"
+                    options="form4IdCardDistrict.options"
+                    is-disabled="form4IdCardDistrict.isDisabled"
+                    maxlength="25">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4IdCardSubDistrict.label"
+                    error="form4IdCardSubDistrict.error"
+                    model="form4IdCardSubDistrict.value"
+                    type="form4IdCardSubDistrict.type"
+                    options="form4IdCardSubDistrict.options"
+                    is-disabled="form4IdCardSubDistrict.isDisabled"
+                    maxlength="25">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4IsMailAddressSameWithIdCard.label"
+                    error="form4IsMailAddressSameWithIdCard.error"
+                    model="form4IsMailAddressSameWithIdCard.value"
+                    type="form4IsMailAddressSameWithIdCard.type"
+                    options="form4IsMailAddressSameWithIdCard.options"
+                    is-disabled="form4IsMailAddressSameWithIdCard.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    ng-if="form4IsMailAddressSameWithIdCard.value == false"
+                    label="form4Separator2.label"
+                    error="form4Separator2.error"
+                    model="form4Separator2.value"
+                    type="form4Separator2.type"
+                    options="form4Separator2.options"
+                    is-disabled="form4Separator2.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    ng-if="form4IsMailAddressSameWithIdCard.value == false"
+                    label="form4MailAddress1.label"
+                    error="form4MailAddress1.error"
+                    model="form4MailAddress1.value"
+                    type="form4MailAddress1.type"
+                    options="form4MailAddress1.options"
+                    is-disabled="form4MailAddress1.isDisabled"
+                    maxlength="50">
+                </input-handling-directive>
+                <input-handling-directive
+                    ng-if="form4IsMailAddressSameWithIdCard.value == false"
+                    label="form4MailAddress2.label"
+                    error="form4MailAddress2.error"
+                    model="form4MailAddress2.value"
+                    type="form4MailAddress2.type"
+                    options="form4MailAddress2.options"
+                    is-disabled="form4MailAddress2.isDisabled"
+                    maxlength="50">
+                </input-handling-directive>
+                <input-handling-directive
+                    ng-if="form4IsMailAddressSameWithIdCard.value == false"
+                    label="form4MailRTRW.label"
+                    error="form4MailRTRW.error"
+                    model="form4MailRTRW.value"
+                    type="form4MailRTRW.type"
+                    options="form4MailRTRW.options"
+                    is-disabled="form4MailRTRW.isDisabled"
+                    maxlength="10">
+                </input-handling-directive>
+                <input-handling-directive
+                    ng-if="form4IsMailAddressSameWithIdCard.value == false"
+                    label="form4MailProvince.label"
+                    error="form4MailProvince.error"
+                    model="form4MailProvince.value"
+                    type="form4MailProvince.type"
+                    options="form4MailProvince.options"
+                    is-disabled="form4MailProvince.isDisabled"
+                    on-change="form4MailProvince_OnChange()">
+                </input-handling-directive>
+                <input-handling-directive
+                    ng-if="form4IsMailAddressSameWithIdCard.value == false"
+                    label="form4MailCity.label"
+                    error="form4MailCity.error"
+                    model="form4MailCity.value"
+                    type="form4MailCity.type"
+                    options="form4MailCity.options"
+                    is-disabled="form4MailCity.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    ng-if="form4IsMailAddressSameWithIdCard.value == false"
+                    label="form4MailZip.label"
+                    error="form4MailZip.error"
+                    model="form4MailZip.value"
+                    type="form4MailZip.type"
+                    options="form4MailZip.options"
+                    is-disabled="form4MailZip.isDisabled"
+                    maxlength="5">
+                </input-handling-directive>
+                <input-handling-directive
+                    ng-if="form4IsMailAddressSameWithIdCard.value == false"
+                    label="form4MailDistrict.label"
+                    error="form4MailDistrict.error"
+                    model="form4MailDistrict.value"
+                    type="form4MailDistrict.type"
+                    options="form4MailDistrict.options"
+                    is-disabled="form4MailDistrict.isDisabled"
+                    maxlength="25">
+                </input-handling-directive>
+                <input-handling-directive
+                    ng-if="form4IsMailAddressSameWithIdCard.value == false"
+                    label="form4MailSubDistrict.label"
+                    error="form4MailSubDistrict.error"
+                    model="form4MailSubDistrict.value"
+                    type="form4MailSubDistrict.type"
+                    options="form4MailSubDistrict.options"
+                    is-disabled="form4MailSubDistrict.isDisabled"
+                    maxlength="25">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4Separator3.label"
+                    error="form4Separator3.error"
+                    model="form4Separator3.value"
+                    type="form4Separator3.type"
+                    options="form4Separator3.options"
+                    is-disabled="form4Separator3.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4HomePhoneAreaCode.label"
+                    error="form4HomePhoneAreaCode.error"
+                    model="form4HomePhoneAreaCode.value"
+                    type="form4HomePhoneAreaCode.type"
+                    options="form4HomePhoneAreaCode.options"
+                    is-disabled="form4HomePhoneAreaCode.isDisabled"
+                    maxlength="5">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4HomePhoneNumber.label"
+                    error="form4HomePhoneNumber.error"
+                    model="form4HomePhoneNumber.value"
+                    type="form4HomePhoneNumber.type"
+                    options="form4HomePhoneNumber.options"
+                    is-disabled="form4HomePhoneNumber.isDisabled"
+                    maxlength="15">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4Separator4.label"
+                    error="form4Separator4.error"
+                    model="form4Separator4.value"
+                    type="form4Separator4.type"
+                    options="form4Separator4.options"
+                    is-disabled="form4Separator4.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4MobileNumber.label"
+                    error="form4MobileNumber.error"
+                    model="form4MobileNumber.value"
+                    type="form4MobileNumber.type"
+                    options="form4MobileNumber.options"
+                    is-disabled="form4MobileNumber.isDisabled"
+                    maxlength="20">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4Bank.label"
+                    error="form4Bank.error"
+                    model="form4Bank.value"
+                    type="form4Bank.type"
+                    options="form4Bank.options"
+                    is-disabled="form4Bank.isDisabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4BankBranch.label"
+                    error="form4BankBranch.error"
+                    model="form4BankBranch.value"
+                    type="form4BankBranch.type"
+                    options="form4BankBranch.options"
+                    is-disabled="form4BankBranch.isDisabled"
+                    maxlength="25">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4BankAccountNumber.label"
+                    error="form4BankAccountNumber.error"
+                    model="form4BankAccountNumber.value"
+                    type="form4BankAccountNumber.type"
+                    options="form4BankAccountNumber.options"
+                    is-disabled="form4BankAccountNumber.isDisabled"
+                    maxlength="20">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4Email.label"
+                    error="form4Email.error"
+                    model="form4Email.value"
+                    type="form4Email.type"
+                    options="form4Email.options"
+                    is-disabled="form4Email.isDisabled"
+                    on-blur="form4Email_OnBlur()"
+                    maxlength="50">
+                </input-handling-directive>
+            </div>
+            <div class="submission-page-content" ng-class="content5Class">
+                <div class="submission-page-product" ng-bind="productName"></div>
+                <div class="submission-page-title" ng-bind="globalMessage.SubmissionTab5Title"></div>
+                <input-handling-directive
+                    label="form5RelationName.label"
+                    error="form5RelationName.error"
+                    model="form5RelationName.value"
+                    type="form5RelationName.type"
+                    options="form5RelationName.options"
+                    is-disabled="form5RelationName.isDisabled"
+                    maxlength="50">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form5RelationType.label"
+                    error="form5RelationType.error"
+                    model="form5RelationType.value"
+                    type="form5RelationType.type"
+                    options="form5RelationType.options"
+                    is-disabled="form5RelationType.isDisabled">
+                </input-handling-directive>
+            </div>
+            <div class="submission-page-content" ng-class="content6Class">
+                <div class="submission-page-product" ng-bind="productName"></div>
+                <div class="submission-page-title" ng-bind="globalMessage.SubmissionTab6Title"></div>
+                <ol class="submission-page-term" type="A">
+                    <li>
+                        <b ng-bind="globalMessage.SubmissionTab6ATitle"></b>
+                        <br />
+                        <span ng-bind="globalMessage.SubmissionTab6A"></span>
+                    </li>
+                    <li>
+                        <b ng-bind="globalMessage.SubmissionTab6BTitle"></b>
+                        <br />
+                        <span ng-bind="globalMessage.SubmissionTab6B"></span>
+                        <ol type="1">
+                            <li ng-bind="globalMessage.SubmissionTab6B1"></li>
+                            <li ng-bind="globalMessage.SubmissionTab6B2"></li>
+                            <li>
+                                <span ng-bind="globalMessage.SubmissionTab6B3"></span>
+                                <ol type="a">
+                                    <li ng-bind="globalMessage.SubmissionTab6B3a"></li>
+                                    <li ng-bind="globalMessage.SubmissionTab6B3b"></li>
+                                </ol>
+                            </li>
+                            <li ng-bind="globalMessage.SubmissionTab6B4"></li>
+                            <li ng-bind="globalMessage.SubmissionTab6B5"></li>
+                            <li ng-bind="globalMessage.SubmissionTab6B6"></li>
+                        </ol>
+                    </li>
+                </ol>
+                <br />
+                <br />
+                <center>
+                    <label>
+                        <input type="checkbox" ng-model="form6SubmissionAgree.options[0].checked" />
+                        {{globalMessage.SubmissionCheckboxAgree}}
+                    </label>
+                </center>
+            </div>
+            <div class="submission-page-content" ng-class="content7Class">
+                <div class="submission-page-product" ng-bind="productName"></div>
+                <div class="submission-page-title" ng-bind="globalMessage.SubmissionTab7Title"></div>
+                <div class="submission-page-picture-wrapper">
+                    <i class="fa fa-id-card submission-page-picture-icon" ng-if="imgIdCard == stringEmpty || imgIdCard == undefined"></i>
+                    <img class="submission-page-picture" ng-src="{{imgIdCard}}" ng-if="imgIdCard != stringEmpty && imgIdCard != undefined" />
+                </div>
+            </div>
+            <div class="submission-page-content" ng-class="content8Class">
+                <div class="submission-page-product" ng-bind="productName"></div>
+                <div class="submission-page-title" ng-bind="globalMessage.SubmissionTab8Title"></div>
+                <div class="submission-page-picture-wrapper">
+                    <i class="fa fa-user submission-page-picture-icon" ng-if="imgPerson == stringEmpty || imgPerson == undefined"></i>
+                    <img class="submission-page-picture" ng-src="{{imgPerson}}" ng-if="imgPerson != stringEmpty && imgPerson != undefined" />
+                </div>
+            </div>
+            <div class="submission-page-content" ng-class="content9Class">
+                <div class="submission-page-product" ng-bind="productName"></div>
+                <div class="submission-page-title" ng-bind="globalMessage.SubmissionTab9Title"></div>
+                <br />
+                <div class="submission-page-preview-title" ng-bind="globalMessage.SubmissionTab1Title"></div>
+                <br />
+                <div class="submission-page-message submission-page-disabled" ng-bind="globalMessage.SubmissionTab1Message"></div>
+                <br />
+                <br />
+                <center>
+                    <label class="submission-page-disabled">
+                        <input type="checkbox" ng-model="form1IsAgreeNUTeam.options[0].checked" disabled="disabled" />
+                        {{globalMessage.SubmissionCheckboxAgree}}
+                    </label>
+                </center>
+                <br />
+                <br />
+                <div class="submission-page-preview-title" ng-bind="globalMessage.SubmissionTab2Title"></div>
+                <br />
+                <input-handling-directive
+                    label="form2IsPremiNoMoreThan10Percent.label"
+                    error="form2IsPremiNoMoreThan10Percent.error"
+                    model="form2IsPremiNoMoreThan10Percent.value"
+                    type="form2IsPremiNoMoreThan10Percent.type"
+                    options="form2IsPremiNoMoreThan10Percent.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form2IsApplicationSuitsYourNeeds.label"
+                    error="form2IsApplicationSuitsYourNeeds.error"
+                    model="form2IsApplicationSuitsYourNeeds.value"
+                    type="form2IsApplicationSuitsYourNeeds.type"
+                    options="form2IsApplicationSuitsYourNeeds.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <div class="submission-page-message submission-page-disabled" ng-bind="globalMessage.SubmissionTab2Message3"></div>
+                <div class="submission-page-message submission-page-disabled" ng-bind="globalMessage.SubmissionTab2Message4"></div>
+                <br />
+                <br />
+                <div class="submission-page-preview-title" ng-bind="globalMessage.SubmissionTab3Title"></div>
+                <br />
+                <input-handling-directive
+                    label="form3CustomerName.label"
+                    error="form3CustomerName.error"
+                    model="form3CustomerName.value"
+                    type="form3CustomerName.type"
+                    options="form3CustomerName.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form3CustomerGender.label"
+                    error="form3CustomerGender.error"
+                    model="form3CustomerGender.value"
+                    type="form3CustomerGender.type"
+                    options="form3CustomerGender.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form3CustomerPlaceOfBirth.label"
+                    error="form3CustomerPlaceOfBirth.error"
+                    model="form3CustomerPlaceOfBirth.value"
+                    type="form3CustomerPlaceOfBirth.type"
+                    options="form3CustomerPlaceOfBirth.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form3CustomerDateOfBirth.label"
+                    error="form3CustomerDateOfBirth.error"
+                    model="form3CustomerDateOfBirth.value"
+                    type="form3CustomerDateOfBirth.type"
+                    options="form3CustomerDateOfBirth.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form3CustomerBenefit.label"
+                    error="form3CustomerBenefit.error"
+                    model="form3CustomerBenefit.value"
+                    type="form3CustomerBenefit.type"
+                    options="form3CustomerBenefit.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form3CustomerPaymentMethod.label"
+                    error="form3CustomerPaymentMethod.error"
+                    model="form3CustomerPaymentMethod.value"
+                    type="form3CustomerPaymentMethod.type"
+                    options="form3CustomerPaymentMethod.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form3CustomerPremi.label"
+                    error="form3CustomerPremi.error"
+                    model="form3CustomerPremi.value"
+                    type="form3CustomerPremi.type"
+                    options="form3CustomerPremi.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form3CustomerPeriod.label"
+                    error="form3CustomerPeriod.error"
+                    model="form3CustomerBenefit.value"
+                    type="form3CustomerPeriod.type"
+                    options="form3CustomerPeriod.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form3CustomerCompensation.label"
+                    error="form3CustomerCompensation.error"
+                    model="form3CustomerCompensation.value"
+                    type="form3CustomerCompensation.type"
+                    options="form3CustomerCompensation.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <br />
+                <br />
+                <div class="submission-page-preview-title" ng-bind="globalMessage.SubmissionTab4Title"></div>
+                <br />
+                <input-handling-directive
+                    label="form4Separator1.label"
+                    error="form4Separator1.error"
+                    model="form4Separator1.value"
+                    type="form4Separator1.type"
+                    options="form4Separator1.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4IdCard.label"
+                    error="form4IdCard.error"
+                    model="form4IdCard.value"
+                    type="form4IdCard.type"
+                    options="form4IdCard.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4IdCardAddress1.label"
+                    error="form4IdCardAddress1.error"
+                    model="form4IdCardAddress1.value"
+                    type="form4IdCardAddress1.type"
+                    options="form4IdCardAddress1.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4IdCardAddress2.label"
+                    error="form4IdCardAddress2.error"
+                    model="form4IdCardAddress2.value"
+                    type="form4IdCardAddress2.type"
+                    options="form4IdCardAddress2.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4IdCardRTRW.label"
+                    error="form4IdCardRTRW.error"
+                    model="form4IdCardRTRW.value"
+                    type="form4IdCardRTRW.type"
+                    options="form4IdCardRTRW.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4IdCardProvince.label"
+                    error="form4IdCardProvince.error"
+                    model="form4IdCardProvince.value"
+                    type="form4IdCardProvince.type"
+                    options="form4IdCardProvince.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4IdCardCity.label"
+                    error="form4IdCardCity.error"
+                    model="form4IdCardCity.value"
+                    type="form4IdCardCity.type"
+                    options="form4IdCardCity.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4IdCardZip.label"
+                    error="form4IdCardZip.error"
+                    model="form4IdCardZip.value"
+                    type="form4IdCardZip.type"
+                    options="form4IdCardZip.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4IdCardDistrict.label"
+                    error="form4IdCardDistrict.error"
+                    model="form4IdCardDistrict.value"
+                    type="form4IdCardDistrict.type"
+                    options="form4IdCardDistrict.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4IdCardSubDistrict.label"
+                    error="form4IdCardSubDistrict.error"
+                    model="form4IdCardSubDistrict.value"
+                    type="form4IdCardSubDistrict.type"
+                    options="form4IdCardSubDistrict.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4IsMailAddressSameWithIdCard.label"
+                    error="form4IsMailAddressSameWithIdCard.error"
+                    model="form4IsMailAddressSameWithIdCard.value"
+                    type="form4IsMailAddressSameWithIdCard.type"
+                    options="form4IsMailAddressSameWithIdCard.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    ng-if="form4IsMailAddressSameWithIdCard.value == false"
+                    label="form4Separator2.label"
+                    error="form4Separator2.error"
+                    model="form4Separator2.value"
+                    type="form4Separator2.type"
+                    options="form4Separator2.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    ng-if="form4IsMailAddressSameWithIdCard.value == false"
+                    label="form4MailAddress1.label"
+                    error="form4MailAddress1.error"
+                    model="form4MailAddress1.value"
+                    type="form4MailAddress1.type"
+                    options="form4MailAddress1.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    ng-if="form4IsMailAddressSameWithIdCard.value == false"
+                    label="form4MailAddress2.label"
+                    error="form4MailAddress2.error"
+                    model="form4MailAddress2.value"
+                    type="form4MailAddress2.type"
+                    options="form4MailAddress2.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    ng-if="form4IsMailAddressSameWithIdCard.value == false"
+                    label="form4MailRTRW.label"
+                    error="form4MailRTRW.error"
+                    model="form4MailRTRW.value"
+                    type="form4MailRTRW.type"
+                    options="form4MailRTRW.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    ng-if="form4IsMailAddressSameWithIdCard.value == false"
+                    label="form4MailProvince.label"
+                    error="form4MailProvince.error"
+                    model="form4MailProvince.value"
+                    type="form4MailProvince.type"
+                    options="form4MailProvince.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    ng-if="form4IsMailAddressSameWithIdCard.value == false"
+                    label="form4MailCity.label"
+                    error="form4MailCity.error"
+                    model="form4MailCity.value"
+                    type="form4MailCity.type"
+                    options="form4MailCity.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    ng-if="form4IsMailAddressSameWithIdCard.value == false"
+                    label="form4MailZip.label"
+                    error="form4MailZip.error"
+                    model="form4MailZip.value"
+                    type="form4MailZip.type"
+                    options="form4MailZip.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    ng-if="form4IsMailAddressSameWithIdCard.value == false"
+                    label="form4MailDistrict.label"
+                    error="form4MailDistrict.error"
+                    model="form4MailDistrict.value"
+                    type="form4MailDistrict.type"
+                    options="form4MailDistrict.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    ng-if="form4IsMailAddressSameWithIdCard.value == false"
+                    label="form4MailSubDistrict.label"
+                    error="form4MailSubDistrict.error"
+                    model="form4MailSubDistrict.value"
+                    type="form4MailSubDistrict.type"
+                    options="form4MailSubDistrict.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4Separator3.label"
+                    error="form4Separator3.error"
+                    model="form4Separator3.value"
+                    type="form4Separator3.type"
+                    options="form4Separator3.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4HomePhoneAreaCode.label"
+                    error="form4HomePhoneAreaCode.error"
+                    model="form4HomePhoneAreaCode.value"
+                    type="form4HomePhoneAreaCode.type"
+                    options="form4HomePhoneAreaCode.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4HomePhoneNumber.label"
+                    error="form4HomePhoneNumber.error"
+                    model="form4HomePhoneNumber.value"
+                    type="form4HomePhoneNumber.type"
+                    options="form4HomePhoneNumber.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4Separator4.label"
+                    error="form4Separator4.error"
+                    model="form4Separator4.value"
+                    type="form4Separator4.type"
+                    options="form4Separator4.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4MobileNumber.label"
+                    error="form4MobileNumber.error"
+                    model="form4MobileNumber.value"
+                    type="form4MobileNumber.type"
+                    options="form4MobileNumber.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4Bank.label"
+                    error="form4Bank.error"
+                    model="form4Bank.value"
+                    type="form4Bank.type"
+                    options="form4Bank.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4BankBranch.label"
+                    error="form4BankBranch.error"
+                    model="form4BankBranch.value"
+                    type="form4BankBranch.type"
+                    options="form4BankBranch.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4BankAccountNumber.label"
+                    error="form4BankAccountNumber.error"
+                    model="form4BankAccountNumber.value"
+                    type="form4BankAccountNumber.type"
+                    options="form4BankAccountNumber.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form4Email.label"
+                    error="form4Email.error"
+                    model="form4Email.value"
+                    type="form4Email.type"
+                    options="form4Email.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <br />
+                <br />
+                <div class="submission-page-preview-title" ng-bind="globalMessage.SubmissionTab5Title"></div>
+                <br />
+                <input-handling-directive
+                    label="form5RelationName.label"
+                    error="form5RelationName.error"
+                    model="form5RelationName.value"
+                    type="form5RelationName.type"
+                    options="form5RelationName.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <input-handling-directive
+                    label="form5RelationType.label"
+                    error="form5RelationType.error"
+                    model="form5RelationType.value"
+                    type="form5RelationType.type"
+                    options="form5RelationType.options"
+                    is-disabled="disabled">
+                </input-handling-directive>
+                <div class="submission-page-preview-title" ng-bind="globalMessage.SubmissionTab6Title"></div>
+                <ol class="submission-page-term" type="A">
+                    <li>
+                        <b ng-bind="globalMessage.SubmissionTab6ATitle"></b>
+                        <br />
+                        <span ng-bind="globalMessage.SubmissionTab6A"></span>
+                    </li>
+                    <li>
+                        <b ng-bind="globalMessage.SubmissionTab6BTitle"></b>
+                        <br />
+                        <span ng-bind="globalMessage.SubmissionTab6B"></span>
+                        <ol type="1">
+                            <li ng-bind="globalMessage.SubmissionTab6B1"></li>
+                            <li ng-bind="globalMessage.SubmissionTab6B2"></li>
+                            <li>
+                                <span ng-bind="globalMessage.SubmissionTab6B3"></span>
+                                <ol type="a">
+                                    <li ng-bind="globalMessage.SubmissionTab6B3a"></li>
+                                    <li ng-bind="globalMessage.SubmissionTab6B3b"></li>
+                                </ol>
+                            </li>
+                            <li ng-bind="globalMessage.SubmissionTab6B4"></li>
+                            <li ng-bind="globalMessage.SubmissionTab6B5"></li>
+                            <li ng-bind="globalMessage.SubmissionTab6B6"></li>
+                        </ol>
+                    </li>
+                </ol>
+                <br />
+                <br />
+                <center>
+                    <label ng-if="!globalData.isFromStaging && allowSubmit">
+                        <input type="checkbox" ng-model="form7SubmissionAgree.options[0].checked" />
+                        {{globalMessage.SubmissionCheckboxAgree}}
+                    </label>
+                </center>
+            </div>
+            <div class="submission-page-content" ng-class="content10Class">
+                <div class="submission-page-product" ng-bind="productName"></div>
+                <div class="submission-page-title" ng-bind="globalMessage.SubmissionTab10Title"></div>
+                <span ng-bind="tokenCounterLabel" class="submission-page-token-counter"></span>
+                <br />
+                <span ng-bind="globalMessage.SubmissionTab10Message1"></span>
+                <br />
+                <br />
+                <input-handling-directive
+                    label="formToken.label"
+                    model="formToken.value"
+                    error="formToken.error"
+                    type="formToken.type"
+                    maxlength="formToken.maxlength">
+                </input-handling-directive>
+                <br />
+                <br />
+                <center>
+                    <button ng-click="confirmClick()" ng-bind="globalMessage.SubmissionButtonSubmit"></button>
+                    <br />
+                    <br />
+                </center>
+                <label ng-bind="globalMessage.SubmissionTab10Message4"></label>
+                <br />
+                <br />
+                <button ng-click="requestClick()" ng-disabled="isRequestAvailable" ng-bind="globalMessage.SubmissionButtonResend"></button>
+                <label class="submission-page-countdown" ng-bind="timeLeft"></label>
+            </div>
+            <floating-button-directive icon="fobIdCardIcon" on-click="idCardPhotoClick()" ng-if="contentIndex == 7"></floating-button-directive>
+            <floating-button-directive icon="fobPersonIcon" on-click="personPhotoClick()" ng-if="contentIndex == 8"></floating-button-directive>
+        </div>
+        <div class="submission-page-nav-bar-bottom-wrapper">
+            <div class="submission-page-nav-bar-bottom-left">
+                <label ng-click="prevClick()" ng-if="contentIndex > 1">
+                    <i class="fa fa-fw fa-angle-left fa-lg"></i>
+                    {{globalMessage.SubmissionButtonPrev}}
+                </label>
+            </div>
+            <div class="submission-page-nav-bar-bottom-right">
+                <label ng-click="nextClick()" ng-if="
+                    (contentIndex < 10 && contentIndex != 1 && contentIndex != 6 && contentIndex != 7 && contentIndex != 8 && contentIndex != 9) ||
+                    (contentIndex == 1 && form1IsAgreeNUTeam.options[0].checked) ||
+                    (contentIndex == 6 && form6SubmissionAgree.options[0].checked) ||
+                    (contentIndex == 7 && imgIdCard != stringEmpty && imgIdCard != undefined) ||
+                    (contentIndex == 8 && imgPerson != stringEmpty && imgPerson != undefined) ||
+                    (contentIndex == 9 && form7SubmissionAgree.options[0].checked)
+                ">
+                    {{globalMessage.SubmissionButtonNext}}
+                    <i class="fa fa-fw fa-angle-right fa-lg"></i>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

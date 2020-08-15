@@ -1,0 +1,99 @@
+<div ng-controller="posUpdatePageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/posUpdate/posUpdate.css">
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            on-left-click="navBarTop.onLeftClick()"
+        >
+        </nav-bar-top-directive>
+        <div class="page-content pos-update-page-content-wrapper">
+            <div class="pos-update-page-content active">
+                <div class="pos-update-page-header">
+                    <div ng-bind="globalMessage.PosUpdateLabelPolicyNo"></div>
+                    <div>:</div>
+                    <div ng-bind="model.policyNo"></div>
+                </div>
+                <div class="pos-update-page-header">
+                    <div ng-bind="globalMessage.PosUpdateLabelCustomerName"></div>
+                    <div>:</div>
+                    <div ng-bind="model.customerName"></div>
+                </div>
+                <div class="pos-update-page-header">
+                    <div ng-bind="globalMessage.PosUpdateLabelTransactionDate"></div>
+                    <div>:</div>
+                    <div ng-bind="model.transactionDate"></div>
+                </div>
+                <hr />
+                <h2 class="text-center" ng-bind="globalMessage.PosUpdateLabelPage1Title"></h2>
+                <br />
+                <div class="pos-update-page-checkbox" ng-repeat="item in model.posTypeList">
+                    <label>
+                        <input type="checkbox" disabled="disabled" ng-model="item.isSelected" />
+                        {{item.name}}
+                    </label>
+                </div>
+            </div>
+            <div class="pos-update-page-content" ng-class="contentIndex > 0 ? 'active' : ''">
+                <h2 class="text-center" ng-bind="globalMessage.PosUpdateLabelPage2Title"></h2>
+                <br />
+                <div class="pos-update-page-checkbox" ng-repeat="item in model.supportingDocumentList">
+                    <label>
+                        <input type="checkbox" ng-model="item.isSelected" />
+                        {{item.name}}
+                    </label>
+                </div>
+            </div>
+            <div class="pos-update-page-content" ng-class="contentIndex > ($index + 1) ? 'active' : ''" ng-repeat="item in model.supportingDocumentList | filter: { isSelected: true }">
+                <div class="pos-update-page-header-title1">{{model.policyNo}} - {{model.customerName}}</div>
+                <div class="pos-update-page-header-title2" ng-bind="item.name"></div>
+                <hr />
+                <i class="fa fa-id-card pos-update-page-picture-icon" ng-if="item.image == stringEmpty || item.image == undefined"></i>
+                <img class="pos-update-page-picture" ng-src="{{item.image}}" ng-if="item.image != stringEmpty && item.image != undefined" />
+            </div>
+            <div class="pos-update-page-content" ng-class="contentIndex > countSelected() + 1 ? 'active' : ''">
+                <div class="pos-update-page-header-title2" ng-bind="globalMessage.PosUpdateLabelPageTokenTitle"></div>
+                <span class="pos-update-page-token-counter" ng-bind="tokenCounterLabel"></span>
+                <br />
+                <span ng-bind="model.isEmailExist ?  globalMessage.PosUpdateLabelTokenMessage1 : globalMessage.PosUpdateLabelTokenMessage2"></span>
+                <br />
+                <br />
+                <input-handling-directive
+                    label="formToken.label"
+                    model="formToken.value"
+                    error="formToken.error"
+                    type="formToken.type"
+                    maxlength="formToken.maxlength">
+                </input-handling-directive>
+                <br />
+                <br />
+                <center>
+                    <button ng-click="confirmClick()" ng-bind="globalMessage.PosUpdateButtonSubmit"></button>
+                    <br />
+                    <br />
+                </center>
+                <label ng-bind="globalMessage.PosUpdateLabelTokenMessage3"></label>
+                <br />
+                <br />
+                <button ng-click="requestClick()" ng-disabled="isRequestAvailable" ng-bind="globalMessage.PosUpdateButtonResend"></button>
+                <label class="pos-update-page-countdown" ng-bind="timeLeft"></label>
+            </div>
+            <floating-button-directive icon="'fa-camera'" on-click="photoTake(contentIndex - 2)" ng-if="contentIndex > 1 && contentIndex <= countSelected() + 1"></floating-button-directive>
+        </div>
+        <div class="pos-update-page-nav-bar-bottom-wrapper">
+                <div class="pos-update-page-nav-bar-bottom-left">
+                    <label ng-click="prevClick()" ng-if="contentIndex > 0">
+                        <i class="fa fa-fw fa-angle-left fa-lg"></i>
+                        {{globalMessage.PosUpdateButtonPrev}}
+                    </label>
+                </div>
+                <div class="pos-update-page-nav-bar-bottom-right">
+                    <label ng-click="nextClick()" ng-if="isNextAvailable()">
+                        {{globalMessage.PosUpdateButtonNext}}
+                        <i class="fa fa-fw fa-angle-right fa-lg"></i>
+                    </label>
+                </div>
+            </div>
+    </div>
+</div>

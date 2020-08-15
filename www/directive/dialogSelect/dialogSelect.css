@@ -1,0 +1,67 @@
+.dialog-select-directive-wrapper {
+    position: fixed;
+    top:0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0,0,0,0.5);
+    z-index: 1;
+}
+.dialog-select-directive-modal {
+    position: fixed;
+    top: calc(50vh - 75px);
+    left: calc(50vw - 150px);
+	width: 300px;
+    background: #fff;
+    border: 1px solid #555;
+    border-radius: 3px;
+}
+.dialog-select-directive-title {
+	height: 25px;
+    line-height: 25px;
+    padding: 10px;
+}
+.dialog-select-directive-control {
+    position: relative;
+    height: 52px;
+}
+.dialog-select-directive-control select {
+    position: absolute;
+    -webkit-appearance: none;
+	width: 280px;
+    height: 50px;
+    border-bottom: 2px solid #888;
+    border-radius: 0;
+    padding: 0 10px;
+    margin-left: 10px
+}
+.dialog-select-directive-control .fa {
+    position: absolute;
+    top: 17.5px;
+    right: 20px;
+    color: #888;
+}
+.dialog-select-directive-button-wrapper {
+    font-size: 0;
+}
+.dialog-select-directive-button-cancel,
+.dialog-select-directive-button-center,
+.dialog-select-directive-button-ok {
+    display: inline-block;
+    width: calc((100% / 3) - 20px);
+    padding: 10px;
+    height: 25px;
+    line-height: 25px;
+    margin-top: 25px;
+    color: #00693c;
+    cursor: pointer;
+}
+.dialog-select-directive-button-cancel {
+	text-align: left;
+}
+.dialog-select-directive-button-center {
+	text-align: center;
+}
+.dialog-select-directive-button-ok {
+	text-align: right;
+}

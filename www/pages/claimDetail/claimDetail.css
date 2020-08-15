@@ -1,0 +1,76 @@
+.claim-detail-page-content-wrapper {
+  position: relative;
+  height: calc(100vh - 76px - 56px);
+  overflow-x: hidden;
+}
+.claim-detail-page-content-wrapper .floating-button-directive-button {
+  bottom: 80px
+}
+.claim-detail-page-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100vh - 76px - 56px);
+  width: calc(100vw - 20px);
+  background: #fff;
+  padding: 10px;
+  display: none;
+  -webkit-transition: all 0.13s ease-in;
+          transition: all 0.13s ease-in;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+  will-change: transform;
+}
+.claim-detail-page-content.active {
+  display: block;
+  -webkit-transform: none;
+          transform: none;
+  -webkit-animation: display-none-transition 0.33s both;
+          animation: display-none-transition 0.33s both;
+}
+@-webkit-keyframes display-none-transition {
+  0% {
+      -webkit-transform: translateX(100%);
+              transform: translateX(100%);
+  }
+}
+@keyframes display-none-transition {
+  0% {
+      -webkit-transform: translateX(100%);
+              transform: translateX(100%);
+  }
+}
+
+.claim-detail-page-nav-bar-bottom-wrapper {
+  height: 54px;
+  max-height: 54px;
+  width: 100vw;
+  font-size: 0;
+  border-top: 2px solid #888;
+}
+.claim-detail-page-nav-bar-bottom-left,
+.claim-detail-page-nav-bar-bottom-right {
+  display: inline-block;
+  height: 54px;
+  max-height: 54px;
+  line-height: 54px;
+  width: 50vw;
+  max-width: 50vw;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 15px;
+  background: #fff;
+  color: #000;
+}
+.claim-detail-page-nav-bar-bottom-left {
+  text-align: left;
+}
+.claim-detail-page-nav-bar-bottom-right {
+  text-align: right;
+}
+.claim-detail-page-nav-bar-bottom-left label,
+.claim-detail-page-nav-bar-bottom-right label {
+  cursor: pointer;
+}

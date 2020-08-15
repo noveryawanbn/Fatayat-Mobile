@@ -1,0 +1,33 @@
+<div ng-controller="libraryPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/library/library.css" />
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            on-left-click="navBarTop.onLeftClick()">
+        </nav-bar-top-directive>
+        <div class="page-content">
+            <div ng-repeat="sc in subCategoryList">
+                <div class="library-sub-category" ng-click="showHideSubCategory($index)" ng-if="(libraryList | filter: { subCategoryId: sc.id }).length > 0">
+                    <label ng-bind="sc.title"></label>
+                    <i class="fa fa-lg fa-{{sc.isShow == true ? 'angle-down' : 'angle-up'}}"></i>
+                </div>
+                <card-material-directive
+                    ng-if="sc.isShow == true"
+                    ng-repeat="n in libraryList | filter: { subCategoryId: sc.id }"
+                    card-id="n.id"
+                    top-left="n.title"
+                    top-right="n.date"
+                    message="n.message"
+                    url="n.linkUrl"
+                    type="n.fileType"
+                    file-name="n.fileName"
+                    on-click="onCardClick(parm)"
+                    bearer="globalData.Token">
+                </card-material-directive>
+            </div>
+        </div>
+        <library-detail-page></library-detail-page>
+    </div>
+</div>

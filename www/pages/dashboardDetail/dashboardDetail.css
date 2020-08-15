@@ -1,0 +1,64 @@
+.dashboard-detail-header {
+    width: 100%;
+}
+
+.dashboard-detail-header td:nth-child(2) {
+    text-align: right;
+    width: 50%;
+}
+
+.dashboard-detail-card {
+    margin: 0 -10px;
+    padding: 15px;
+}
+
+.dashboard-detail-card:nth-child(2n+1) {
+    background: #888;
+}
+
+.dashboard-detail-card table {
+    width: 100%;
+}
+
+.dashboard-detail-card td:nth-child(1) {
+    width: 115px;
+}
+
+.dashboard-detail-card td:nth-child(2) {
+    width: 15px;
+    text-align: center;
+}
+
+.dashboard-detail-card td:nth-child(3) {
+    display: flex;
+}
+
+.dashboard-detail-spacer {
+    flex: 1 1 auto;
+}
+
+.dashboard-detail-search-wrapper {
+    font-size: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.dashboard-detail-search-wrapper select {
+	border: 2px solid #ccc;
+    width: calc(50vw - 20px);
+    height: 34px;
+}
+
+.dashboard-detail-search-wrapper-input {
+    border: 2px solid #ccc;
+    padding: 5px;
+    border-radius: 20px;
+    display: inline-block;
+    width: calc(50vw - 25px);
+    margin-left: 10px;
+}
+
+.dashboard-detail-search-wrapper-input input {
+    width: calc(100% - 30px);
+    height: 20px;
+}

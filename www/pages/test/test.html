@@ -1,0 +1,34 @@
+<div ng-controller="testPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/test/test.css" />
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            on-left-click="navBarTop.onLeftClick()">
+        </nav-bar-top-directive>
+        <div class="page-content test-content-wrapper">
+            <div ng-repeat="page in testForms">
+                <div ng-class="page.class">
+                    <input-questionnaire-directive
+                        ng-repeat="n in page.content"
+                        no="n.no"
+                        label="n.question"
+                        model="n.value"
+                        type="n.type"
+                        options="n.options">
+                    </input-questionnaire-directive>
+                    <div class="test-nav-bar-down-wrapper">
+                        <div class="test-nav-bar-down-left">
+                            <label ng-if="page.pageNumber > 1" ng-click="prevClick()"><i class="fa fa-fw fa-angle-left"></i>SEBELUMNYA</label>
+                        </div>
+                        <div class="test-nav-bar-down-right">
+                            <label ng-if="page.pageNumber < numberOfPages" ng-click="nextClick()">BERIKUTNYA<i class="fa fa-fw fa-angle-right"></i></label>
+                            <button ng-if="page.pageNumber == numberOfPages" ng-click="doneClick()">SELESAI</button>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

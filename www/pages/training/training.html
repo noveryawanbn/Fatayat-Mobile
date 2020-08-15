@@ -1,0 +1,82 @@
+<div ng-controller="trainingPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/training/training.css" />
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            on-left-click="navBarTop.onLeftClick()">
+        </nav-bar-top-directive>
+        <div class="page-content">
+            <div class="training-status">
+                <label>Status Pelatihan Dasar - Dasar Syariah: {{statusForProduct}}</label>
+            </div>
+            <div class="training-module-wrapper">
+                <div class="training-module-icon">
+                    <i class="fa fa-fw fa-graduation-cap"></i>
+                </div>
+                <div class="training-module-label">
+                    <label>PRE - TEST</label>
+                </div>
+                <div class="training-module-button">
+                    <button ng-disabled="productPreTestDisabled" ng-click="goToTestPage()">{{productPreTest}}</button>
+                </div>
+            </div>
+            <div class="training-module-wrapper">
+                <div class="training-module-icon">
+                    <i class="fa fa-fw fa-book"></i>
+                </div>
+                <div class="training-module-label">
+                    <label>MATERI PELATIHAN</label>
+                </div>
+                <div class="training-module-button">
+                    <button ng-disabled="productMaterialDisabled" ng-click="productMaterialClick()">{{productMaterial}}</button>
+                </div>
+            </div>
+            <div class="training-module-wrapper">
+                <div class="training-module-icon">
+                    <i class="fa fa-fw fa-graduation-cap"></i>
+                </div>
+                <div class="training-module-label">
+                    <label>POST - TEST</label>
+                </div>
+                <div class="training-module-button">
+                    <button ng-disabled="productPostTestDisabled" ng-click="goToTestPage()">{{productPostTest}}</button>
+                </div>
+            </div>
+            <!-- <div ng-if="!isFromStaging"> -->
+                <div class="training-status">
+                    <label>Status Pelatihan AML: {{statusForAml}}</label>
+                </div>
+                <div class="training-module-wrapper">
+                    <div class="training-module-icon">
+                        <i class="fa fa-fw fa-book"></i>
+                    </div>
+                    <div class="training-module-label">
+                        <label>MATERI PELATIHAN</label>
+                    </div>
+                    <div class="training-module-button">
+                        <button ng-disabled="amlMaterialDisabled" ng-click="amlMaterialClick()">{{amlMaterial}}</button>
+                    </div>
+                </div>
+                <div class="training-module-wrapper">
+                    <div class="training-module-icon">
+                        <i class="fa fa-fw fa-graduation-cap"></i>
+                    </div>
+                    <div class="training-module-label">
+                        <label>AML dan MCG - TEST</label>
+                    </div>
+                    <div class="training-module-button">
+                        <button ng-disabled="amlPostTestDisabled" ng-click="goToTestPage()">{{amlPostTest}}</button>
+                    </div>
+                </div>
+            <!-- </div> -->
+            <br />
+            <center ng-if="showRefreshmentTestButton">
+                <button ng-click="refreshmentTestClick()">AMBIL REFRESHMENT TEST</button>
+            </center>
+        </div>
+        <test-page></test-page>
+        <training-material-page></training-material-page>
+    </div>
+</div>

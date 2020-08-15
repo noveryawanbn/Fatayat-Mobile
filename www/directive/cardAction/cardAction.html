@@ -1,0 +1,5 @@
+<link rel="stylesheet" type="text/css" href="./directive/cardAction/cardAction.css" />
+<div class="card-action-directive-wrapper" ng-click="onClick({parm:cardId})">
+    <div class="card-action-directive-message" ng-bind-html="trustAsHtml(message)"></div>
+    <i class="fa fa-fw fa-2x" ng-class="actionIcon" ng-click="onActionClick({parm:cardId});$event.stopPropagation();"></i>
+</div>

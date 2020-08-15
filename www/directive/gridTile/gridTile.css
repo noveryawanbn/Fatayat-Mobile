@@ -1,0 +1,47 @@
+.grid-tile-directive-wrapper {
+    display: inline-block;
+    width: calc(50vw - 33px);
+    border: 5px solid #fdbd10;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-size: 0;
+    background: #00693c;
+    cursor: pointer;
+    margin: 5px;
+}
+.grid-tile-directive-top {
+    width: 100%;
+    height: 25vw;
+    line-height: 25vw;
+	color: #00693c;
+    background: #fdbd10;
+    text-align: center;
+    font-size: 10vw;
+    position: relative;
+}
+.grid-tile-directive-bottom {
+    height: 35px;
+    line-height: 35px;
+    padding: 5px;
+    text-align: center;
+	color: #fdbd10;
+    font-size: 2.8vw;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.grid-tile-directive-alert {
+    position: absolute;
+    background: #f00;
+    line-height: 15px;
+    height: 15px;
+    width: 20px;
+    padding-top: 5px;
+    top: 10px;
+    right: 10px;
+    border-radius: 100%;
+    color: #fff;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 10px;
+}

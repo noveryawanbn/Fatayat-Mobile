@@ -1,0 +1,16 @@
+.training-material-sub-category {
+    position: relative;
+    background: orange;
+    color: #fff;
+    font-weight: bold;
+    margin-top: -10px;
+    margin-left: -10px;
+    margin-right: -10px;
+    padding: 10px;
+    border-bottom: 2px solid #000;
+}
+.training-material-sub-category .fa {
+    position: absolute;
+    right: 10px;
+    color: #fff;
+}

@@ -1,0 +1,65 @@
+.reassign-page-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    padding-bottom: 100px;
+    height: calc(100vh - 76px - 100px);
+    width: calc(100vw - 20px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: none;
+    -webkit-transition: all 0.13s ease-in;
+            transition: all 0.13s ease-in;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+    will-change: transform;
+    background: #fff;
+}
+
+.reassign-page-content.active {
+    display: block;
+    -webkit-transform: none;
+            transform: none;
+    -webkit-animation: display-none-transition 0.33s both;
+    animation: display-none-transition 0.33s both;
+}
+
+.reassign-search-wrapper {
+    font-size: 0;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #888;
+}
+
+.reassign-search-wrapper select {
+	border: 2px solid #ccc;
+    width: calc(50vw - 24px);
+    height: 34px;
+    margin-right: 5px;
+}
+
+.reassign-search-wrapper-input {
+    border: 2px solid #ccc;
+    padding: 5px;
+    border-radius: 20px;
+    display: inline-block;
+    width: calc(100vw - 50px);
+    margin-top: 10px;
+}
+
+.reassign-search-wrapper-input input {
+    width: calc(100% - 30px);
+    height: 20px;
+}
+
+.reassign-page-cardlist-title {
+    font-weight: bold;
+    padding: 10px;
+}
+
+.reassign-page-cardlist-title-wrapper {
+    /* border-top: 2px solid #888; */
+    border-bottom: 2px solid #888;
+    margin-left: -10px;
+    margin-right: -10px;
+}

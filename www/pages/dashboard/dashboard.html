@@ -1,0 +1,111 @@
+<div ng-controller="dashboardPageController" ng-view ng-cloak>
+    <link rel="stylesheet" type="text/css" href="./pages/dashboard/dashboard.css">
+    <div ng-if="isShow" class="page" ng-class="pageClass">
+        <nav-bar-top-directive
+            type="navBarTop.type"
+            title="navBarTop.title"
+            left="navBarTop.left"
+            right1="navBarTop.right"
+            on-left-click="navBarTop.onLeftClick()"
+            on-right1-click="navBarTop.onRightClick()">
+        </nav-bar-top-directive>
+        <div class="page-content dashboard-page-content-wrapper">
+            <div class="dashboard-page-content active" ng-repeat="dashboard in DashboardList">
+                <table class="dashboard-header">
+                    <tr>
+                        <td>
+                            <table class="dashboard-upline">
+                                <tr>
+                                    <td>{{ globalMessage.DashboardLabelNSH }}</td>
+                                    <td>:</td>
+                                    <td>{{ dashboard.NSHName }}</td>
+                                </tr>
+                                <tr ng-if="dashboard.ProvinceName">
+                                    <td>{{ globalMessage.DashboardLabelProvince }}</td>
+                                    <td>:</td>
+                                    <td>{{ dashboard.ProvinceName }}</td>
+                                </tr>
+                                <tr ng-if="dashboard.ABDMName">
+                                    <td>{{ globalMessage.DashboardLabelABDM }}</td>
+                                    <td>:</td>
+                                    <td>{{ dashboard.ABDMName }}</td>
+                                </tr>
+                                <tr ng-if="dashboard.SFKName">
+                                    <td>{{ globalMessage.DashboardLabelSFK }}</td>
+                                    <td>:</td>
+                                    <td>{{ dashboard.SFKName }}</td>
+                                </tr>
+                                <tr ng-if="dashboard.SFSName">
+                                    <td>{{ globalMessage.DashboardLabelSFS }}</td>
+                                    <td>:</td>
+                                    <td>{{ dashboard.SFSName }}</td>
+                                </tr>
+                                <tr ng-if="dashboard.SFMName">
+                                    <td>{{ globalMessage.DashboardLabelSFM }}</td>
+                                    <td>:</td>
+                                    <td>{{ dashboard.SFMName }}</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>{{ dashboard.Period | date : 'dd MMM yyyy' }}</td>
+                    </tr>
+                </table>
+                <div class="dashboard-pscl-wrapper">
+                    <button ng-click="getDetail(dashboard.AgentCode, 'P', dashboard.area)">
+                        {{ globalMessage.DashboardLabelPending }}
+                        <div class="dashboard-spacer"></div>
+                        {{ dashboard.Pending | number }}
+                    </button>
+                    <button ng-click="getDetail(dashboard.AgentCode, 'S', dashboard.area)">
+                        {{ globalMessage.DashboardLabelSubmit }}
+                        <div class="dashboard-spacer"></div>
+                        {{ dashboard.Submit | number }}
+                    </button>
+                    <button ng-click="getDetail(dashboard.AgentCode, 'C', dashboard.area)">
+                        {{ globalMessage.DashboardLabelComplete }}
+                        <div class="dashboard-spacer"></div>
+                        {{ dashboard.Complete | number }}
+                    </button>
+                    <button ng-click="getDetail(dashboard.AgentCode, 'L', dashboard.area)">
+                        {{ globalMessage.DashboardLabelLapse }}
+                        <div class="dashboard-spacer"></div>
+                        {{ dashboard.Lapse | number }}
+                    </button>
+                    <table class="dashboard-ape">
+                        <tr>
+                            <td>{{ globalMessage.DashboardLabelAPEPending }}</td>
+                            <td>:</td>
+                            <td>{{ dashboard.APEPending | number }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ globalMessage.DashboardLabelAPESubmit }}</td>
+                            <td>:</td>
+                            <td>{{ dashboard.APESubmit | number }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ globalMessage.DashboardLabelAPEComplete }}</td>
+                            <td>:</td>
+                            <td>{{ dashboard.APEComplete | number }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ globalMessage.DashboardLabelAPELapse }}</td>
+                            <td>:</td>
+                            <td>{{ dashboard.APELapse | number }}</td>
+                        </tr>
+                    </table>
+                </div>
+                <hr />
+                <input-handling-directive
+                    ng-if="dashboard.AgentList.length > 0"
+                    label="globalMessage.DashboardLabelSearch"
+                    type="'address'"
+                    model="dashboard.Search">
+                </input-handling-directive>
+                <div class="dashboard-card" ng-repeat="agent in getAgentList(dashboard.AgentList, dashboard.Search)" ng-click="getDashboard(agent.agentCode, agent.area)">
+                    {{ agent.province ? agent.province + ' - ' : '' }}{{ getRank(agent.rank) }} - {{ agent.agentName }}
+                </div>
+            </div>
+        </div>
+        <dashboard-detail-page></dashboard-detail-page>
+    </div>
+</div>

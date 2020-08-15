@@ -1,0 +1,20 @@
+.contact-us-menu {
+    height: 100px;
+    width: 300px;
+    background: #00693c;
+    color: #fff;
+    border: 2px solid #fff;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.contact-us-menu.menu1 {
+    margin-top: 25vh;
+}
+.contact-us-menu .line1 {
+    margin-top: 15px;
+}
+.contact-us-menu .detail {
+    font-weight: bold;
+}
